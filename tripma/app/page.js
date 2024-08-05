@@ -1,6 +1,7 @@
 import Popup from '@/components/popup';
 import styles from './page.module.css';
 import Hero from '@/components/hero';
+import Footer from '@/components/footer';
 
 import Card from '@/components/card';
 import LargeCard from '@/components/largeCard';
@@ -228,11 +229,13 @@ export default function TripmaPage() {
             </div>
 
           </div>
-
-
         </div>
 
+
+
+        <Footer />
       </div>
+      
       <Popup />
 
     </div>
