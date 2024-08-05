@@ -1,14 +1,14 @@
 
 import styles from './signupform.module.css';
 
-export default function Signupform() {
+export default function Signupform({onClose}) {
     return (
       <div className={styles.container}>
         <div className={styles.form}>
             <div className={styles.header}>
                 <div className={styles.titlerow}>
                     <h2 className={styles.title}>Sign up for Tripma</h2>
-                    <button className={styles.closeButton}>x</button>
+                    <button className={styles.closeButton} onClick={onClose}>x</button>
                 </div>
                 <p className={styles.description}>
                     Tripma is totally free to use. Sign up using your email

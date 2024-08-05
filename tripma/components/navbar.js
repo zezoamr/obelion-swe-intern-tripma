@@ -1,7 +1,7 @@
 import Link from "next/link";
 import styles from './navbar.module.css';
 
-export default function navbar() {
+export default function navbar({ onSignupClick }) {
   return (
     <header className={styles.header}>
         <nav className={styles.nav}>
@@ -11,7 +11,7 @@ export default function navbar() {
             <Link href="#" className={styles.navLink}>Hotels</Link>
             <Link href="#" className={styles.navLink}>Packages</Link>
             <Link href="#" className={styles.navLink}>Sign in</Link>
-            <button className={styles.signUp}>Sign up</button>
+            <button onClick={onSignupClick} className={styles.signUp}>Sign up</button>
           </div>
         </nav>
       </header>
