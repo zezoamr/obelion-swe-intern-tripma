@@ -6,8 +6,45 @@ import GoogleplayImage from '@/components/GoogleplayImage.png'
 import AppleStore from '@/components/AppleStore.png'
 
 export default function Footer() {
+
+    const firstColumn = [
+        "About Tripma",
+        "How it works",
+        "Careers",
+        "Press",
+        "Blog",
+        "Forum"
+    ];
+    
+    const secondColumn = [
+        "Partnership programs",
+        "Affiliate program",
+        "Connectivity partners",
+        "Promotions and events",
+        "Integrations",
+        "Community",
+        "Loyalty program"
+    ];
+    
+    const thirdColumn = [
+        "Help Center",
+        "Contact us",
+        "Privacy policy",
+        "Terms of service",
+        "Trust and safety",
+        "Accessibility"
+    ];
+    
+    const  fourthColumn= [
+        "About Tripma",
+        "Tripma for Android",
+        "Tripma for iOS",
+        "Mobile site"
+    ];
+
   return (
     <div className={styles.footer}>
+
         <div class={styles.footercontent}>
             <div class={styles.Wordmark} > 
                 <div class={styles.round}>
@@ -17,95 +54,30 @@ export default function Footer() {
 
             <div class={styles.columnabout}>
                 <span class={styles.Footerheader}>
-                About
+                    About
                 </span>
-                <span class={styles.Listitem}>
-                About Tripma
-                </span>
-                <span class={styles.Listitem}>
-                How it works
-                </span>
-                <span class={styles.Listitem}>
-                Careers
-                </span>
-                <span class={styles.Listitem}>
-                Press
-                </span>
-                <span class={styles.Listitem}>
-                Blog
-                </span>
-                <span class={styles.Listitem}>
-                Forum
-                </span>
+                {firstColumn.map(item => <span class={styles.Listitem}>{item}</span>)}
             </div>
 
             <div class={styles.columnabout}>
                 <span class={styles.Footerheader}>
                 Partner with us
                 </span>
-                <span class={styles.Listitem}>
-                Partnership programs
-                </span>
-                <span class={styles.Listitem}>
-                Affiliate program
-                </span>
-                <span class={styles.Listitem}>
-                Connectivity partners
-                </span>
-                <span class={styles.Listitem}>
-                Promotions and events
-                </span>
-                <span class={styles.Listitem}>
-                Integrations
-                </span>
-                <span class={styles.Listitem}>
-                Community
-                </span>
-                <span class={styles.Listitem}>
-                Loyalty program
-                </span>
+                {secondColumn.map(item => <span class={styles.Listitem}>{item}</span>)}
             </div>
 
             <div class={styles.columnabout}>
                 <span class={styles.Footerheader}>
                 Support
                 </span>
-                <span class={styles.Listitem}>
-                Help Center
-                </span>
-                <span class={styles.Listitem}>
-                Contact us
-                </span>
-                <span class={styles.Listitem}>
-                Privacy policy
-                </span>
-                <span class={styles.Listitem}>
-                Terms of service
-                </span>
-                <span class={styles.Listitem}>
-                Trust and safety
-                </span>
-                <span class={styles.Listitem}>
-                Accessibility
-                </span>
+                {thirdColumn.map(item => <span class={styles.Listitem}>{item}</span>)}
             </div>
 
             <div class={styles.columnabout}>
                 <span class={styles.Footerheader}>
-                Get the app
+                    Get the app
                 </span>
-                <span class={styles.Listitem}>
-                About Tripma
-                </span>
-                <span class={styles.Listitem}>
-                Tripma for Android
-                </span>
-                <span class={styles.Listitem}>
-                Tripma for iOS
-                </span>
-                <span class={styles.Listitem}>
-                Mobile site
-                </span>
+                {fourthColumn.map(item => <span class={styles.Listitem}>{item}</span>)}
                 <div class={styles.linkappstore}>
                 <Image src={AppleStore} alt="AppleStore" layout="fill" objectFit="cover" /> 
                 </div>
