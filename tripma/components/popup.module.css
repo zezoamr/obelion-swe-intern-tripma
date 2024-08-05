@@ -1,0 +1,103 @@
+.popup {
+    width: 300px; 
+    height: 130px; 
+    position: fixed;
+    bottom: 30px; 
+    left: 48px;
+    padding: 16px 16px 16px 24px;
+    gap: 12px;
+    border-radius: 8px 0px 0px 0px;
+    border: 1px solid #605DEC;
+    
+    
+    background: #F6F6FE;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2); 
+  
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  
+    border-radius: 7px; /* not in Figma but looks wrong without */
+  }
+  
+  .popupContent {
+    display: flex;
+    flex-direction: row;
+    width: 100%; 
+    max-width: 260px; /* Fill */
+    height: auto; /* Hug */
+    min-height: 50px; /* Ensuring it doesn't go below the specified height */
+    gap: 10px;
+    
+  }
+  
+  .popupCloseButton {
+    width: 32px;
+    height: 32px;
+    padding: 4.69px 0 0 0;
+    border: none;
+    background-color: transparent;
+    color: #605DEC;
+    font-size: 24px;
+    cursor: pointer;
+  }
+  
+  .popupText {
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 24.55px;
+    text-align: left;
+    color: #605DEC;
+  }
+  
+  .popupButtons {
+    display: flex;
+    width: 100%;
+    max-width: 250px; /* Hug */
+    height: auto; /* Hug */
+    min-height: 36px; /* Ensuring it doesn't go below the specified height */
+    gap: 5px; /* gap of 4 is what's there but it gives an error */
+    
+  }
+  
+  .AcceptButton {
+    width: auto; /* Hug */
+    max-width: 126px; /* Ensuring it doesn't exceed the specified width */
+    height: 36px; /* Fixed */
+    padding: 10px 16px;
+    gap: 8px;
+    border-radius: 4px 0px 0px 0px;
+    
+  
+    font-family: Nunito Sans;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 19.1px;
+    text-align: left;
+  
+    background: #605DEC;
+    color: white;
+    border: none;
+  }
+  
+  .SettingsButton {
+    width: auto; /* Hug */
+    max-width: 120px; /* Ensuring it doesn't exceed the specified width */
+    height: 36px; /* Fixed */
+    padding: 10px 16px;
+    gap: 8px;
+    border-radius: 4px 0px 0px 0px;
+    
+  
+    font-family: Nunito Sans;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 19.1px;
+    text-align: left;
+  
+    color: #605DEC;
+    background: white;
+    border: none;
+  }
+  

@@ -1,0 +1,252 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+
+    width: 1440px;
+    height: 900px;
+    top: -2612px;
+    left: 4350px;
+    gap: 0px;
+
+
+  }
+
+.form {
+    /* width: auto; Hug */
+    /* max-width: 568px; /* Ensuring it doesn't exceed the specified width */
+    width: 568px;
+    height: auto; /* Hug */
+    min-height: 675px; /* Ensuring it doesn't go below the specified height */
+    top: 128px;
+    left: 436px;
+    padding: 40px 0 0 0;
+    gap: 12px;
+    border-radius: 12px;
+    border: 1px solid transparent; /* Adjusted border */
+
+    background: #FFFFFF;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .header {
+    width: auto; /* Hug */
+    max-width: 488px; /* Ensuring it doesn't exceed the specified width */
+    height: auto; /* Hug */
+    min-height: 102px; /* Ensuring it doesn't go below the specified height */
+    padding: 0 0 8px 0;
+    gap: 12px;
+}
+
+.titlerow {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%; /* Fill */
+    max-width: 488px; /* Ensuring it doesn't exceed the specified width */
+    height: auto; /* Hug */
+    min-height: 32px; /* Ensuring it doesn't go below the specified height */
+    gap: 10px;
+    
+}
+
+.title {
+    width: 446px;
+    height: 32px;
+    gap: 0;
+    
+    font-family: Nunito Sans;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 32.74px;
+    text-align: left;
+    color: #6E7491;
+  }
+
+  .closeButton {
+    width: 32px;
+    height: 32px;
+    padding: 4.69px 0 0 0;
+    gap: 0;
+    
+    background: #FFFFFF;
+
+    border: none;
+
+  }
+
+  .description {
+    width: 488px;
+    height: 50px;
+    gap: 0;
+    
+    font-family: Nunito Sans;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 24.55px;
+    text-align: left;
+    color: #7C8DB0;
+  }
+
+  .inputContainer {
+    width: 100%; /* Fill */
+    max-width: 488px; /* Ensuring it doesn't exceed the specified width */
+    height: auto; /* Hug */
+    min-height: 48px; /* Ensuring it doesn't go below the specified height */
+    gap: 4px;
+    
+  }
+
+  .input {
+    width: 100%; /* Fill */
+    max-width: 488px; /* Ensuring it doesn't exceed the specified width */
+    height: auto; /* Hug */
+    min-height: 48px; /* Ensuring it doesn't go below the specified height */
+    padding: 8px 12px;
+    gap: 8px;
+    border-radius: 4px 0 0 0;
+    border: 1px solid #A1B0CC;
+    
+    background: #FFFFFF;
+  }
+
+.divider {
+    width: 488px; /* Fixed */
+    height: auto; /* Hug */
+    min-height: 20px; /* Ensuring it doesn't go below the specified height */
+    padding: 2px 4px;
+    gap: 0;
+    border-radius: 4px 0 0 0;
+    
+}
+
+.checkboxesContainer {
+  width: 100%; /* Fill */
+  max-width: 488px; /* Ensuring it doesn't exceed the specified width */
+  height: auto; /* Hug */
+  min-height: 60px; /* Ensuring it doesn't go below the specified height */
+  gap: 0;
+}
+
+.checkboxContainer {
+  display: flex;
+  align-items: center;
+  width: 100%; /* Fill */
+  max-width: 488px; /* Ensuring it doesn't exceed the specified width */
+  height: auto; /* Hug */
+  min-height: 30px; /* Ensuring it doesn't go below the specified height */
+  padding: 4px 0;
+  gap: 8px;
+}
+
+
+.checkbox {
+    width: 16px;
+    height: 16px;
+    gap: 0px;
+    
+
+    border: 1px solid #6E7491
+}
+
+.checkbox :checked {
+    background: #605DEC;
+
+}
+
+.checkboxLabel {
+
+    font-family: Nunito Sans;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 21.82px;
+    text-align: left;
+
+
+    color: #7C8DB0;
+}
+
+.createAccountButton {
+  width: 100%; /* Fill */
+  max-width: 488px; /* Ensuring it doesn't exceed the specified width */
+  height: 48px; /* Fixed */
+  padding: 12px 20px;
+  gap: 8px;
+  border-radius: 4px 0 0 0;
+  font-family: Nunito Sans;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 24.55px;
+  text-align: center;
+  background: #605DEC;
+  color: #FAFAFA;
+
+  border-radius: 5px;
+}
+
+.divider2 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 488px; /* Fixed */
+  height: auto; /* Hug */
+  min-height: 41px; /* Ensuring it doesn't go below the specified height */
+  padding: 8px 0;
+  gap: 10px;
+}
+
+
+.divider3 {
+    width: 225.5px;
+    height: 1px;
+    gap: 0px;
+    
+    
+    background: #CBD4E6;
+
+}
+
+.socialButton {
+    width: 100%; /* Fill */
+    max-width: 488px; /* Ensuring it doesn't exceed the specified width */
+    height: 48px; /* Fixed */
+    padding: 12px 20px;
+    gap: 4px;
+    border-radius: 4px 0 0 0;
+    border: 1px solid #605DEC;
+    
+  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+    color: #605DEC;
+    background: white;
+  
+    font-family: Nunito Sans;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 24.55px;
+    text-align: center;
+  }
+  
+  .socialIcon {
+    margin-right: 0.5rem;
+    font-weight: bold;
+    font-size: 1.2rem;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+

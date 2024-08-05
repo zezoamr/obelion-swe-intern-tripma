@@ -1,0 +1,546 @@
+#### backend api:
+
+#### user routes:
+#### 1. **Set Cookie Settings**
+- **Endpoint**: `/user/cookiesettings`
+- **Method**: `POST`
+- **Description**: Set cookie settings for the user.
+- **Request Body**:
+  ```json
+  {
+    "cookieSettings": "cookieObject"
+  }
+  ```
+- **Response**:
+  - **200**: Success
+  - **400**: Failure
+
+#### 2. **Login User**
+- **Endpoint**: `/user/login`
+- **Method**: `POST`
+- **Description**: Log in a user.
+- **Request Body**:
+  ```json
+  {
+    "emailPhone": "string",
+    "password": "string"
+  }
+  ```
+- **Response**:
+  - **200**: Success, returns user data, session token
+  ```json
+  {
+    "user": "userObject",
+    "session": "string"
+  }
+  ```
+  - **400**: Failure
+
+#### 3. **Logout User**
+- **Endpoint**: `/user/logout`
+- **Method**: `POST`
+- **Description**: Log out the current user.
+- **Request Body**: None
+- **Response**:
+  - **200**: Success
+  - **400**: Failure
+
+#### 4. **Signup User**
+- **Endpoint**: `/user/signup`
+- **Method**: `POST`
+- **Description**: Register a new user.
+- **Request Body**:
+  ```json
+  {
+    "emailPhone": "string",
+    "password": "string",
+     "newsletter": "boolean"
+  }
+  ```
+- **Response**:
+  - **200**: Success, returns user data
+  ```json
+  {
+    "user": "userObject"
+  }
+  ```
+  - **400**: Failure
+
+
+#### 5. **Signup with Google**
+- **Endpoint**: `/user/signup/google`
+- **Method**: `POST`
+- **Description**: Register a new user using Google authentication.
+- **Response**:
+  - **200**: Success, returns user data
+  ```json
+  {
+    "user": "userObject"
+  }
+  ```
+  - **400**: Failure
+
+#### 6. **Signup with apple**
+- **Endpoint**: `/user/signup/apple`
+- **Method**: `POST`
+- **Description**: Register a new user using apple authentication.
+- **Response**:
+  - **200**: Success, returns user data
+  ```json
+  {
+    "user": "userObject"
+  }
+  ```
+  - **400**: Failure
+
+#### 7. **Signup with facebook**
+- **Endpoint**: `/user/signup/facebook`
+- **Method**: `POST`
+- **Description**: Register a new user using facebook authentication.
+- **Response**:
+  - **200**: Success, returns user data
+  ```json
+  {
+    "user": "userObject"
+  }
+  ```
+  - **400**: Failure
+
+
+#### 8. **Add Payment Method**
+- **Endpoint**: `/user/payment`
+- **Method**: `POST`
+- **Description**: Add a new payment method.
+- **Request Body**:
+  ```json
+  {
+    "type": "string",
+    "billingAddress": "string",
+    "name": "string",
+    "cardNumber": "string",
+    "experationDate": "date",
+    "ccv": "number"
+  }
+  ```
+- **Response**:
+  - **200**: Success
+  - **400**: Failure
+
+#### 9. **Get One Payment Method**
+- **Endpoint**: `/user/payment/{id}`
+- **Method**: `GET`
+- **Description**: Get details of a specific payment method.
+- **Parameters**:
+  - `id` (string): The ID of the payment method.
+- **Response**:
+  - **200**: Success, returns payment method details
+    ```json
+    {
+      "id": "string",
+      "type": "string",
+      "billingAddress": "string",
+      "name": "string",
+      "cardNumber": "string",
+      "experationDate": "date",
+      "ccv": "number"
+    }
+    ```
+  - **400**: Failure
+
+#### 10. **Get All Payment Methods**
+- **Endpoint**: `/user/payments`
+- **Method**: `GET`
+- **Description**: Get details of all payment methods.
+- **Response**:
+  - **200**: Success, returns list of payment methods
+    ```json
+    [
+      {
+        "id": "string",
+        "type": "string",
+        "billingAddress": "string",
+        "name": "string",
+        "cardNumber": "string",
+        "experationDate": "date",
+        "ccv": "number"
+      }
+    ]
+    ```
+  - **400**: Failure
+
+#### 11. **Get All Bookings**
+- **Endpoint**: `/user/bookings`
+- **Method**: `GET`
+- **Description**: Get details of all bookings of a user.
+- **Response**:
+  - **200**: Success, returns list of bookings
+    ```json
+    [
+      {
+        "confirmationNumber": "string",
+        "bookingid": "string",
+        "flightid": "string"
+      }
+    ]
+    ```
+  - **400**: Failure
+
+
+
+
+#### flight routes:
+
+#### 2. **Get flight suggestion**
+- **Endpoint**: `/deals`
+- **Method**: `GET`
+- **Description**: get stays suggestion.
+- **params**: paginationObject, location: string, mostvisited: boolean, relatedFlightId: string
+- **Response**:
+  - **200**: Success, returns list of stays
+    ```json
+    [
+      {
+        "destination": "string",
+        "description": "string",
+        "price": "number",
+	      "photo":"png"
+      }
+    ]
+    ```
+  - **400**: Failure
+
+#### 3. **Get stays**
+- **Endpoint**: `/stays`
+- **Method**: `GET`
+- **Description**: get stays.
+- **params**: paginationObject, location: string, mostvisited: boolean, relatedFlightId: string
+- **Response**:
+  - **200**: Success, returns list of stays
+    ```json
+    [
+      {
+        "title": "string",
+        "description": "string",
+	      "photo":"png"
+      }
+    ]
+    ```
+  - **400**: Failure
+
+
+#### 5. **Search Flights**
+- **Endpoint**: `/flights/search`
+- **Method**: `GET`
+- **Description**: Search for flights based on specified criteria.
+- **Parameters**:
+  - `departureAirport` (string): Departure airport code (e.g., "SFO")
+  - `arrivalAirport` (string): Arrival airport code (e.g., "NRT")
+  - `departDate` (string): Departure date (e.g., "2024-08-04")
+  - `returnDate` (string): Return date (optional, e.g., "2024-08-11")
+  - `adults` (integer): Number of adult passengers (default: 1)
+  - `minors` (integer): Number of child passengers (default: 0)
+  - `seatclass` (string): Class type (e.g., "Economy")
+  - `shops` (string)
+  - `times` (time)
+  - `airline` (string): airline company
+  - `maxprice` (number): max price for flight (e.g., "$503)
+  - `more` (string)
+
+- **Response**:
+  - **200**: Success, returns list of flight options
+    ```json
+    [
+      {
+        "flightId": "string",
+        "airline": "string",
+        "departureTime": "string",
+        "arrivalTime": "string",
+        "duration": "string",
+        "stops": "integer",
+        "price": "number"
+
+        "amenities": [{
+        "type": ["string"],
+        }],
+        "seatMap": {
+          "economy": [
+            {"seatNumber": "string", "seatRow": "number", "seatColumn": "number", "available": true},
+            {"seatNumber": "string", "seatRow": "number", "seatColumn": "number", "available": false}
+          ],
+          "business": [
+            {"seatNumber": "string", "seatRow": "number", "seatColumn": "number", "available": true},
+            {"seatNumber": "string", "seatRow": "number", "seatColumn": "number", "available": false}
+          ]
+        }
+      }
+    ],
+    {
+      "priceHistogram":"histogram",
+      "priceChart":"chart"
+    }
+    ```
+  - **400**: Failure
+
+
+#### 6. **Get Seat Map**
+- **Endpoint**: `/flights/seats/{flightId}`
+- **Method**: `GET`
+- **Description**: Retrieve seat map by flight ID.
+- **Parameters**:
+  - `flightId` (string): The unique identifier of the flight.
+- **Response**:
+  - **200**: Success, returns seat map
+    ```json
+    {
+      "flightId": "string",
+      "amenities": [{
+        "type": ["string"],
+      }],
+      "seatMap": {
+        "economy": [
+          {"seatNumber": "string", "seatRow": "number", "seatColumn": "number", "available": true},
+          {"seatNumber": "string", "seatRow": "number", "seatColumn": "number", "available": false}
+        ],
+        "business": [
+          {"seatNumber": "string", "seatRow": "number", "seatColumn": "number", "available": true},
+          {"seatNumber": "string", "seatRow": "number", "seatColumn": "number", "available": false}
+        ]
+      }
+    }
+    ```
+  - **400**: Failure
+
+#### 7. **Get shop hotels**
+- **Endpoint**: `/shop`
+- **Method**: `GET`
+- **Description**: get shops.
+- **params**: paginationObject, location: string, mostvisited: boolean, relatedFlightId: string
+- **Response**:
+  - **200**: Success, returns list of shops
+    ```json
+    [
+      {
+        "title": "string",
+        "description": "string",
+	      "photo":"png",
+        "price": "number"
+      }
+    ]
+    ```
+  - **400**: Failure
+
+#### 8. **Get experinces**
+- **Endpoint**: `/experinces`
+- **Method**: `GET`
+- **Description**: get experinces.
+- **params**: paginationObject, location: string, mostvisited: boolean, relatedFlightId: string
+- **Response**:
+  - **200**: Success, returns list of stays
+    ```json
+    [
+      {
+        "title": "string",
+        "description": "string",
+	      "photo":"png",
+        "price": "number"
+      }
+    ]
+    ```
+  - **400**: Failure
+
+
+### Booking API Endpoints
+
+#### 1. **Get One Booking**
+- **Endpoint**: `/booking/{id}`
+- **Method**: `GET`
+- **Description**: Get details of a specific booking.
+- **Parameters**:
+  - `id` (string): The ID of the booking.
+- **Response**:
+  - **200**: Success, returns booking details
+    ```json
+    {
+      "confirmation_number": "string",
+      "booking": "bookingObject",
+      "flightid": "string"
+    }
+    ```
+  - **400**: Failure
+
+#### 2. **Create Booking**
+- **Endpoint**: `/bookings`
+- **Method**: `POST`
+- **Description**: Create a new booking.
+- **Request Body**:
+  ```json
+  {
+	"flightid":"string",
+    [
+	"passengerInfo": {
+      		"fullName": "string",
+      		"dateOfBirth": "date",
+      		"passportNumber": "number"
+    	},
+	"contactInfo": {
+      		"emailAddress": "string",
+      		"phoneNumber": "number",
+		"redressNumber: "number",
+         	"knownTravelNumber: "number",
+    	},
+    	"emergencyContactInfo": {
+      		"fullName": "string",
+     	 	"phoneNumber": "string"
+    	},
+    	"baggageSelection": {
+      		"checkedBagsCount": "number"
+    	},
+    	"seatSelection": {
+		    "seatNumber": "string"
+    	},
+    ],
+	"paymentMethod": {
+        	"id": "string",
+        	"type": "string",
+        	"billingAddress": "string",
+        	"name": "string",
+        	"cardNumber": "string",
+        	"experationDate": "date",
+        	"ccv": "number"
+      },
+      "savePaymentDetails": "boolean"
+  }
+  ```
+- **Response**:
+  - **200**: Success, returns 
+	```json
+    	{
+      	"confirmation_number": "string",
+      	"bookingid": "string",
+      	"flightid": "string"
+    	}
+    	```
+  - **400**: Failure
+
+#### 3. **Share Booking**
+- **Endpoint**: `/booking/share`
+- **Method**: `POST`
+- **Description**: share booking with others via email.
+- **Request Body**:
+  ```json
+  {
+    "bookingid": "string",
+    [
+      {
+        "email": "string"
+      }
+    ]
+  }
+- **Response**:
+  - **200**: Success, returns booking details
+    ```json
+    ```
+  - **400**: Failure
+
+
+### **highlighted user reviews**
+- **Endpoint**: `/highlightedReviews`
+- **Method**: `GET`
+- **Description**: Get highlighted user reviews.
+- **params**: paginationObject
+- **Response**:
+  - **200**: Success, returns a number of reviews
+    ```json
+    [
+      {
+      "username": "string",
+      "location": "string",
+      "date": "date",
+      "rating": "number",
+      "Description": "string"
+      }
+    ]
+    ```
+  - **400**: Failure
+
+
+- userObject:
+{
+"id": "string",
+"emailPhone":"string",
+"password:"string",
+"image":"png"
+}
+
+
+- bookingObject:
+  {
+	"flightid":"string",
+    [
+	"passengerInfo": {
+      		"fullName": "string",
+      		"dateOfBirth": "date",
+      		"passportNumber": "number"
+    	},
+	"contactInfo": {
+      		"emailAddress": "string",
+      		"phoneNumber": "number",
+		"redressNumber: "number",
+         	"knownTravelNumber: "number",
+    	},
+    	"emergencyContactInfo": {
+      		"fullName": "string",
+     	 	"phoneNumber": "string"
+    	},
+    	"baggageSelection": {
+      		"checkedBagsCount": "number"
+    	},
+    	"seatSelection": {
+		"seatNumber": "string"
+    	},
+	"seatnumber: "string",
+    ],
+	"paymentMethod": {
+        	"id": "string",
+        	"type": "string",
+        	"billingAddress": "string",
+        	"name": "string",
+        	"cardNumber": "string",
+        	"experationDate": "date",
+        	"ccv": "number"
+      }
+  }
+
+- paginationObject:
+{
+  "page_number": "number",
+  "page_size": "number",
+}
+
+-cookieObject:
+{
+  "preferences": {
+    "enabled": "boolean",
+    "expiry": "date",
+    "path": "string",
+    "domain": "string",
+    "secure": "boolean",
+    "httpOnly": "boolean"
+  },
+  "analytics": {
+    "enabled": "boolean",
+    "expiry": "date",
+    "path": "string",
+    "domain": "string",
+    "secure": "boolean",
+    "httpOnly": "boolean"
+  },
+  "advertising": {
+    "enabled": "boolean",
+    "expiry": "date",
+    "path": "string",
+    "domain": "string",
+    "secure": "boolean",
+    "httpOnly": "boolean"
+  }
+}
