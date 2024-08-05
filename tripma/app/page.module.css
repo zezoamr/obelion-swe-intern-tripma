@@ -189,3 +189,159 @@ img.arrowRight {
   text-align: left;
   color: #fafafa;
 }
+
+
+.TestimonialRow {
+  height: 461px;
+  align-self: stretch;
+  flex-grow: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 24px;
+  padding: 64px;
+}
+
+.textbox {
+  height: 244px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  gap: 12px;
+  padding: 0;
+}
+
+.WhatTripmausersaresaying {
+  width: 334px;
+  height: 33px;
+  flex-grow: 0;
+  font-family: NunitoSans;
+  font-size: 24px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: left;
+  color: #6e7491;
+}
+
+.WhatTripmausersaresaying .textstyle1 {
+  color: #605dec;
+}
+
+.Frame71 {
+  height: 276px;
+  align-self: stretch;
+  flex-grow: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 40px;
+  padding: 0;
+}
+
+.TestimonialSocialProof {
+
+  
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-space;
+  padding: 16px;
+
+  width: 100%; /* Fill */
+  max-width: 410.67px; /* Ensuring it doesn't exceed the specified width */
+  height: auto; /* Hug */
+  min-height: 276px; /* Ensuring it doesn't go below the specified height */
+  gap: 40;
+}
+
+.avatar {
+  width: 48px;
+  height: 48px;
+  flex-grow: 0;
+  
+}
+
+.FirstLast {
+  height: 25px;
+  align-self: stretch;
+  flex-grow: 0;
+  font-family: NunitoSans;
+  font-size: 18px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: left;
+  color: #6e7491;
+}
+
+.reviewdate {
+  height: 25px;
+  align-self: stretch;
+  flex-grow: 0;
+  font-family: NunitoSans;
+  font-size: 18px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: left;
+  color: #6e7491;
+}
+
+
+.ratingstarrow {
+  width: 120px;
+  height: 32px;
+  flex-grow: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 8px 0 0;
+}
+
+.fullreview {
+  height: 150px;
+  align-self: stretch;
+  flex-grow: 0;
+  font-family: NunitoSans;
+  font-size: 18px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: left;
+  color: #27273f;
+}
+
+.fullreview .textstyle1 {
+  color: #605dec;
+}
+
+.Starfull {
+  width: 18px;
+  height: 18px;
+  border-radius: 0.5px;
+  background-image: linear-gradient(to bottom, #605dec, #2a26d9);
+}
+
+.Starempty {
+  width: 18px;
+  height: 18px;
+  border-radius: 0.5px;
+  border-style: solid;
+  border-width: 2px;
+  border-image-source: linear-gradient(to bottom, #605dec, #2a26d9);
+  border-image-slice: 1;
+}
