@@ -10,7 +10,7 @@ export default function Card({ name, price, textstyle1Text, description, image, 
       <div className={styles.data}>
         <div className={styles.titleRow}>
           <span className={styles.name}>
-            {name}
+            {name + " "}
             <span className={styles.textstyle1} style={{color: newcolor}}>
               {textstyle1Text}
             </span>
