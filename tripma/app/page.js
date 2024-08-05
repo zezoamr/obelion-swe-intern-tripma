@@ -46,7 +46,7 @@ export default function TripmaPage() {
         </div>
 
 
-        <div className={styles.cardRow}>
+        <div className={styles.cardRow2}>
           <div className={styles.titleRow}>
             <span className={styles.Nameofsectionandanaccent}>
               Explore unique 
@@ -76,6 +76,12 @@ export default function TripmaPage() {
           </div>
           
         </div>
+
+        <button className={styles.button}>
+          <label className={styles.label}>
+            Explore more stays
+          </label>
+        </button>
 
       </div>
       <Popup />

@@ -17,11 +17,32 @@
   top: 796px;
   gap: 40px;
 
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 700px 0 0;
+  padding: 0;
+
 }
 
 .cardRow {
 
   height: 1137px;
+  align-self: stretch;
+  flex-grow: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  gap: 24px;
+  padding: 40px 64px;
+
+}
+
+.cardRow2 {
+
+  height: 661px;
   align-self: stretch;
   flex-grow: 0;
   display: flex;
@@ -137,4 +158,34 @@ img.arrowRight {
   height: auto; /* Hug */
   min-height: 480px; /* Ensuring it doesn't go below the specified height */
   gap: 40;
+}
+
+
+.button {
+  width: 195px;
+  height: 48px;
+  flex-grow: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  border-radius: 4px;
+  background-color: #605dec;
+}
+
+.label {
+  width: 155px;
+  height: 25px;
+  flex-grow: 0;
+  font-family: NunitoSans;
+  font-size: 18px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: left;
+  color: #fafafa;
 }
