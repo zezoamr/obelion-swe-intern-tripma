@@ -225,7 +225,7 @@
   
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
   
     color: #605DEC;
     background: white;
@@ -243,9 +243,17 @@
     font-size: 1.2rem;
     width: 20px;
     height: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    
+
+  }
+  .rightArrow{
+    width: 18px;
+    height: 18px;
+    padding: 4.78px 3.66px 4.78px 3.38px;
+    gap: 0px;
+    border-radius: 2.25px 0px 0px 0px;
+
+
   }
   
 
