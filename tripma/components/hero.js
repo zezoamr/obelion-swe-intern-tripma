@@ -4,7 +4,7 @@ import { useState } from 'react';
 import styles from './hero.module.css'
 import DatePicker from '@/components/DatePicker'
 
-export default function Hero() {
+export default function Hero({className}) {
 
   const [fromDropdownOpen, setFromDropdownOpen] = useState(false);
   const [toDropdownOpen, setToDropdownOpen] = useState(false);
@@ -52,7 +52,7 @@ export default function Hero() {
   };
 
   return (
-      <div className={styles.main}>
+      <div className={`${styles.main} ${className}`}>
         <p className={styles.title}>It's more than just a trip</p>
 
         <div className={styles.searchContainer}>
