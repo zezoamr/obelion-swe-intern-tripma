@@ -11,7 +11,7 @@ const prices = [
   ];
 
 
-const PriceGrid = () => {
+export default function PriceGrid () {
     
     return (
         <div className={styles.container}>
@@ -40,5 +40,3 @@ const PriceGrid = () => {
         </div>
     );
 };
-
-export default PriceGrid;
