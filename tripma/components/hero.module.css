@@ -6,6 +6,8 @@
     align-items: center;
     text-align: center;
     padding: 2rem;
+
+    border: none;
   }
   
   .title {
@@ -45,6 +47,13 @@
     height: auto; /* Hug */
     min-height: 48px; /* Ensuring it doesn't go below the specified height */
     gap: 4px;
+    border: none;
+    
+  }
+
+  .searchInput:focus {
+    
+    border: 1px solid #605DEC;
     
   }
   
@@ -66,8 +75,8 @@
   
   .searchButton {
     width: auto; /* Hug */
-    max-width: 96px; /* Ensuring it doesn't exceed the specified width */
-    height: 48px; /* Fixed */
+    max-width: 100px; /* Ensuring it doesn't exceed the specified width */
+    height: 55.3px; /* Fixed */
     padding: 12px 20px;
     gap: 8px;
     border-radius: 4px 0 0 0;
@@ -77,23 +86,168 @@
   }
   
   .divider {
-    width: 1px;
+    width: 2px; /*worked better than 1 in figma*/
     height: 48px;
     gap: 0;
     
     background: #CBD4E6;
   }
   
+
+
+
+  .dropdownWrapper {
+    position: relative;
+    flex: 1;
+  }
   
-  .overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
+  .dropdown {
+    position: absolute;
+    top: calc(100% + 4px);  /* Positioned below the input with a small gap */
+    left: 23px;
+    right: 0;
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 1000;
+  }
+  
+  .dropdownItem {
+    
+    height: 32px;
+    
+    margin: 10px 10px 0px 13px;
+    cursor: pointer;
+    border-radius: 5px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .dropdownItem:hover {
+    background-color: #605DEC;
+  }
+  
+
+  .dropdownButton {
+    background: none;
+    border: none;
+    text-align: left;
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+    cursor: pointer;
+    padding: 0 10px;
+  }
+  
+  .dropdownButton:focus {
+    outline: none;
+  }
+  
+
+
+
+  .passengerDropdownWrapper {
+    position: relative;
+    flex: 1;
+  }
+  
+  .passengerDropdownButton {
     width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+    height: 48px;
+    background: none;
+    border: none;
+    text-align: left;
+    
+    color: inherit;
+    cursor: pointer;
+    padding: 0 10px;
+    display: flex;
+    align-items: center;
+
+
+    font-family: Nunito Sans;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 24.55px;
+    text-align: left;
+    color: #7C8DB0;
+
+
+  }
+  
+  .passengerIcon {
+    margin-right: 8px;
+  }
+  
+  .passengerDropdown {
+    position: absolute;
+    top: calc(100% + 4px);  /* Positioned below the input with a small gap */
+    left: 23px;
+    right: 0;
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    z-index: 1000;
+
+    overflow-y: auto;
+  }
+  
+  .passengerType {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .passengerIncrementer button {
+    width: 24px;
+    height: 24px;
+    background: #FAFAFA;
+    color: #52527A;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 18px;
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1000;
+  }
+
+  .passengerCount{
+    color: #6E7491;
+    font-family: Nunito Sans;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 16px;
+    text-align: center;
+    
+  }
+
+  .passengerTitle{
+    color: #6E7491;
+    font-family: Nunito Sans;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 21.82px;
+    text-align: left;
+    
+  }
+
+  .passengerIncrementer{
+    height: auto; /* Hug */
+    min-height: 32px; /* Ensuring it doesn't go below the specified height */
+    width: auto; /* Hug */
+    min-width: 112px; /* Ensuring it doesn't go below the specified height */
+    gap: 8px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
