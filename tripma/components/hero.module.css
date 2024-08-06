@@ -251,3 +251,9 @@
     align-items: center;
     justify-content: space-between;
   }
+
+
+  .datepicker {
+    position: relative;
+    flex: 1;
+  }

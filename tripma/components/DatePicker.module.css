@@ -1,0 +1,125 @@
+
+.datePickerContainer {
+
+
+    position: absolute;
+    top: calc(100% + 4px);  /* Positioned below the input with a small gap */
+    left: -40px;
+    right: 0;
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    z-index: 1000;
+
+    overflow-y: auto;
+
+    height: 330px;
+    width: 700px;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+  
+  .tripTypeContainer {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .selectedRangeContainer {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .selectedRange {
+    border: 1px solid #605DEC;
+    color: #605DEC;
+    padding: 0.25rem 0.75rem;
+    border-radius: 0.25rem;
+  }
+  
+  .doneButton {
+    background-color: #605DEC;
+    color: white;
+    padding: 0.25rem 1rem;
+    border-radius: 0.25rem;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .calendarsContainer {
+    display: flex;
+    gap: 2rem;
+  }
+  
+  .calendarMonth {
+    flex: 1;
+  }
+  
+  .monthHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+  }
+  
+  .monthYear {
+    font-weight: 600;
+  }
+  
+  .navButton {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.25rem;
+  }
+  
+  .invisibleButton {
+    visibility: hidden;
+  }
+  
+  .calendarGrid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0.25rem;
+  }
+  
+  .dayLabel {
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #9CA3AF;
+  }
+  
+  .day {
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9999px;
+    cursor: pointer;
+  }
+  
+  .day:hover {
+    background-color: #E5E7EB;
+  }
+  
+  .selectedDay {
+    background-color: #605DEC;
+    color: white;
+  }
+  
+  .emptyDay {
+    width: 2rem;
+    height: 2rem;
+  }

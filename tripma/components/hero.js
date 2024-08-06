@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import styles from './hero.module.css'
+import DatePicker from '@/components/DatePicker'
 
 export default function Hero() {
 
@@ -32,6 +33,22 @@ export default function Hero() {
 
   const handleInputClick = (setter) => () => {
     setter(prev => !prev);
+  };
+
+  const [showDatepicker, setShowDatepicker] = useState(false);
+  const [selectedDateRange, setSelectedDateRange] = useState(null);
+
+  const handleDatePickerClose = (range) => {
+    setSelectedDateRange(range);
+    setShowDatepicker(false);
+  };
+
+  const formatDateRange = (range) => {
+    if (!range) return 'Select date';
+    const start = range.start.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+    if (!range.end) return start;
+    const end = range.end.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+    return `${start} - ${end}`;
   };
 
   return (
@@ -98,7 +115,19 @@ export default function Hero() {
           </div>
 
           <div className={styles.divider}> </div>
-          <input type="date" className={styles.TextInput} />
+          
+          <div className={styles.datepicker}>
+            <input
+              type="text"
+              readOnly
+              className={styles.TextInput}
+              value={formatDateRange(selectedDateRange)}
+              onClick={() => setShowDatepicker(true)}
+            />
+            {showDatepicker && (
+              <DatePicker onClose={handleDatePickerClose} />
+            )}
+          </div>
 
           <div className={styles.divider}> </div>
 
