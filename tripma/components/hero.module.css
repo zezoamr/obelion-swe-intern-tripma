@@ -62,7 +62,14 @@
     height: auto; /* Hug */
     min-height: 48px; /* Ensuring it doesn't go below the specified height */
     gap: 4px;
+    border: none;
     
+    font-family: Nunito Sans;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24.55px;
+    text-align: left;
+    color: #7C8DB0;
   }
   
   .TextInput2 {
@@ -255,5 +262,6 @@
 
   .datepicker {
     position: relative;
-    flex: 1;
+    border: none;
+
   }
