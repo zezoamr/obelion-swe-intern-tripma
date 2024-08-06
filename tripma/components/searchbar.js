@@ -6,6 +6,7 @@ import airlineimage from "@/components/airlines.png"
 import mapimage from "@/components/mapimage.png"
 
 import PriceGrid from "@/components/pricegrid";
+import PriceHistoryChart from "@/components/PriceHistoryChart";
 
 const flights = [
     {
@@ -220,6 +221,7 @@ export default function Searchbar() {
 
         <>
             <PriceGrid />
+            <PriceHistoryChart />
         </>
         
     

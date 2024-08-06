@@ -1,0 +1,39 @@
+.container {
+    width: 400px;
+    height: 192px;
+    top: 663px;
+    left: 976px;
+    gap: 0px;
+    
+
+    background: #FFFFFF;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .title {
+    font-family: NunitoSans;
+    font-size: 18px;
+    font-weight: 600;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: left;
+    color: #6e7491;
+  }
+  
+  .chartContainer {
+    width: 368px;
+    height: 145px;
+    top: 24px;
+    left: 16px;
+    gap: 0px;
+    justify-content: space-between;
+
+    border-radius: 12px 0px 0px 0px;
+    border: 1px 0px 0px 0px;
+    border: 1px solid #E9E8FC;
+  }
