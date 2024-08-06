@@ -7,18 +7,27 @@ export default function Card({ name, price, textstyle1Text, description, image, 
       <div className={styles.imageContainer}>
         {image ? <Image src={image} alt={name} layout="fill" objectFit="cover" /> : <p>No image available</p>}
       </div>
+
       <div className={styles.data}>
+
         <div className={styles.titleRow}>
-          <span className={styles.name}>
-            {name + " "}
-            <span className={styles.textstyle1} style={{color: newcolor}}>
-              {textstyle1Text}
-            </span>
-            <span className={styles.price}>
+
+          <div className={styles.titleRow}>
+            <div className={styles.nameContainer}>
+              <span className={styles.name}>
+                {name + " "}
+                <span className={styles.textstyle1} style={{color: newcolor}}>
+                  {textstyle1Text}
+                </span>
+              </span>
+            </div>
+            <div className={styles.price}>
               {price}
-            </span>
-          </span>
+            </div>
+          </div>
+          
         </div>
+
         <span className={styles.description}>
           {description}
         </span>

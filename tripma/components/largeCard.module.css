@@ -50,7 +50,7 @@
   .price {
     width: 72px;
     height: 25px;
-    flex-grow: 0;
+    /* flex-grow: 0; */
     font-family: NunitoSans;
     font-size: 18px;
     font-weight: 600;
@@ -94,10 +94,14 @@
   }
 
   .titleRow{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
     width: 100%; /* Fill */
-  max-width: 1264px; /* Ensuring it doesn't exceed the specified width */
-  height: auto; /* Hug */
-  min-height: 25px; /* Ensuring it doesn't go below the specified height */
-  gap: 0;
+    max-width: 1264px; /* Ensuring it doesn't exceed the specified width */
+    height: auto; /* Hug */
+    min-height: 25px; /* Ensuring it doesn't go below the specified height */
+    gap: 0;
 
   }
