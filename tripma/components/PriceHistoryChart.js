@@ -1,5 +1,5 @@
 "use client";
-import { LineChart, Line, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import { LineChart, Line, Area, AreaChart, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import styles from './PriceHistoryChart.module.css';
 
 const data = [
@@ -35,14 +35,22 @@ if (minPrice - 250 >= 0) {
     yTicks.unshift(0);
 }
 
-// give title space, why area isn't working
 export default function PriceHistoryChart() {
     return (
         <div className={styles.container}>
             <div className={styles.title}>Price History</div>
             <div className={styles.chartContainer}>
                 <ResponsiveContainer width="100%" height="100%">
-                    <LineChart
+                    <AreaChart
+                        data={data}
+                        margin={{
+                            top: 10,
+                            right: 30,
+                            left: 0,
+                            bottom: 0,
+                        }}
+                    >
+                    {/* <LineChart
                         data={data}
                         margin={{
                             top: 5,
@@ -50,9 +58,9 @@ export default function PriceHistoryChart() {
                             left: 20,
                             bottom: 5,
                         }}
-                    >
+                    > */}
                         <CartesianGrid strokeDasharray="3 3" vertical={false} />
-                        <XAxis dataKey="date" axisLine={false} tickLine={false} />
+                        {/* <XAxis dataKey="date" axisLine={false} tickLine={false} /> */}
                         <YAxis 
                             domain={yDomain} 
                             ticks={yTicks} 
@@ -60,7 +68,7 @@ export default function PriceHistoryChart() {
                             tickLine={false}
                             tickFormatter={(value) => `$${value}`}
                         />
-                        <Tooltip />
+                        {/* <Tooltip /> */}
                         <Area 
                             type="monotone" 
                             dataKey="price" 
@@ -68,15 +76,16 @@ export default function PriceHistoryChart() {
                             fill="#8a0ad3" 
                             fillOpacity={0.3} 
                         />
-                        <Line 
+                        {/* <Line 
                             type="monotone" 
                             dataKey="price" 
                             stroke="#8884d8" 
                             strokeWidth={2} 
                             dot={false} 
                             activeDot={{ r: 8 }}
-                        />
-                    </LineChart>
+                        /> */}
+                    {/* </LineChart> */}
+                    </AreaChart>
                 </ResponsiveContainer>
             </div>
         </div>
