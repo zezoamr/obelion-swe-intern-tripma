@@ -177,7 +177,7 @@
     
     color: inherit;
     cursor: pointer;
-    padding: 0 10px;
+
     display: flex;
     align-items: center;
 
@@ -189,11 +189,12 @@
     text-align: left;
     color: #7C8DB0;
 
-
+    
   }
   
   .passengerIcon {
     margin-right: 8px;
+    margin-top: 5px;
   }
   
   .passengerDropdown {
