@@ -1,0 +1,74 @@
+.cart{
+    height: auto; /* Hug */
+    min-height: 351px; /* Ensuring it doesn't go below the specified height */
+    width: auto; /* Hug */
+    min-width: 400px; /* Ensuring it doesn't go below the specified height */
+    top: 335px;
+    left: 976px;
+    gap: 0px;
+    
+    display: flex;
+    flex-direction: column;
+    margin-top: 48px;
+
+}
+
+.TableOverride{
+    height: auto; /* Hug */
+    min-height: 237px; /* Ensuring it doesn't go below the specified height */
+    width: auto; /* Hug */
+    min-width: 400px; /* Ensuring it doesn't go below the specified height */
+    padding: 16px 0px 0px 0px;
+    gap: 8px;
+    border-radius: 12px 0px 0px 0px;
+    border: 1px 0px 0px 0px;
+    
+
+}
+
+.summary{
+    height: auto; /* Hug */
+    min-height: 114px; /* Ensuring it doesn't go below the specified height */
+    width: auto; /* Hug */
+    min-width: 231px; /* Ensuring it doesn't go below the specified height */
+    /* padding: 16px 0px 0px 0px; */
+    gap: 20px;
+    margin: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+
+}
+
+.summaryItem{
+    height: auto; /* Hug */
+    min-height: 22px; /* Ensuring it doesn't go below the specified height */
+    width: auto; /* Hug */
+    min-width: 360px; /* Ensuring it doesn't go below the specified height */
+    gap: 8px; 
+    
+    display: flex;
+    justify-content: flex-end; /* Adjust alignment */
+    align-items: center; /* Center vertically */
+
+}
+
+.saveAndClose{
+    width: auto; /* Hug */
+    min-width: 161px; /* Ensuring it doesn't go below the specified height */
+    height: 48px;
+    top: 603px;
+    left: 1199px;
+    padding: 12px 20px 12px 20px;
+    gap: 8px;
+    border-radius: 4px 0px 0px 0px;
+    border: 1px 0px 0px 0px;
+    opacity: 0px;
+
+    border: 1px solid #605DEC;
+
+    color: #605DEC;
+    background: white;
+
+}

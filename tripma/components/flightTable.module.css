@@ -1,0 +1,148 @@
+
+.tableflight {
+    width: 872px;
+    height: 456px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    margin: 0px 40px 16px 64px;
+    padding: 16px;
+    padding-top: 2px;
+    border-radius: 8px;
+    border: solid 1px #f6f6fe;
+    background-color: #fff;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  .flightrow {
+    height: auto; /* Hug */
+    min-height: 72px; /* Ensuring it doesn't go below the specified height */
+    width: 100%; /* Fill */
+    max-width: 840px; /* Ensuring it doesn't exceed the specified width */
+
+    align-self: stretch;
+    flex-grow: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 8px;
+    padding: 4px 4px;
+    border-radius: 4px;
+    background-color: #f6f6fe;
+  }
+
+  .image25 {
+    width: 40px;
+    height: 40px;
+    margin: 12px 8px 12px 0;
+    position: relative;
+  }
+
+  .datarows {
+    height: auto; /* Hug */
+    min-height: 64px; /* Ensuring it doesn't go below the specified height */
+    width: 100%; /* Fill */
+    max-width: 760px; /* Ensuring it doesn't exceed the specified width */
+
+
+
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    gap: 4px;
+    padding: 8px 16px;
+  }
+
+  .row {
+    height: auto; /* Hug */
+    min-height: 22px; /* Ensuring it doesn't go below the specified height */
+    width: 100%; /* Fill */
+    max-width: 728px; /* Ensuring it doesn't exceed the specified width */
+
+
+
+    align-self: stretch;
+    flex-grow: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 34px;
+    padding: 0;
+  }
+
+
+  .label1 {
+    width: 156.5px;
+    height: 22px;
+    
+    font-family: NunitoSans;
+    font-size: 16px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: left;
+    color: #27273f;
+  }
+  .label2 {
+    width: 156.5px;
+    height: 22px;
+
+    font-family: NunitoSans;
+    font-size: 16px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: left;
+    color: #27273f;
+  }
+  .label3right {
+    width: 156.5px;
+    height: 22px;
+
+    font-family: NunitoSans;
+    font-size: 16px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: right;
+    color: #27273f;
+  }
+  .label4right {
+    width: 156.5px;
+    height: 22px;
+
+    font-family: NunitoSans;
+    font-size: 16px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: right;
+    color: #27273f;
+  }
+
+  .divider {
+    height: 1px;
+    align-self: stretch;
+    flex-grow: 0;
+    background-color: #e9e8fc;
+    padding: 4px 0px 4px 0px;
+    background: #FFFFFF;
+
+
+  }

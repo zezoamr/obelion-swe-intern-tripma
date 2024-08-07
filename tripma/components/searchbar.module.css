@@ -63,7 +63,7 @@
   .Chooseflight {
     width: 209px;
     height: 25px;
-    margin: 48px 204px 16px 76px;
+    margin: 0px 204px 0px 76px;
     font-family: NunitoSans;
     font-size: 18px;
     font-weight: 600;
@@ -79,134 +79,6 @@
     color: #605dec;
   }
 
-  .tableflight {
-    width: 872px;
-    height: 400px; /*1238px*/
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: stretch;
-    margin: 16px 40px 16px 64px;
-    padding: 16px;
-    border-radius: 8px;
-    border: solid 1px #f6f6fe;
-    background-color: #fff;
-
-    overflow-y: scroll;
-  }
-
-  .flightrow {
-    height: 72px;
-    align-self: stretch;
-    flex-grow: 0;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
-    gap: 8px;
-    padding: 4px 16px;
-    border-radius: 4px;
-    background-color: #f6f6fe;
-  }
-
-  .image25 {
-    width: 40px;
-    height: 40px;
-    margin: 12px 8px 12px 0;
-    position: relative;
-  }
-
-  .datarows {
-    height: 64px;
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: stretch;
-    gap: 4px;
-    padding: 8px 16px;
-  }
-
-  .row {
-    height: 22px;
-    align-self: stretch;
-    flex-grow: 0;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: flex-start;
-    gap: 34px;
-    padding: 0;
-  }
-
-
-  .label1 {
-    width: 156.5px;
-    height: 22px;
-    
-    font-family: NunitoSans;
-    font-size: 16px;
-    font-weight: normal;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: normal;
-    letter-spacing: normal;
-    text-align: left;
-    color: #27273f;
-  }
-  .label2 {
-    width: 156.5px;
-    height: 22px;
-
-    font-family: NunitoSans;
-    font-size: 16px;
-    font-weight: normal;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: normal;
-    letter-spacing: normal;
-    text-align: left;
-    color: #27273f;
-  }
-  .label3right {
-    width: 156.5px;
-    height: 22px;
-
-    font-family: NunitoSans;
-    font-size: 16px;
-    font-weight: normal;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: normal;
-    letter-spacing: normal;
-    text-align: right;
-    color: #27273f;
-  }
-  .label4right {
-    width: 156.5px;
-    height: 22px;
-
-    font-family: NunitoSans;
-    font-size: 16px;
-    font-weight: normal;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: normal;
-    letter-spacing: normal;
-    text-align: right;
-    color: #27273f;
-  }
-
-  .divider {
-    height: 1px;
-    align-self: stretch;
-    flex-grow: 0;
-    background-color: #e9e8fc;
-    padding: 4px 0px 4px 0px;
-    background: #FFFFFF;
-
-
-  }
 
 
   .button1 {
@@ -218,10 +90,14 @@
     align-items: center;
     text-align: center;
     gap: 8px;
-    margin: 24px 0 46px 704px;
+    
     padding: 12px 20px;
     border-radius: 4px;
     border: solid 1px #605dec;
+    
+    background: white;
+
+    margin: 2px 0 2px 704px;
   }
 
   .button1 label {
@@ -237,13 +113,13 @@
     letter-spacing: normal;
     text-align: center;
     color: #605dec;
+
   }
 
   .Map {
     width: 872px;
     height: 171px;
-    margin: 2px 0 70px;
-    padding: 7px 16px 2px;
+    margin-left: 64px;
     border-radius: 4px;
     border: solid 1px #cbd4e6;
     background-color: #e9e8fc;
