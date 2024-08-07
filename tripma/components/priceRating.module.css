@@ -1,0 +1,97 @@
+
+.container{
+    height: auto; /* Hug */
+    min-height: 159px; /* Ensuring it doesn't go below the specified height */
+    width: auto; /* Hug */
+    min-width: 400px; /* Ensuring it doesn't go below the specified height */
+
+    gap: 15px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+}
+
+.title{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+
+    height: 41px;
+    gap: 16px;
+
+}
+
+.textContainer {
+    
+    width: 400px;
+    height: 118px;
+    flex-grow: 0;
+    font-family: NunitoSans;
+    font-size: 16px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: left;
+    color: #6e7491;
+
+    display: flex;
+    flex-direction: column;
+    gap : 8px;
+  }
+
+
+.Pricerating {
+    width: 94px;
+    height: 25px;
+    flex-grow: 0;
+    font-family: NunitoSans;
+    font-size: 18px;
+    font-weight: 600;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: left;
+    color: #6e7491;
+  }
+
+.basepricebadge {
+    width: 84px;
+    height: 26px;
+    flex-grow: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    /* gap: 10px; */
+    padding: 2px 8px;
+    border-radius: 4px;
+    background-color: #5cd6c0;
+  }
+
+.basepricebadge label {
+    width: 68px;
+    height: 22px;
+    flex-grow: 0;
+    font-family: NunitoSans;
+    font-size: 16px;
+    font-weight: 600;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: left;
+    color: #fff;
+  }
+
+  
+  
+  .textContainer .textstyle1 {
+    color: #a1b0cc;
+  }
