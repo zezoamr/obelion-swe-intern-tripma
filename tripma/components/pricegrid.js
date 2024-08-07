@@ -12,11 +12,12 @@ const prices = [
 
 
 export default function PriceGrid () {
+    const columns = dates.length + 1; // +1 for the date column
     
     return (
         <div className={styles.container}>
             <div className={styles.title}>Price grid (flexible dates)</div>
-            <div className={styles.grid}>
+            <div className={styles.grid} style={{ gridTemplateColumns: `repeat(${columns}, 1fr)`}}>
                 <div className={styles.headerCell}></div>
                 
                 {dates.map((date, index) => (

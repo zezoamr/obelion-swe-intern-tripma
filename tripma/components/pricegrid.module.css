@@ -2,6 +2,13 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    height: auto; /* Hug */
+    min-height: 247px; /* Ensuring it doesn't go below the specified height */
+    width: 100%; /* Fill */
+    max-width: 400px; /* Ensuring it doesn't exceed the specified width */
+
+    /* padding-top: 48px; */
   }
   
   .title {
@@ -14,6 +21,8 @@
     letter-spacing: normal;
     text-align: left;
     color: #6e7491;
+
+    padding-bottom: 16px;
   }
   
   .grid {
@@ -21,13 +30,8 @@
     height: 247px;
 
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    gap: 1px;
-    border: 1px solid #e2e8f0;
-
-    margin: 16px 67px 40px 40px;
-    padding: 1px;
-    border-radius: 12px;
+    /* grid-template-columns: repeat(6, 1fr); is set dynamicaly in the JS */
+    
     background-color: #e9e8fc;
 
     font-family: Nunito Sans;
@@ -35,7 +39,13 @@
     font-weight: 700;
     line-height: 16.37px;
 
-    
+    margin-top: 2px;
+    padding: 1px;
+    gap: 1px;
+    border-radius: 12px;
+    /* border: 1px solid #e2e8f0; */
+
+    padding: 4px;
   }
   
   .headerCell {
