@@ -2,7 +2,7 @@
   background: url("world map.png");
   width: 1440px; /* Fixed */
   height: 700px; /* Fixed */
-  top: 152px;
+  /* top: 152px; */
   padding: 8px 0 160px 0;
   gap: 48px;
   
@@ -14,14 +14,14 @@
   width: 1440px; /* Fixed */
   height: auto; /* Hug */
   min-height: 3012px; /* Ensuring it doesn't go below the specified height */
-  top: 796px;
+  /* top: 796px; */
   gap: 40px;
 
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  margin: 700px 0 0;
+  margin: 40px 0 0;
   padding: 0;
 
 }
