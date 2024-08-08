@@ -21,119 +21,109 @@ const flights = [
         duration: "16h 45m",
         fromtoTime: "7:00AM - 4:15PM",
         stops: "1 stop",
-        price: "$624",
+        price: 624,
         airline: "Hawaiian Airlines",
         stopduration: "2h 45m in HNL",
         type: "round trip",
-        image: airlineimage
+        image: airlineimage,
+        id: "FiG43211",
+        taxes: 1
     },
     {
         duration: "16h 45m",
         fromtoTime: "7:00AM - 4:15PM",
         stops: "1 stop",
-        price: "$624",
+        price: 624,
         airline: "Hawaiian Airlines",
         stopduration: "2h 45m in HNL",
         type: "round trip",
-        image: airlineimage
+        image: airlineimage,
+        id: "FiG43212",
+        taxes: 1
     },
     {
         duration: "16h 45m",
         fromtoTime: "7:00AM - 4:15PM",
         stops: "1 stop",
-        price: "$624",
+        price: 624,
         airline: "Hawaiian Airlines",
         stopduration: "2h 45m in HNL",
         type: "round trip",
-        image: airlineimage
+        image: airlineimage,
+        id: "FiG43213",
+        taxes: 1
     },
     {
         duration: "16h 45m",
         fromtoTime: "7:00AM - 4:15PM",
         stops: "1 stop",
-        price: "$624",
+        price: 624,
         airline: "Hawaiian Airlines",
         stopduration: "2h 45m in HNL",
         type: "round trip",
-        image: airlineimage
-    },{
-        duration: "16h 45m",
-        fromtoTime: "7:00AM - 4:15PM",
-        stops: "1 stop",
-        price: "$624",
-        airline: "Hawaiian Airlines",
-        stopduration: "2h 45m in HNL",
-        type: "round trip",
-        image: airlineimage
+        image: airlineimage,
+        id: "FiG43214",
+        taxes: 1
     },
     {
         duration: "16h 45m",
         fromtoTime: "7:00AM - 4:15PM",
         stops: "1 stop",
-        price: "$624",
+        price: 624,
         airline: "Hawaiian Airlines",
         stopduration: "2h 45m in HNL",
         type: "round trip",
-        image: airlineimage
+        image: airlineimage,
+        id: "FiG43215",
+        taxes: 1
     },
     {
         duration: "16h 45m",
         fromtoTime: "7:00AM - 4:15PM",
         stops: "1 stop",
-        price: "$624",
+        price: 624,
         airline: "Hawaiian Airlines",
         stopduration: "2h 45m in HNL",
         type: "round trip",
-        image: airlineimage
+        image: airlineimage,
+        id: "FiG43216",
+        taxes: 1
     },
     {
         duration: "16h 45m",
         fromtoTime: "7:00AM - 4:15PM",
         stops: "1 stop",
-        price: "$624",
+        price: 624,
         airline: "Hawaiian Airlines",
         stopduration: "2h 45m in HNL",
         type: "round trip",
-        image: airlineimage
-    },{
-        duration: "16h 45m",
-        fromtoTime: "7:00AM - 4:15PM",
-        stops: "1 stop",
-        price: "$624",
-        airline: "Hawaiian Airlines",
-        stopduration: "2h 45m in HNL",
-        type: "round trip",
-        image: airlineimage
+        image: airlineimage,
+        id: "FiG43217",
+        taxes: 1
     },
     {
         duration: "16h 45m",
         fromtoTime: "7:00AM - 4:15PM",
         stops: "1 stop",
-        price: "$624",
+        price: 624,
         airline: "Hawaiian Airlines",
         stopduration: "2h 45m in HNL",
         type: "round trip",
-        image: airlineimage
+        image: airlineimage,
+        id: "FiG43218",
+        taxes: 1
     },
     {
         duration: "16h 45m",
         fromtoTime: "7:00AM - 4:15PM",
         stops: "1 stop",
-        price: "$624",
+        price: 624,
         airline: "Hawaiian Airlines",
         stopduration: "2h 45m in HNL",
         type: "round trip",
-        image: airlineimage
-    },
-    {
-        duration: "16h 45m",
-        fromtoTime: "7:00AM - 4:15PM",
-        stops: "1 stop",
-        price: "$624",
-        airline: "Hawaiian Airlines",
-        stopduration: "2h 45m in HNL",
-        type: "round trip",
-        image: airlineimage
+        image: airlineimage,
+        id: "FiG43219",
+        taxes: 1
     },
 ]
 const labels = [
@@ -147,37 +137,20 @@ const labels = [
 export default function Searchbar() {
 
     /* implement on click */
-    const [pickedflights, setPickedflights] = useState([
-        {
-        duration: "16h 45m",
-        fromtoTime: "7:00AM - 4:15PM",
-        airline: "Hawaiian Airlines",
-        stopduration: "2h 45m in HNL",
-        id: "FiG4321",
-        image: airlineimage
-        },
-        {
-        duration: "16h 45m",
-        fromtoTime: "7:00AM - 4:15PM",
-        airline: "Hawaiian Airlines",
-        stopduration: "2h 45m in HNL",
-        id: "FiG4321",
-        image: airlineimage
-        },
-    ]
-    );
+    const [pickedflights, setPickedflights] = useState([]);
     const [cartOpen, setCartOpen] = useState(false);
+    const [SaveAndExit, setSaveAndExit] = useState(true);
 
-    /*tmp for demo purposes */
     const handleToggleCart = (e) => {
-        // Prevent toggling when clicking on interactive elements
-        if (e.target.tagName !== 'BUTTON' && e.target.tagName !== 'LABEL' && e.target.tagName !== 'SVG' && e.target.tagName !== 'PATH') {
+        // Prevent toggling when clicking on interactive elements and when pickedflights is empty
+        if (pickedflights.length === 0 && e.target.tagName !== 'BUTTON' && e.target.tagName !== 'LABEL' && e.target.tagName !== 'SVG' && e.target.tagName !== 'PATH') {
             setCartOpen(!cartOpen);
         }
     };
+    
 
   return (
-    <div className={styles.Searchbarcontainer} onClick={handleToggleCart}>
+    <div className={styles.Searchbarcontainer} onClick={handleToggleCart} > 
         <Hero className={styles.heroOverride}/>
         <div className={styles.pills}>
             {labels.map((buttonlabel) => (
@@ -200,7 +173,7 @@ export default function Searchbar() {
                 <span className={styles.textstyle1}> departing </span>
                 flight
                 </span>
-                <FlightTable flights={flights}/>
+                <FlightTable flights={flights} pickedflights={pickedflights} setFlights={setPickedflights}/>
                 {/* move button inside flight table? */}
                 <button className={styles.button1}> 
                     <label>
@@ -219,7 +192,14 @@ export default function Searchbar() {
                 <PriceRating recommendation={"We recommend booking soon. The average cost of this flight is $750, but could rise 18% to $885 in two weeks."}/>
                 
             </div> :
-            <Cart flights={pickedflights} />}
+            <Cart 
+            flights={pickedflights} 
+            setFlights={setPickedflights} 
+            buttonText={SaveAndExit ? "Save and Exit" : "Passenger information"}
+            buttonClassName={SaveAndExit ? "saveAndClose" : "passengerInfo"}
+            buttonChangeHandler={setSaveAndExit}
+            />
+            }
         </div>
         
     
