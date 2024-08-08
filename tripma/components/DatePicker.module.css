@@ -48,7 +48,7 @@
   .doneButton {
     background-color: #605DEC;
     color: white;
-    padding: 0.25rem 1rem;
+    padding: 0.5rem 1rem;
     border-radius: 0.25rem;
     border: none;
     cursor: pointer;
@@ -122,4 +122,8 @@
   .emptyDay {
     width: 2rem;
     height: 2rem;
+  }
+
+  .disabledDay{
+    color: #9b9898;
   }
