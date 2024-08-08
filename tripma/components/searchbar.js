@@ -144,7 +144,7 @@ export default function Searchbar() {
     const handleToggleCart = (e) => {
         // Prevent toggling when clicking on interactive elements and when pickedflights is empty
         if (pickedflights.length === 0 && e.target.tagName !== 'BUTTON' && e.target.tagName !== 'LABEL' && e.target.tagName !== 'SVG' && e.target.tagName !== 'PATH') {
-            setCartOpen(!cartOpen);
+            setCartOpen(true);
         }
     };
     
