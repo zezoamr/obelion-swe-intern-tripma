@@ -57,7 +57,7 @@
   max-width: 95px; /* Ensuring it doesn't exceed the specified width */
   height: 48px; /* Fixed */
   padding: 12px 20px;
-  margin-bottom: 25px; /*no in  figma added to get correct look*/
+
   gap: 8px;
   border-radius: 4px 0 0 0;
   
