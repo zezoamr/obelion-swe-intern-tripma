@@ -1,0 +1,242 @@
+.formContainer {
+  font-family: Arial, sans-serif;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+
+  height: 1126px;
+  width: 682px;
+
+  font-family: NunitoSans;
+  font-size: 18px;
+  color: #7c8db0;
+}
+
+.formTitle {
+  color: #5000B9;
+  font-size: 24px;
+  margin-bottom: 16px;
+  width:252px;
+
+  font-family: NunitoSans;
+
+  font-size: 24px;
+
+  font-weight: bold;
+}
+
+.formDescription {
+  color: #7c8db0;
+  font-size: 14px;
+  margin-bottom: 36px;
+
+  width: 682px;
+}
+
+.passengerTitle{
+  color: #6e7491;
+  margin-bottom: 24px;
+}
+
+.formGrid3 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  
+  margin-bottom: 24px;
+  margin-right: 24px;
+}
+
+.formGrid2 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  margin-right: 24px;
+}
+
+.formGridWidth3{
+  width: 648px;
+}
+
+.formGridWidth2{
+  width: 476px;
+}
+
+.input {
+
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+
+  width: 200px;
+}
+
+
+
+.sectionTitle {
+  font-size: 16px;
+    
+  margin-top: 48px;
+  margin-bottom: 24px;
+  color: #6e7491;
+}
+
+.sectionTitle2 {
+  font-size: 16px;
+    
+  margin-top: 48px;
+  margin-bottom: 24px;
+  color: #6e7491;
+}
+
+.checkboxLabel {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  margin-bottom: 24px;
+}
+
+.checkbox {
+  margin-right: 10px;
+
+}
+
+.bagPolicy {
+  font-size: 14px;
+  color: #7c8db0;
+  margin-bottom: 36px;
+
+  width: 682px;
+}
+
+
+.bagCounter {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 75px;
+  font-size: 14px;
+
+  color: #6e7491;
+}
+
+.bagCounterTitles {
+  display: flex;
+  justify-content: space-between;
+  width: 70%;
+
+  margin-bottom: 15px;
+}
+
+.counterControls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 70%;
+}
+
+.counterButtons{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+}
+
+.counterControls button {
+  width: 24px;
+  height: 24px;
+  background-color: white;
+  border: 1px solid #ccc;
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+}
+
+.counterControls span {
+  margin: 0 10px;
+  min-width: 20px;
+  text-align: center;
+}
+
+.formActions {
+  display: flex;
+  justify-content: flex-start;
+  gap: 24px;
+
+  width: auto; /* Hug */
+  height: auto; /* Hug */
+  min-width: 323px;
+  min-height: 48px;
+}
+
+.saveButton, .selectSeatsButton {
+  /* padding: 10px 20px; */
+  font-size: 16px;
+  border-radius: 4px;
+}
+
+.saveButton {
+  background-color:white ;
+
+  width: auto; /* Hug */
+  min-width: 161px;
+
+  font-family: NunitoSans;
+  color: #605dec;
+  border: solid 1px #605dec;
+}
+
+
+.selectSeatsButton {
+  background: rgb(211, 206, 206);
+
+  width: auto; /* Hug */
+  min-width: 138px;
+
+  font-family: NunitoSans;
+  color: #605dec;
+  border: solid 1px #605dec;
+}
+
+.selectSeatsPurple{
+  width: auto; /* Hug */
+  min-width: 161px; /* Ensuring it doesn't go below the specified height */
+  height: 48px;
+  top: 603px;
+  left: 1199px;
+  padding: 12px 20px 12px 20px;
+  gap: 8px;
+  border-radius: 4px 0px 0px 0px;
+  border: 1px 0px 0px 0px;
+  opacity: 0px;
+
+  border: 1px solid white;
+
+  color: white;
+  background: #605DEC ;
+}
+
+.passengerLastNameInput{
+  width: 176px;
+}
+.passengerDateOfBirthInput{
+  width: 252px;
+}
+.passengerLargeInput{
+  width: 300px;
+}
+
+.error{
+  color: #d92d20;
+  font-size: 14px;
+  
+}
