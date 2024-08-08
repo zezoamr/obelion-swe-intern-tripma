@@ -72,3 +72,59 @@
     background: white;
 
 }
+
+.passengerInfo{
+    width: auto; /* Hug */
+    min-width: 161px; /* Ensuring it doesn't go below the specified height */
+    height: 48px;
+    top: 603px;
+    left: 1199px;
+    padding: 12px 20px 12px 20px;
+    gap: 8px;
+    border-radius: 4px 0px 0px 0px;
+    border: 1px 0px 0px 0px;
+    opacity: 0px;
+
+    border: 1px solid white;
+
+    color: white;
+    background: #605DEC ;
+}
+
+.selectSeatsGray{
+    width: auto; /* Hug */
+    min-width: 161px; /* Ensuring it doesn't go below the specified height */
+    height: 48px;
+    top: 603px;
+    left: 1199px;
+    padding: 12px 20px 12px 20px;
+    gap: 8px;
+    border-radius: 4px 0px 0px 0px;
+    border: 1px 0px 0px 0px;
+    opacity: 0px;
+
+    border: 1px solid #605DEC;
+
+    color: #605DEC;
+    background: rgb(211, 206, 206);
+
+    pointer-events: none; /* Disable an element interaction, so it will not respond any event */
+}
+
+.selectSeatsPurple{
+    width: auto; /* Hug */
+    min-width: 161px; /* Ensuring it doesn't go below the specified height */
+    height: 48px;
+    top: 603px;
+    left: 1199px;
+    padding: 12px 20px 12px 20px;
+    gap: 8px;
+    border-radius: 4px 0px 0px 0px;
+    border: 1px 0px 0px 0px;
+    opacity: 0px;
+
+    border: 1px solid white;
+
+    color: white;
+    background: #605DEC ;
+}

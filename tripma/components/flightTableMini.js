@@ -1,12 +1,17 @@
 import Image from 'next/image'
 import styles from './flightTableMini.module.css'
 
-export default function FlightTableMini({flights}) {
+export default function FlightTableMini({flights, setFlights}) {
+
+    const handleRemoveFlight = (flightId) => {
+        setFlights(prevFlights => prevFlights.filter(flight => flight.id !== flightId));
+    };
+
   return (
     <div className={styles.tableflight}>
                 {flights.map((flight) => (
                     <>
-                    <div className={styles.flightrow}>
+                    <div className={styles.flightrow} onClick={() => handleRemoveFlight(flight.id)}>
                         <div className={styles.image25}>
                             <Image
                                 src={flight.image}
