@@ -1,10 +1,14 @@
 "use client";
 
 import { useState } from 'react';
+import { usePathname } from 'next/navigation';
+
 import "./globals.css";
+
 import Navbar from "@/components/navbar";
 import Banner from "@/components/banner";
 import SignupOverlay from "@/components/SignupOverlay";
+import Footer from '@/components/footer';
 
 // export const metadata = {
 //   title: "Create Next App",
@@ -12,20 +16,28 @@ import SignupOverlay from "@/components/SignupOverlay";
 // };
 
 export default function RootLayout({ children }) {
+  const pathname = usePathname();
+
   const [showSignup, setShowSignup] = useState(false);
 
   const toggleSignup = () => {
     setShowSignup(!showSignup);
   };
 
+    // Add the routes where you want to disable the Navbar
+    const routesWithoutNavbar = ['/booking/seats'];
+
+    // Check if the current route should have the Navbar
+    const showNavbar = !routesWithoutNavbar.includes(pathname);
+
   return (
     <html lang="en">
       <body>
-        <Banner />
-        <Navbar onSignupClick={toggleSignup} />
-        {children}
+      {showNavbar && <Banner />}
+        {showNavbar && <Navbar onSignupClick={toggleSignup} />}
+          {children}
         {showSignup && <SignupOverlay onClose={toggleSignup} />}
-        
+        <Footer/>
       </body>
     </html>
   );

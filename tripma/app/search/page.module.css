@@ -10,7 +10,7 @@
 
 
 .pageBody{
-  width: 1440px; /* Fixed */
+  /*width: 1440px;  Fixed */
   /* height: auto; Hug */
   /* min-height: 3012px; Ensuring it doesn't go below the specified height */
   /* top: 796px; */
@@ -151,11 +151,7 @@ img.arrowRight {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-
-  width: 100%; /* Fill */
-  max-width: 1312px; /* Ensuring it doesn't exceed the specified width */
-  height: auto; /* Hug */
-  min-height: 480px; /* Ensuring it doesn't go below the specified height */
+  
   gap: 40;
 }
 

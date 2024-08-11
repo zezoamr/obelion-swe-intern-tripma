@@ -192,7 +192,6 @@ export default function TripmaPage() {
           </div>
         </div>
 
-        <Footer />
       </div>
       
       <Popup />

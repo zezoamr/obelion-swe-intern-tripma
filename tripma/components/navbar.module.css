@@ -5,7 +5,7 @@
 
 .nav {
   display: flex;
-  width: 1440px; /* Fixed */
+  width: auto; /* Fixed */
   height: auto; /* Hug */
   min-height: 96px; /* Ensuring it doesn't go below the specified height */
   top: 64px;
@@ -29,7 +29,7 @@
 
 .navLinks {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   width: auto; /* Hug */
   max-width: 485px; /* Ensuring it doesn't exceed the specified width */
   height: auto; /* Hug */

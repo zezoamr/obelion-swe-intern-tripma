@@ -142,7 +142,6 @@ export default function TripmaPage() {
           
         </div>
 
-        <Footer />
       </div>
 
     </div>
