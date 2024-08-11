@@ -21,7 +21,7 @@ export default function Airplane({ seatsData, dividerLocations }) {
             '--max-seats': maxSeatsInRow,
             '--total-rows': totalRows
         }}>
-            <div style={{height: '96px', width: '100%', display: 'flex', justifyContent: 'flex-start', alignItems: 'center', position: 'sticky'}}>
+            <div style={{height: '96px', width: '100%', display: 'flex', justifyContent: 'flex-start', alignItems: 'center', position: 'fixed'}}>
             <div>
               <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M26 10H6" stroke="#605DEC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
