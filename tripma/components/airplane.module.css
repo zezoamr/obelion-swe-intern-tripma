@@ -1,0 +1,76 @@
+.airplaneContainer {
+    position: relative;
+    width: 100%;
+    
+    margin: 0 auto;
+    padding: 20px;
+
+    
+
+    height: 780px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.seatsContainer {
+    display: flex;
+    justify-content: center;
+    
+    /* position: relative; */
+    width: 100%;
+    margin-top: 340px;
+
+}
+
+.svgContainer {
+    position: absolute;
+    /* top: -300px; */
+    /* left: -630px; */
+    /* left: calc(-630px - (var(--max-seats) - 6) * 4px); */
+    /* top: -230px; */
+    /* left: calc(-638px - (var(--max-seats) - 6) * 8px); */
+
+    /* top: -80px;
+    left: -638px; */
+
+    top: -100px;
+    left: -700px;
+    z-index: -2;
+}
+
+.svgContainer2 {
+    position: absolute;
+    
+    /* top: 110px;
+    left: -638px; */
+
+    top: 200px;
+    left: 253px;
+   
+    z-index: -1;
+}
+
+.svgContainer3 {
+    position: absolute;
+    
+    /* top: 110px;
+    left: -638px; */
+
+    top: 140px;
+    left: 280px;
+   
+    z-index: -1;
+}
+
+
+.svgContainer4 {
+    position: absolute;
+    
+    /* top: 110px;
+    left: -638px; */
+
+    top: 140px;
+    left: 360px;
+   
+    z-index: -1;
+}

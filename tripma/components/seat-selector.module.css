@@ -1,0 +1,213 @@
+.seatSelector {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* margin: 0 auto; */
+    font-family: NunitoSans;
+}
+
+.content {
+    padding: 24px;
+}
+
+.progressStepHeadercontainer {
+    width: 100%;
+    height: auto;/*  Hug */
+    max-height: 88px; /* Ensuring it doesn't go below the specified height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #27273F;
+  }
+  
+.section {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    padding: 0 16px;
+}
+
+.Headertitle {
+    color: #FAFAFA;
+    font-size: 1rem; /* base */
+    font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 0;
+}
+
+.subtitle {
+    color: #E9E8FC;
+    font-size: 0.75rem; /* xs */
+    margin-top: 0;
+    margin-bottom: 19px;
+}
+
+.hoverEffect {
+    transition: all 0.2s;
+}
+
+.hoverEffect:hover {
+    background-color: #605DEC;
+}
+
+  
+.arrow {
+    margin: 0 8px;
+    font-size: 20px;
+    color: white;
+}
+
+
+
+
+.featureLists {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 24px;
+}
+
+.featureList {
+    flex: 1;
+    /* border: 1px solid #e0e0e0; */
+    /* border-radius: 8px; */
+    padding: 16px;
+    font-size: 14px;
+
+    color: #6e7491;
+}
+
+.featureListContent{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    color: #7c8db0;
+}
+
+.dividerthick {
+    width: 32px;
+    height: 4px;
+    flex-grow: 0;
+    
+    background-color: #605dec;
+}
+
+.dividerGreen{
+    background-color: #5cd6c0;
+}
+
+.dividerPurple{
+    background-color: #605dec;
+}
+
+
+.selected {
+    border-color: #6366f1;
+}
+
+.seats {
+    margin-bottom: 16px;
+}
+
+.featureListTitle {
+    font-size: 18px;
+    font-weight: 600;
+    color: #6e7491;
+}
+
+.selectedLabel {
+    background-color: #6366f1;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    margin-left: 8px;
+}
+
+.featureListDescription {
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 16px;
+}
+
+.features {
+    list-style-type: none;
+    padding: 0;
+    color: #7c8db0;
+}
+
+.feature {
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+}
+
+.bullet, .checkmark {
+    margin-right: 8px;
+}
+
+.checkmark {
+    color: #6366f1;
+}
+
+.navigationFooter {
+    border-top: 1px solid #e0e0e0;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    height: auto;/*  Hug */
+    min-height: 97px; /* Ensuring it doesn't go below the specified height */
+}
+
+.passengerInfo {
+    display: flex;
+    gap: 24px;
+}
+
+.passenger, .seatNumber {
+    display: flex;
+    flex-direction: column;
+}
+
+.passengerlabel {
+    color: #7c8db0;
+    font-size: 14px;
+    margin-bottom: 4px;
+}
+
+.passengername{
+    color: #6e7491;  
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.buttons {
+    display: flex;
+    gap: 12px;
+}
+
+.button {
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+
+    width: 148px;
+    height: 48px;
+    flex-grow: 0;
+}
+
+.nextButton {
+    background-color: #6366f1;
+    color: white;
+    border: none;
+}
+
+.saveButton {
+    background-color: white;
+    color: #6366f1;
+    border: 1px solid #6366f1;
+}

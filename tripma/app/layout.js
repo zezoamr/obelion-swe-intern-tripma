@@ -37,7 +37,7 @@ export default function RootLayout({ children }) {
         {showNavbar && <Navbar onSignupClick={toggleSignup} />}
           {children}
         {showSignup && <SignupOverlay onClose={toggleSignup} />}
-        <Footer/>
+        {showNavbar && <Footer/>}
       </body>
     </html>
   );
