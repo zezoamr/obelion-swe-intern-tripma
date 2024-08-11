@@ -5,7 +5,7 @@
   justify-content: space-between;
   text-align: center;
 
-  width: 1440px; /* Fixed */
+  width: auto; 
   height: auto; /* Hug */
   min-height: 64px; /* Ensuring it doesn't go below the specified height */
   padding: 16px 32px;
