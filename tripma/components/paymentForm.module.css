@@ -1,0 +1,292 @@
+.container {
+  font-family: NunitoSans, Arial, sans-serif;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  width: 682px;
+  font-size: 18px;
+  color: #7c8db0;
+}
+
+.title {
+  color: #5000B9;
+  font-size: 24px;
+  margin-bottom: 16px;
+  width: 252px;
+  font-weight: bold;
+}
+
+.description {
+  color: #7c8db0;
+  font-size: 14px;
+  margin-bottom: 36px;
+  width: 682px;
+}
+
+.paymentMethods {
+  display: flex;
+  width: 620px;
+  margin-bottom: 24px;
+  background-color: white;
+  border: 1px solid #4F46E5;
+  border-radius: 2px;
+}
+
+.paymentButton {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  flex-grow: 1;
+  /* margin-right: 10px;
+  border-radius: 4px; */
+  border: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.paymentButtonActive {
+  background-color: #4F46E5;
+  color: white;
+  border: none;
+}
+
+.paymentButtonInactive {
+  background-color: white;
+  color: #4F46E5;
+  /* border: 1px solid #4F46E5; */
+}
+
+.sectionTitle {
+  font-size: 16px;
+  margin-top: 48px;
+  margin-bottom: 24px;
+  color: #6e7491;
+}
+
+.checkboxLabel {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  margin-bottom: 24px;
+}
+
+.checkbox {
+  margin-right: 10px;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  width: 480px;
+  gap: 24px;
+  margin-bottom: 36px;
+}
+
+.input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  width: 100%;
+}
+
+.inputRow {
+  width: 480px;
+  display: flex;
+  justify-content: space-between;
+  
+}
+
+.inputHalf {
+  width: 46%;
+  
+}
+
+.infoIcon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #9CA3AF;
+}
+
+.divider {
+  text-align: center;
+  color: #6B7280;
+  margin: 24px 0;
+}
+
+.socialButton {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #D1D5DB;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+  font-size: 16px;
+  background-color: white;
+  cursor: pointer;
+}
+
+.socialIcon {
+  margin-right: 10px;
+}
+
+.actionButtons {
+  display: flex;
+  gap: 24px;
+  margin-top: 48px;
+}
+
+.backButton, .confirmButton {
+  padding: 12px 20px;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.backButton {
+  background-color: white;
+  color: #605dec;
+  border: solid 1px #605dec;
+}
+
+.confirmButton {
+  background-color: #605DEC;
+  color: white;
+  border: none;
+}
+
+.confirmButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.inputError {
+  border-color: #EF4444;
+}
+
+.errorMessage {
+  color: #EF4444;
+  font-size: 14px;
+  margin-top: 4px;
+}
+
+/*  */
+
+.signupContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.signupForm {
+
+  width: 568px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.inputContainer {
+  width: 90%; 
+
+  height: auto; /* Hug */
+  min-height: 48px; /* Ensuring it doesn't go below the specified height */
+  
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin-bottom: 24px;
+}
+
+.signupInput {
+  width: 100%; /* Fill */
+  max-width: 460px; /* Ensuring it doesn't exceed the specified width */
+  height: auto; /* Hug */
+  min-height: 48px; /* Ensuring it doesn't go below the specified height */
+  padding: 8px 12px;
+  gap: 8px;
+  border-radius: 4px 0 0 0;
+  border: 1px solid #A1B0CC;
+  
+  background: #FFFFFF;
+}
+
+.signupDivider {
+ 
+  padding: 2px 4px;
+  border-radius: 4px 0 0 0;
+  
+}
+
+.divider2 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 488px; /* Fixed */
+  height: auto; /* Hug */
+  min-height: 41px; /* Ensuring it doesn't go below the specified height */
+  padding: 8px 0;
+  gap: 10px;
+}
+
+.divider3 {
+  width: 225.5px;
+  height: 1px;
+  gap: 0px;
+  background: #CBD4E6;
+
+}
+
+.socialButton {
+  width: 100%; /* Fill */
+  max-width: 488px; /* Ensuring it doesn't exceed the specified width */
+  height: 48px; /* Fixed */
+  padding: 12px 20px;
+  gap: 4px;
+  border-radius: 4px 0 0 0;
+  border: 1px solid #605DEC;
+  
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  color: #605DEC;
+  background: white;
+
+  font-family: Nunito Sans;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 24.55px;
+  text-align: center;
+}
+
+.signupSocialIcon {
+  margin-right: 0.5rem;
+  font-weight: bold;
+  font-size: 1.2rem;
+  width: 20px;
+  height: 20px;
+  
+
+}
+.rightArrow{
+  width: 18px;
+  height: 18px;
+  padding: 4.78px 3.66px 4.78px 3.38px;
+  gap: 0px;
+  border-radius: 2.25px 0px 0px 0px;
+
+
+}
