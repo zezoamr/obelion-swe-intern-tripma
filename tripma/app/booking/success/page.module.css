@@ -1,0 +1,270 @@
+
+.container {
+    font-family: 'Nunito Sans', Arial, sans-serif;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.columnRight{
+    width: 25%; 
+    /* width: 400px; */
+}
+
+.columnLeft{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+
+    gap: 36px;
+    width: 75%;
+}
+
+.sectionTitle {
+    color: #6E7491;
+    font-size: 24px;
+    margin-bottom: 16px;
+    font-weight: bold;
+}
+
+.description {
+    color: #7C8DB0;
+    font-size: 14px;
+    margin-bottom: 24px;
+}
+
+.Map{
+    position: relative;
+    width: 90%;
+    height: 400px;
+}
+
+.pageTitle {
+    color: #6E7491;
+    font-size: 24px;
+    margin: 0px;
+    font-weight: bold;
+}
+/*  */
+
+.flightTableOverride{
+    margin: 0px;
+    padding: 0px;
+    min-height: 0px;
+
+    width: 850px;
+    height: auto;
+    overflow-y: hidden;
+
+    border: 1px solid #cdcdce;
+}
+
+.flightTableOverride2{
+
+    background-color: white;
+    padding-left: 20px;
+}
+
+
+/*  */
+
+.bookingConfirmation {
+    width: 70%;
+    background-color: #ffffff;
+    
+}
+
+.successMessage {
+    background-color: #F1F9F5;
+    color: #1C7C54;
+    border: 1px solid #1c724e;
+    padding: 12px;
+    border-radius: 4px;
+    margin-bottom: 36px;
+}
+
+.greeting {
+    color: #5000B9;
+    font-size: 24px;
+    margin: 0px;
+    margin-bottom: 16px;
+    width: 252px;
+    font-weight: bold;
+}
+
+.confirmationNumber {
+    font-size: 16px;
+    margin-bottom: 24px;
+    color: #6e7491;
+    margin-bottom: 16px;
+}
+
+.bookingSummary {
+    color: #7c8db0;
+    font-size: 14px;
+    margin-bottom: 36px;
+    width: 682px;
+}
+
+.flightSummary {
+    margin-top: 24px;
+}
+
+.flightSummary h3 {
+    color: #6E7491;
+    font-size: 20px;
+    margin-bottom: 16px;
+}
+
+.flight {
+    margin-bottom: 24px;
+}
+
+.flight h4 {
+    color: #6E7491;
+    font-size: 16px;
+    margin-bottom: 8px;
+}
+
+
+.flightDetails {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 8px;
+    font-family: 'Nunito Sans';
+    color: #6E7491;
+  }
+
+.airline {
+    display: flex;
+    align-items: center;
+    width: 25%;
+}
+
+.airline span {
+    margin-left: 8px;
+    font-size: 14px;
+}
+
+.flightTime, .flightRoute, .flightStops, .flightPrice {
+    font-size: 14px;
+    width: 18%;
+    text-align: center;
+}
+
+.flightPrice {
+    font-weight: bold;
+}
+
+@media (max-width: 768px) {
+    .flightDetails {
+    flex-wrap: wrap;
+    }
+    
+    .airline {
+    width: 100%;
+    margin-bottom: 8px;
+    }
+    
+    .flightTime, .flightRoute, .flightStops, .flightPrice {
+    width: 25%;
+    }
+}
+
+.seatInfo {
+    color: #7C8DB0;
+    font-size: 14px;
+}
+
+/*  */
+
+
+.cardTitle {
+    color: #6E7491;
+    font-size: 24px;
+    margin: 0px;
+    margin-bottom: 16px;
+    font-weight: bold;
+}
+
+.paymentCard {
+    background-color: #eb4a7d;
+    width: 300px;
+    height: 188px;
+    border-radius: 10px;
+    padding: 20px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.paymentCard svg {
+    align-self: flex-start;
+    margin-bottom: 20px;
+}
+
+.paymentCard div {
+    font-size: 18px;
+}
+
+.paymentCardName{
+    padding-top: 40px;
+}
+
+.paymentCard div:last-child {
+    display: flex;
+}
+
+.paymentCardLastRow{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    padding-bottom: 10px;
+}
+
+/*  */
+
+.cardsSection {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+    margin-bottom: 36px;
+}
+
+.viewAllButton {
+    background-color: #FFFFFF;
+    color: #605DEC;
+    border: 1px solid #605DEC;
+    border-radius: 4px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    display: block;
+    margin: 0 auto;
+}
+
+.viewAllButton:hover {
+    background-color: #605DEC;
+    color: #FFFFFF;
+}
+
+.cards{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    gap:36px;
+}
+
+.cardoverride{
+    height: 300px;
+}

@@ -1,0 +1,40 @@
+.card {
+    width: 400px;
+    background: white;
+    font-family: NunitoSans;
+
+    color: #6e7491;
+    font-size: 18px;
+    text-align: left;
+}
+
+.header {
+    
+    font-weight: bold;
+    color: #6e7491;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 24px;
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+.bold {
+    font-weight: 600;
+}
+
+.totalRow {
+    border-top: 1px solid #8f9091;
+    border-bottom: 1px solid #8f9091;
+    
+    margin-top: 17px;
+    padding: 12px 0px;
+
+    font-size: 18px;
+    font-weight: 600;
+    color: #44455c;
+}
