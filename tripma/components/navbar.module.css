@@ -9,7 +9,7 @@
   height: auto; /* Hug */
   min-height: 96px; /* Ensuring it doesn't go below the specified height */
   top: 64px;
-  padding: 8px 24px;
+  padding: 4px 24px;
   gap: 0;
   justify-content: space-between;
   

@@ -1,0 +1,146 @@
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String?   @unique
+  phone         String?   @unique
+  emailVerified DateTime?
+  image         String?
+  password      String?
+  accounts      Account[]
+  sessions      Session[]
+  payments      Payment[]
+}
+
+model Account {
+  id                 String  @id @default(cuid())
+  userId             String
+  type               String
+  provider           String
+  providerAccountId  String
+  refresh_token      String?
+  access_token       String?
+  expires_at         Int?
+  token_type         String?
+  scope              String?
+  id_token           String?
+  session_state      String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+model Flight {
+  id               String   @id @default(cuid())
+  duration         String
+  fromtoTime       String
+  stops            String
+  price            Int
+  businessprice    Int
+  airline          String
+  stopduration     String?
+  type             String
+  image            String
+  taxes            Int
+  from             String
+  to               String
+  startDate        DateTime
+  endDate          DateTime
+  flightid         String
+  dividerLocations String   // Store as JSON string
+  seatsData        String   // Store as JSON string
+  //availableSeats   Int       Calculate this in app code
+}
+
+model Testimonial {
+  id         String @id @default(cuid())
+  avatarSrc  String
+  name       String
+  location   String
+  date       String
+  rating     Int
+  review     String
+}
+
+model City {
+  id          String  @id @default(cuid())
+  name        String
+  city        String
+  description String
+  image       String
+  price       String?
+  newcolor    String?
+}
+
+model Place {
+  id          String  @id @default(cuid())
+  name        String
+  price       String?
+  city        String
+  description String
+  image       String
+  newcolor    String?
+}
+
+
+model Payment {
+  id            String          @id @default(cuid())
+  userId        String
+  user          User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  paymentInfo   Payment_info    @relation(fields: [paymentInfoId], references: [id])
+  paymentInfoId String          @unique // Ensures one-to-one relation
+  passengers    Payment_passenger[]
+}
+
+model Payment_info {
+  id           String  @id @default(cuid())
+  nameOnCard   String
+  cardNumber   BigInt
+  expDate      String
+  CVV          Int
+  payment      Payment? //has to be optional because Prisma used to allow marking a one-to-one relation field as required, but it can't always enforce this rule at the database level.
+}
+
+
+model Payment_passenger {
+  id                      String @id @default(cuid())
+  paymentId               String
+  firstName               String
+  middleName              String?
+  lastName                String
+  suffix                  String?
+  emailAddress            String
+  phoneNumber             String
+  redressNumber           String?
+  knownTravelNumber       String?
+  emergencyFirstName      String
+  emergencyLastName       String
+  emergencyEmailAddress   String
+  emergencyPhoneNumber    String
+  checkedBags             Int
+  payment                 Payment @relation(fields: [paymentId], references: [id], onDelete: Cascade)
+}
