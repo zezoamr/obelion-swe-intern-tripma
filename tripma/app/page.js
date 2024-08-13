@@ -6,86 +6,20 @@ import TestimonialSocialProof from '@/components/TestimonialCard';
 
 import Card from '@/components/card';
 import LargeCard from '@/components/largeCard';
-import card1Image from '@/components/card1.jpg';
-import avatarImage from '@/components/avatar.jpg';
-
-export default function TripmaPage() {
-
-  const cardRow1 = [
-    {
-        name: "The Bund,",
-        price: "$598",
-        textstyle1Text: "Shanghai",
-        description: "China’s most international city",
-        image: card1Image
-    },
-    {
-        name: "The Bund,",
-        price: "$598",
-        textstyle1Text: "Shanghai",
-        description: "China’s most international city",
-        image: card1Image
-    },
-    {
-        name: "The Bund,",
-        price: "$598",
-        textstyle1Text: "Shanghai",
-        description: "China’s most international city",
-        image: card1Image
-    }
-];
 
 
-  const cardRow2 = [
-    {
-        name: "The Bund",
-        textstyle1Text: "Shanghai",
-        description: "China’s most international city",
-        image: card1Image,
-        newcolor: "#98FF98"
-    },
-    {
-        name: "The Bund",
-        textstyle1Text: "Shanghai",
-        description: "China’s most international city",
-        image: card1Image,
-        newcolor: "#98FF98"
-    },
-    {
-        name: "The Bund",
-        textstyle1Text: "Shanghai",
-        description: "China’s most international city",
-        image: card1Image,
-        newcolor: "#98FF98"
-    }
-  ];
+async function getTripmaData() {
+  const res = await fetch('http://localhost:3000/api/HomepageCards', { next: { revalidate: 10 * 60 } });
+  if (!res.ok) {
+    throw new Error('Failed to fetch data');
+  }
+  return res.json();
+}
 
-  const testimonials = [
-    {
-        avatarSrc: avatarImage,
-        name: "Yifei Chen",
-        location: "Seoul, South Korea",
-        date: "April 2019",
-        rating: 5,
-        review: "What a great experience using Tripma! I booked all of my flights for my gap year through Tripma and never had any issues. When I had to cancel a flight because of an emergency, Tripma support helped me"
-    },
-    {
-        avatarSrc: avatarImage,
-        name: "Yifei Chen",
-        location: "Seoul, South Korea",
-        date: "April 2019",
-        rating: 4,
-        review: "What a great experience using Tripma! I booked all of my flights for my gap year through Tripma and never had any issues. When I had to cancel a flight because of an emergency, Tripma support helped me"
-    },
-    {
-        avatarSrc: avatarImage,
-        name: "Yifei Chen",
-        location: "Seoul, South Korea",
-        date: "April 2019",
-        rating: 1,
-        review: "What a great experience using Tripma! I booked all of my flights for my gap year through Tripma and never had any issues. When I had to cancel a flight because of an emergency, Tripma support helped me"
-    }
-];
+export default async function TripmaPage() {
+
+  
+  const data = await getTripmaData();
 
   return (
     <div className={styles.container}>
@@ -107,7 +41,7 @@ export default function TripmaPage() {
                 <div className={styles.arrowRight}>
                   <div className={styles.Vector7}>
                     <svg width="22" height="17" viewBox="0 0 22 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M1 8.5H20.5M20.5 8.5L13 1M20.5 8.5L13 16" stroke="#A1B0CC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M1 8.5H20.5M20.5 8.5L13 1M20.5 8.5L13 16" stroke="#A1B0CC" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                     </svg>
                   </div>
                 </div>
@@ -115,16 +49,16 @@ export default function TripmaPage() {
           </div>
 
           <div className={styles.cards}> 
-            {cardRow1.map(card => 
+            {data.places.map(card => 
               <Card 
               name={card.name}
-              textstyle1Text={card.textstyle1Text}
+              city={card.city}
               price={card.price} 
               description={card.description} 
               image={card.image} />
             )}
           </div>
-          <LargeCard name="The Bund, " price="$598" textstyle1Text="Shanghai" description="China’s most international city" image={card1Image}/>
+          <LargeCard {...data.placesLargeCard} />
             
         </div>
 
@@ -143,7 +77,7 @@ export default function TripmaPage() {
                 <div className={styles.arrowRight}>
                   <div className={styles.Vector7}>
                     <svg width="22" height="17" viewBox="0 0 22 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M1 8.5H20.5M20.5 8.5L13 1M20.5 8.5L13 16" stroke="#A1B0CC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M1 8.5H20.5M20.5 8.5L13 1M20.5 8.5L13 16" stroke="#A1B0CC" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                     </svg>
                   </div>
                 </div>
@@ -152,10 +86,10 @@ export default function TripmaPage() {
 
           <div className={styles.cards}> 
 
-            {cardRow2.map(card => 
+            {data.cities.map(card => 
               <Card 
               name={card.name}
-              textstyle1Text={card.textstyle1Text} 
+              city={card.city} 
               description={card.description} 
               image={card.image} 
               newcolor={card.newcolor}/>
@@ -178,7 +112,7 @@ export default function TripmaPage() {
           </span>
 
           <div className={styles.Frame71}>
-          {testimonials.map(testimonial =>  
+          {data.testimonials.map(testimonial =>  
           <TestimonialSocialProof
               avatarSrc={testimonial.avatarSrc}
               name={testimonial.name}
@@ -191,6 +125,7 @@ export default function TripmaPage() {
 
           </div>
         </div>
+
 
       </div>
       

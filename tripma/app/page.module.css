@@ -28,7 +28,7 @@
 
 .cardRow {
 
-  height: 1137px;
+  /* height: 1137px; */
   align-self: stretch;
   flex-grow: 0;
   display: flex;
@@ -42,7 +42,7 @@
 
 .cardRow2 {
 
-  height: 661px;
+  /* height: 661px; */
   align-self: stretch;
   flex-grow: 0;
   display: flex;
@@ -189,7 +189,7 @@ img.arrowRight {
 
 
 .TestimonialRow {
-  height: 461px;
+  /* height: 461px; */
   align-self: stretch;
   flex-grow: 0;
   display: flex;
