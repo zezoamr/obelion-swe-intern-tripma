@@ -39,7 +39,7 @@ export default function Cart({ flights, setFlights, buttonText, buttonClassName,
 
     const summaryItems = useMemo(() => {
         const subtotal = flights.reduce((sum, flight) => sum + flight.price, 0);
-        const taxes = flights.reduce((sum, flight) => sum + flight.taxes, 0);
+        const taxes = flights.reduce((sum, flight) => sum + (flight.price * flight.taxes / 100), 0);
         const total = subtotal + taxes;
         return [
             {
@@ -56,6 +56,8 @@ export default function Cart({ flights, setFlights, buttonText, buttonClassName,
             },
         ];
     }, [flights]);
+    
+    
 
     return (
         <div className={styles.cart}>
