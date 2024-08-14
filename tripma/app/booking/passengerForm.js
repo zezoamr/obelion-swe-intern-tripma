@@ -1,10 +1,18 @@
 "use client";
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+import { useCart } from '@/providers/CartProvider'
+
 import styles from './passengerForm.module.css'
 import validator from 'validator';
 
-
 export default function PassengerForm({FormNotComplete, setFormNotComplete}) {
+    const router = useRouter();
+    const { updatePassengersInfo, passengerDoneCount, adultCount, passengerTotal} = useCart();
+
+    const passengerTitle = `Passenger ${passengerDoneCount() + 1} (${passengerDoneCount() >= adultCount ? 'Minor' : 'Adult'})`; // Template: Passenger 1 (Adult)
+
+
     const [passengerInfo, setPassengerInfo] = useState({
         firstName: '',
         middleName: '',
@@ -104,14 +112,28 @@ export default function PassengerForm({FormNotComplete, setFormNotComplete}) {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (validateForm()) {
-            console.log('Form submitted', { passengerInfo, emergencyContact, checkedBags });
+            if (passengerTotal() > passengerDoneCount()) {
+            //console.log('Form submitted', { passengerInfo, emergencyContact, checkedBags });
+            
 
+            updatePassengersInfo({ passengerInfo, emergencyContact, checkedBags }, true);
             setFormNotComplete(false);
-            // Here you would typically send this data to your backend
+
+            console.log("total passenger count", passengerTotal());
+            console.log("passenger done count", passengerDoneCount());
+
+            if (passengerTotal() > passengerDoneCount() + 1) router.push('/booking')
+            }
         } else {
             console.log('Form has errors');
         }
     };
+
+    function handleSelectSeats(){
+        if(passengerTotal() === passengerDoneCount()){ 
+            router.push('/booking/seats')
+        }
+    }
 
     return (
         <form onSubmit={handleSubmit} className={styles.formContainer}>
@@ -121,7 +143,7 @@ export default function PassengerForm({FormNotComplete, setFormNotComplete}) {
                 the government-issued ID presented at the airport.
             </p>
            
-            <div className={styles.passengerTitle}>Passenger 1 (Adult)</div>
+            <div className={styles.passengerTitle}>{passengerTitle} </div>
            
 
             {errors.firstName && <div className={styles.error}>{errors.firstName}</div>}
@@ -310,7 +332,7 @@ export default function PassengerForm({FormNotComplete, setFormNotComplete}) {
             </div>
             <div className={styles.formActions}>
                 <button type="submit" className={styles.saveButton}>Save and close</button>
-                <button type="button" className={FormNotComplete? styles.selectSeatsPurple : styles.selectSeatsButton }>Select seats</button>
+                <button type="button" className={passengerTotal() > passengerDoneCount() ? styles.selectSeatsButton : styles.selectSeatsPurple } onClick={handleSelectSeats}> Select seats</button>
             </div>
         </form>
     );

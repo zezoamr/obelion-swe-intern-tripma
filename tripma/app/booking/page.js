@@ -5,40 +5,15 @@ import styles from './page.module.css';
 import Image from 'next/image';
 
 import luggageImage from '@/components/Luggage2.svg';
-import PassengerForm from '@/components/passengerForm';
+import PassengerForm from './passengerForm';
 import Cart from '@/components/cart';
 
+import { useCart } from '@/providers/CartProvider'
 
-export default function TripmaPage() {
-  const [pickedflights, setPickedflights] = useState([
-      {
-        duration: "16h 45m",
-        fromtoTime: "7:00AM - 4:15PM",
-        stops: "1 stop",
-        price: 624,
-        airline: "Hawaiian Airlines",
-        stopduration: "2h 45m in HNL",
-        type: "round trip",
-        image: airlineimage,
-        id: "FiG43215",
-        taxes: 1
-    },
-    {
-        duration: "16h 45m",
-        fromtoTime: "7:00AM - 4:15PM",
-        stops: "1 stop",
-        price: 624,
-        airline: "Hawaiian Airlines",
-        stopduration: "2h 45m in HNL",
-        type: "round trip",
-        image: airlineimage,
-        id: "FiG43216",
-        taxes: 1
-    },
-    ]
-  );
+export default function PassengerformPage() {
+  const { cartItems, passengerDoneCount } = useCart();
 
-  const [FormNotComplete, setFormNotComplete] = useState(false);
+  const [FormNotComplete, setFormNotComplete] = useState(true);
   return (
     <div className={styles.container}>
         <div className={styles.content}>
@@ -47,17 +22,15 @@ export default function TripmaPage() {
             </div>
             <div className={styles.leftColumn}>
               <Cart 
-              flights={pickedflights} 
+              flights={cartItems} 
               setFlights={() => {}} 
-              buttonText={FormNotComplete ? "Select Seats" : "Select Seats"}
-              buttonClassName={FormNotComplete ? "selectSeatsPurple" : "selectSeatsGray" }
+              buttonText={cartItems.length > passengerDoneCount() ? "Select Seats" : "Select Seats"}
+              buttonClassName={cartItems.length > passengerDoneCount() ? "selectSeatsGray" : "selectSeatsPurple"}
               buttonChangeHandler={setFormNotComplete}
               />
               <Image src={luggageImage} alt="luggage" width={382} height={525} style={{ margin: "47px 96px 56px 184px"}} />
             </div>
         </div>
-        
-      
 
     </div>
   );

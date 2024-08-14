@@ -55,10 +55,11 @@
   align-items: center;
   margin-bottom: 24px;
   margin-right: 24px;
+  gap: 16px;
 }
 
 .formGridWidth3{
-  width: 648px;
+  width: 670px;
 }
 
 .formGridWidth2{
