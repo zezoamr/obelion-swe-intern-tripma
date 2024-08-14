@@ -49,6 +49,7 @@ CREATE TABLE "Flight" (
     "fromtoTime" TEXT NOT NULL,
     "stops" TEXT NOT NULL,
     "price" INTEGER NOT NULL,
+    "businessprice" INTEGER NOT NULL,
     "airline" TEXT NOT NULL,
     "stopduration" TEXT,
     "type" TEXT NOT NULL,
@@ -58,7 +59,9 @@ CREATE TABLE "Flight" (
     "to" TEXT NOT NULL,
     "startDate" DATETIME NOT NULL,
     "endDate" DATETIME NOT NULL,
-    "availableSeats" INTEGER NOT NULL
+    "flightid" TEXT NOT NULL,
+    "dividerLocations" TEXT NOT NULL,
+    "seatsData" TEXT NOT NULL
 );
 
 -- CreateTable
@@ -94,6 +97,47 @@ CREATE TABLE "Place" (
     "newcolor" TEXT
 );
 
+-- CreateTable
+CREATE TABLE "Payment" (
+    "id" TEXT NOT NULL PRIMARY KEY,
+    "userId" TEXT NOT NULL,
+    "paymentInfoId" TEXT NOT NULL,
+    CONSTRAINT "Payment_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User" ("id") ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT "Payment_paymentInfoId_fkey" FOREIGN KEY ("paymentInfoId") REFERENCES "Payment_info" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
+);
+
+-- CreateTable
+CREATE TABLE "Payment_info" (
+    "id" TEXT NOT NULL PRIMARY KEY,
+    "nameOnCard" TEXT NOT NULL,
+    "cardNumber" BIGINT NOT NULL,
+    "expDate" TEXT NOT NULL,
+    "CVV" INTEGER NOT NULL
+);
+
+-- CreateTable
+CREATE TABLE "Payment_passenger" (
+    "id" TEXT NOT NULL PRIMARY KEY,
+    "paymentId" TEXT NOT NULL,
+    "firstName" TEXT NOT NULL,
+    "middleName" TEXT,
+    "lastName" TEXT NOT NULL,
+    "suffix" TEXT,
+    "emailAddress" TEXT NOT NULL,
+    "phoneNumber" TEXT NOT NULL,
+    "redressNumber" TEXT,
+    "knownTravelNumber" TEXT,
+    "emergencyFirstName" TEXT NOT NULL,
+    "emergencyLastName" TEXT NOT NULL,
+    "emergencyEmailAddress" TEXT NOT NULL,
+    "emergencyPhoneNumber" TEXT NOT NULL,
+    "checkedBags" INTEGER NOT NULL,
+    "flightId" TEXT NOT NULL,
+    "seatRow" INTEGER NOT NULL,
+    "seatNumber" INTEGER NOT NULL,
+    CONSTRAINT "Payment_passenger_paymentId_fkey" FOREIGN KEY ("paymentId") REFERENCES "Payment" ("id") ON DELETE CASCADE ON UPDATE CASCADE
+);
+
 -- CreateIndex
 CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
 
@@ -111,3 +155,6 @@ CREATE UNIQUE INDEX "VerificationToken_token_key" ON "VerificationToken"("token"
 
 -- CreateIndex
 CREATE UNIQUE INDEX "VerificationToken_identifier_token_key" ON "VerificationToken"("identifier", "token");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Payment_paymentInfoId_key" ON "Payment"("paymentInfoId");

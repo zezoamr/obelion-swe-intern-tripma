@@ -1,16 +1,10 @@
-/*
-  Warnings:
-
-  - You are about to alter the column `cardNumber` on the `Payment_info` table. The data in that column could be lost. The data in that column will be cast from `Int` to `BigInt`.
-
-*/
 -- RedefineTables
 PRAGMA defer_foreign_keys=ON;
 PRAGMA foreign_keys=OFF;
 CREATE TABLE "new_Payment_info" (
     "id" TEXT NOT NULL PRIMARY KEY,
     "nameOnCard" TEXT NOT NULL,
-    "cardNumber" BIGINT NOT NULL,
+    "cardNumber" TEXT NOT NULL,
     "expDate" TEXT NOT NULL,
     "CVV" INTEGER NOT NULL
 );

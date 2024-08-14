@@ -119,7 +119,7 @@ model Payment {
 model Payment_info {
   id           String  @id @default(cuid())
   nameOnCard   String
-  cardNumber   BigInt
+  cardNumber   String  // Changed from BigInt to String due to problems serializing bigint
   expDate      String
   CVV          Int
   payment      Payment? //has to be optional because Prisma used to allow marking a one-to-one relation field as required, but it can't always enforce this rule at the database level.
@@ -142,5 +142,12 @@ model Payment_passenger {
   emergencyEmailAddress   String
   emergencyPhoneNumber    String
   checkedBags             Int
+  flightId                String  
+  seatRow                 Int     
+  seatNumber              Int     
+  seatClass               String?  // New field
+  seatDisplay             String?  // New field
+  upgraded                Boolean? // New field
+  upgradeCost             Int?     // New field
   payment                 Payment @relation(fields: [paymentId], references: [id], onDelete: Cascade)
 }
