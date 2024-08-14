@@ -2,8 +2,6 @@ import styles from './footer.module.css'
 import Image from 'next/image'
 
 import TripmaImage from '@/components/tripma.svg'
-import GoogleplayImage from '@/components/GoogleplayImage.png'
-import AppleStore from '@/components/AppleStore.png'
 
 export default function Footer() {
 
@@ -56,37 +54,46 @@ export default function Footer() {
                 <span className={styles.Footerheader}>
                     About
                 </span>
-                {firstColumn.map(item => <span className={styles.Listitem}>{item}</span>)}
+                {firstColumn.map((item, index) => (
+                    <span key={index} className={styles.Listitem}>
+                    {item}
+                    </span>
+                ))}
             </div>
 
             <div className={styles.columnabout}>
                 <span className={styles.Footerheader}>
-                Partner with us
+                    Partner with us
                 </span>
-                {secondColumn.map(item => <span className={styles.Listitem}>{item}</span>)}
+                {secondColumn.map((item, index) => (
+                    <span key={index} className={styles.Listitem}>
+                    {item}
+                    </span>
+                ))}
             </div>
 
             <div className={styles.columnabout}>
                 <span className={styles.Footerheader}>
-                Support
+                    Support
                 </span>
-                {thirdColumn.map(item => <span className={styles.Listitem}>{item}</span>)}
+                {thirdColumn.map((item, index) => (
+                    <span key={index} className={styles.Listitem}>
+                    {item}
+                    </span>
+                ))}
             </div>
 
             <div className={styles.columnabout}>
                 <span className={styles.Footerheader}>
                     Get the app
                 </span>
-                {fourthColumn.map(item => <span className={styles.Listitem}>{item}</span>)}
-                <div className={styles.linkappstore}>
-                <Image src={AppleStore} alt="AppleStore" layout="fill" objectFit="cover" /> 
-                </div>
-                <div className={styles.linkgoogleplay}>
-                <Image src={GoogleplayImage} alt="GoogleplayImage" layout="fill" objectFit="cover" /> 
-                </div>
+                {fourthColumn.map((item, index) => (
+                    <span key={index} className={styles.Listitem}>
+                    {item}
+                    </span>
+                ))}
             </div>
-        </div>
-
+        </div>            
         <div className={styles.divider}>
         </div>
 

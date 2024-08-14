@@ -1,7 +1,7 @@
 import Popup from '@/components/popup';
+import { useCart } from '@/providers/CartProvider'
 import styles from './page.module.css';
 import Searchbar from '@/components/searchbar';
-import Footer from '@/components/footer';
 import TestimonialSocialProof from '@/components/TestimonialCard';
 
 import Card from '@/components/card';

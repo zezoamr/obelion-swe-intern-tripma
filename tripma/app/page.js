@@ -1,7 +1,6 @@
 import Popup from '@/components/popup';
 import styles from './page.module.css';
 import Hero from '@/components/hero';
-import Footer from '@/components/footer';
 import TestimonialSocialProof from '@/components/TestimonialCard';
 
 import Card from '@/components/card';

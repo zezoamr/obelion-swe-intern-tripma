@@ -1,7 +1,7 @@
 
 import "./globals.css";
 
-import Provider from './providers';
+import Provider from '@/providers/providers';
 
 export const metadata = {
   title: "Tripma",

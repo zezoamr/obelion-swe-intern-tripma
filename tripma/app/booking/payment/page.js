@@ -4,12 +4,10 @@ import { useState } from 'react';
 import styles from './page.module.css';
 import Image from 'next/image';
 
-import Footer from '@/components/footer';
 import luggageImage from '@/components/Luggage2.svg';
 import PaymentForm from '@/components/paymentForm';
 import Cart from '@/components/cart';
 
-import airlineimage from "@/components/airlines.png"
 
 export default function TripmaPage() {
   const [pickedflights, setPickedflights] = useState([
