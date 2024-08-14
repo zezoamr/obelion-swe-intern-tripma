@@ -1,23 +1,30 @@
+"use client";
+
 import Image from 'next/image'
 import styles from './flightTable.module.css'
 
-export default function FlightTable({flights, pickedflights, setFlights}) {
+export default function FlightTable({flights, isOneWay, pickedflights, setFlights, className='', className2='', disablePicking=false}) {
 
     const handleAddFlight = (flightId) => {
-        //check if its already there
-        if (pickedflights.find(flight => flight.id === flightId)) {
-            return
+        if (disablePicking) return;
+        if(isOneWay && pickedflights.length == 1) return;
+        if(pickedflights.length == 2) return;
+    
+        const selectedFlight = flights.find(flight => flight.id === flightId);
+        if (!selectedFlight) setFlights(prevPickedFlights => [...prevPickedFlights, selectedFlight]);
+    
+        const existingFlightCount = pickedflights.filter(flight => flight.id === flightId).length;
+    
+        if (existingFlightCount < selectedFlight.availableSeats) {
+            setFlights(prevPickedFlights => [...prevPickedFlights, selectedFlight]);
         }
-        setFlights(
-            prevFlights => [...prevFlights, flights.find(flight => flight.id === flightId)]
-        );
     };
 
     return (
-        <div className={styles.tableflight}>
+        <div className={`${styles.tableflight} ${className}`}>
                     {flights.map((flight) => (
                         <>
-                        <div className={styles.flightrow} onClick={() => handleAddFlight(flight.id)}>
+                        <div className={`${styles.flightrow} ${className2}`} onClick={() => handleAddFlight(flight.id)}>
                             <div className={styles.image25}>
                                 <Image
                                     src={flight.image}
@@ -51,7 +58,7 @@ export default function FlightTable({flights, pickedflights, setFlights}) {
                                         {flight.stopduration}
                                     </div>
                                     <div className={styles.label4right}>
-                                        {flight.type}
+                                        {isOneWay? 'one way' : 'round trip'}
                                     </div>
                                 </div>
                             </div>   

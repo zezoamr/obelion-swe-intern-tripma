@@ -1,7 +1,9 @@
 
 .tableflight {
-    width: 872px;
-    height: 456px;
+    width: auto;
+    height: auto;
+    max-width: 872px;
+    max-height: 456px;
 
     display: flex;
     flex-direction: column;
@@ -46,10 +48,8 @@
   .datarows {
     height: auto; /* Hug */
     min-height: 64px; /* Ensuring it doesn't go below the specified height */
-    width: 100%; /* Fill */
+    width: auto; /* Fill */
     max-width: 760px; /* Ensuring it doesn't exceed the specified width */
-
-
 
     flex-grow: 1;
     display: flex;

@@ -2,40 +2,28 @@
 import { LineChart, Line, Area, AreaChart, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import styles from './PriceHistoryChart.module.css';
 
-const data = [
-  { date: 'Jan', price: 850 },
-  { date: 'Feb', price: 920 },
-  { date: 'Mar', price: 800 },
-  { date: 'Apr', price: 940 },
-  { date: 'May', price: 1000 },
-  { date: 'Jun', price: 1300 },
-  { date: 'Jul', price: 910 },
-  { date: 'Aug', price: 850 },
-  { date: 'Sep', price: 680 },
-  { date: 'Oct', price: 790 },
-  { date: 'Nov', price: 650 },
-  { date: 'Dec', price: 700 },
-];
 
-const yDomain = [Math.min(...data.map(d => d.price)), Math.max(...data.map(d => d.price))];
+export default function PriceHistoryChart({data}) {
+    if(!data) return <p>Loading...</p>;
+    
+    const yDomain = [Math.min(...data.map(d => d.price)), Math.max(...data.map(d => d.price))];
 
-const minPrice = Math.min(...data.map(d => d.price));
-const yTicks = Array.from(new Set(data.map(d => d.price)))
-    .sort((a, b) => a - b)
-    .reduce((acc, cur) => {
-        if (acc.length === 0 || acc[acc.length - 1] + 100 <= cur) {
-            acc.push(cur);
-        }
-        return acc;
-    }, []);
+    const minPrice = Math.min(...data.map(d => d.price));
+    const yTicks = Array.from(new Set(data.map(d => d.price)))
+        .sort((a, b) => a - b)
+        .reduce((acc, cur) => {
+            if (acc.length === 0 || acc[acc.length - 1] + 100 <= cur) {
+                acc.push(cur);
+            }
+            return acc;
+        }, []);
 
-if (minPrice - 250 >= 0) {
-    yTicks.unshift(minPrice - 250);
-} else {
-    yTicks.unshift(0);
-}
+    if (minPrice - 250 >= 0) {
+        yTicks.unshift(minPrice - 250);
+    } else {
+        yTicks.unshift(0);
+    }
 
-export default function PriceHistoryChart() {
     return (
         <div className={styles.container}>
             <div className={styles.title}>Price History</div>

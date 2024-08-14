@@ -1,9 +1,9 @@
 import Image from 'next/image';
 import styles from './card.module.css';
 
-export default function Card({ name, price, textstyle1Text, description, image, newcolor }) {
+export default function Card({ name, price, city, description, image, newcolor, className = '' }) {
   return (
-    <div className={styles.fullCard}>
+    <div className={`${styles.fullCard} ${className}`}>
       <div className={styles.imageContainer}>
         {image ? <Image src={image} alt={name} layout="fill" objectFit="cover" /> : <p>No image available</p>}
       </div>
@@ -17,7 +17,7 @@ export default function Card({ name, price, textstyle1Text, description, image, 
               <span className={styles.name}>
                 {name + " "}
                 <span className={styles.textstyle1} style={{color: newcolor}}>
-                  {textstyle1Text}
+                  {city}
                 </span>
               </span>
             </div>

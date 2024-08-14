@@ -5,7 +5,7 @@
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding: 2rem;
+    padding: 0px;
 
     border: none;
 
@@ -16,6 +16,7 @@
     width: 756px;
     height: 265px;
     gap: 0;
+    margin: 12px;
     
     background: url("Group 8.png");
     font-family: Nunito Sans;
@@ -29,10 +30,11 @@
   }
   
   .searchContainer {
+    margin-left: 24px;
     display: flex;
     align-items: center;
     
-    width: 1200px; /* Fixed */
+    max-width: 1200px;  /*Fixed */
     height: auto; /* Hug */
     min-height: 48px; /* Ensuring it doesn't go below the specified height */
     gap: 0;
@@ -44,7 +46,7 @@
   }
   
   .searchInput {
-    width: 100%; /* Fill */
+    width: 100%; /*Fill */
     max-width: 324.5px; /* Ensuring it doesn't exceed the specified width */
     height: auto; /* Hug */
     min-height: 48px; /* Ensuring it doesn't go below the specified height */
@@ -204,6 +206,7 @@
     top: calc(100% + 4px);  /* Positioned below the input with a small gap */
     left: 23px;
     right: 0;
+    width: 200px;
     background: white;
     border: 1px solid #e0e0e0;
     border-radius: 4px;

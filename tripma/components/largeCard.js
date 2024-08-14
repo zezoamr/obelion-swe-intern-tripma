@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import styles from './largeCard.module.css';
 
-export default function LargeCard({ name, price, textstyle1Text, description, image }) {
+export default function LargeCard({ name, price, city, description, image }) {
  return (
     <div className={styles.fullCard}>
       <div className={styles.imageContainer}>
@@ -17,7 +17,7 @@ export default function LargeCard({ name, price, textstyle1Text, description, im
               <span className={styles.name}>
                 {name + " "}
                 <span className={styles.textstyle1}>
-                  {textstyle1Text}
+                  {city}
                 </span>
               </span>
             </div>

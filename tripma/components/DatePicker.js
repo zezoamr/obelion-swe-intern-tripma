@@ -10,13 +10,15 @@ const DatePicker = ({
     onClose,
     initialTripType = 'roundTrip'
     }) => {
+    // CHANGE: Adjust initial dates to noon to prevent timezone issues
     const [selectedRange, setSelectedRange] = useState({ 
-        start: initialStartDate, 
-        end: initialEndDate 
+        start: new Date(initialStartDate.getFullYear(), initialStartDate.getMonth(), initialStartDate.getDate(), 12, 0, 0), 
+        end: new Date(initialEndDate.getFullYear(), initialEndDate.getMonth(), initialEndDate.getDate(), 12, 0, 0)
     });
     const [currentMonth, setCurrentMonth] = useState(initialMonth);
     const [tripType, setTripType] = useState(initialTripType);
-    const minDate = new Date(); // Set minDate to today's date dynamically
+    // CHANGE: Set minDate to noon to prevent timezone issues
+    const minDate = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate(), 12, 0, 0);
 
     const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
@@ -54,16 +56,21 @@ const DatePicker = ({
         return days;
     };
 
+    // CHANGE: Modified handleDateClick function to adjust dates to noon
     const handleDateClick = (date) => {
         let newRange;
-        if (tripType === 'oneWay'  || (selectedRange.start && selectedRange.end)) { //|| !selectedRange.start
-        newRange = { start: date, end: null };
+        // Create a new date object set to noon on the selected day
+        // This prevents issues with timezone conversions
+        const adjustedDate = new Date(date.getFullYear(), date.getMonth(), date.getDate(), 12, 0, 0);
+        
+        if (tripType === 'oneWay' || (selectedRange.start && selectedRange.end)) {
+            newRange = { start: adjustedDate, end: null };
         } else {
-        if (date < selectedRange.start) {
-            newRange = { start: date, end: selectedRange.start };
-        } else {
-            newRange = { start: selectedRange.start, end: date };
-        }
+            if (adjustedDate < selectedRange.start) {
+                newRange = { start: adjustedDate, end: selectedRange.start };
+            } else {
+                newRange = { start: selectedRange.start, end: adjustedDate };
+            }
         }
         setSelectedRange(newRange);
     };
