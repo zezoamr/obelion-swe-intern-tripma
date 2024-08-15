@@ -6,11 +6,11 @@ export default function  PriceBreakdown ({
     arrivingFlightPrice, 
     baggageFees, 
     seatUpgradePrice, 
+    taxes, //array
     taxRate 
     }) {
     const subtotal = departingFlightPrice + arrivingFlightPrice + baggageFees + seatUpgradePrice;
-    const taxes = subtotal * (taxRate / 100);
-    const totalPaid = subtotal + taxes;
+    const totalPaid = taxes[1] ? Number(subtotal) + Number(taxes[0]) + Number(taxes[1]) : subtotal + taxes[0];
 
     return (
         <div className={styles.card}>
@@ -37,12 +37,12 @@ export default function  PriceBreakdown ({
                     <span>${subtotal.toFixed(2)}</span>
                 </div>
                 <div className={styles.row}>
-                    <span>Taxes ({taxRate}%)</span>
-                    <span>${taxes.toFixed(2)}</span>
+                    <span>Taxes ({taxRate[1] ? taxRate[0] + ' - ' + taxRate[1] : taxRate[0]})%</span>
+                    <span>${taxes[1] ? taxes[0] + ' - ' + taxes[1] : taxes[0]}</span>
                 </div>
                 <div className={`${styles.row} ${styles.totalRow}`}>
                     <span>Amount paid</span>
-                    <span>${totalPaid.toFixed(2)}</span>
+                    <span>${totalPaid}</span>
                 </div>
             </div>
         </div>
