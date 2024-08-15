@@ -4,7 +4,6 @@ import { useState } from 'react';
 import styles from './page.module.css';
 import Image from 'next/image';
 
-import luggageImage from '@/components/Luggage2.svg';
 import PaymentForm from './paymentForm';
 import Cart from '@/components/cart';
 
