@@ -1,7 +1,9 @@
-import Popup from '@/components/popup';
+import Popup from './popup';
 import styles from './page.module.css';
+import TestimonialSocialProof from './TestimonialCard';
+
 import Hero from '@/components/hero';
-import TestimonialSocialProof from '@/components/TestimonialCard';
+
 
 import Card from '@/components/card';
 import LargeCard from '@/components/largeCard';
