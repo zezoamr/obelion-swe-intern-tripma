@@ -2,18 +2,18 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
-import Hero from "./hero";
-import styles from './searchbar.module.css'
 
 import Image from 'next/image'
-
 import mapimage from "@/components/mapimage.png"
 
-import PriceGrid from "@/components/pricegrid";
-import PriceHistoryChart from "@/components/PriceHistoryChart";
+import styles from './searchbar.module.css'
+import PriceGrid from "./pricegrid";
+import PriceHistoryChart from "./PriceHistoryChart";
 import PriceRating from "./priceRating";
-import FlightTable from "./flightTable";
-import Cart from "./cart";
+
+import FlightTable from "@/components/flightTable";
+import Cart from "@/components/cart";
+import Hero from "@/components/hero";
 
 import { useCart } from '@/providers/CartProvider';
 
