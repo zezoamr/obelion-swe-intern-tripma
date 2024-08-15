@@ -141,8 +141,8 @@ model Experience {
 
 model Payment {
   id            String          @id @default(cuid())
-  userId        String
-  user          User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId        String?
+  user          User?           @relation(fields: [userId], references: [id], onDelete: Cascade)
   paymentInfo   Payment_info    @relation(fields: [paymentInfoId], references: [id])
   paymentInfoId String          @unique // Ensures one-to-one relation
   passengers    Payment_passenger[]

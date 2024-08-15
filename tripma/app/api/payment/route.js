@@ -5,16 +5,16 @@ import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 const prisma = new PrismaClient();
 
 export async function POST(req) {
-    //console.log('POST request received at /api/payment', req);
+    // console.log('POST request received at /api/payment', req);
 
     // Check authentication
-    const session = await getServerSession(authOptions);
-    if (!session) {
-        return new Response(JSON.stringify({ message: 'Unauthorized' }), {
-            status: 401,
-            headers: { 'Content-Type': 'application/json' },
-        });
-    }
+    // const session = await getServerSession(authOptions);
+    // if (!session) {
+    //     return new Response(JSON.stringify({ message: 'Unauthorized' }), {
+    //         status: 401,
+    //         headers: { 'Content-Type': 'application/json' },
+    //     });
+    // }
 
 
     const { cartItems, paymentData, flightSeats, passengersInfo, userId } = await req.json();
@@ -32,7 +32,7 @@ export async function POST(req) {
     // }
 
     // Input validation
-    if (!cartItems || !paymentData || !flightSeats || !passengersInfo || !userId) {
+    if (!cartItems || !paymentData || !flightSeats || !passengersInfo ) { //|| !userId
         return new Response(JSON.stringify({ message: 'Missing required fields' }), {
             status: 400,
             headers: { 'Content-Type': 'application/json' },
@@ -111,9 +111,6 @@ export async function POST(req) {
     
             // Prepare payment data
             const paymentCreateData = {
-                user: {
-                    connect: { id: userId },
-                },
                 paymentInfo: {
                     connect: { id: paymentInfoRecord.id },
                 },
@@ -149,6 +146,14 @@ export async function POST(req) {
                     ),
                 },
             };
+
+
+            // Only connect to user if userId is provided
+            if (userId) {
+                paymentCreateData.user = {
+                    connect: { id: userId },
+                };
+            }
     
             // Create payment record
             const payment = await prisma.payment.create({
