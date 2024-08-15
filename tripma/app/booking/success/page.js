@@ -1,118 +1,142 @@
+"use client";
 
-import Card from '@/components/card';
-
-import card1image from '@/components/card1.jpg';
-import airlineimage from "@/components/airlines.png"
 import styles from './page.module.css';
 import Image from 'next/image';
+
 import PriceBreakdown from './priceBreakdown';
 import TravelItinerarySharing from './travelItinerary';
+
+import Card from '@/components/card';
 import FlightTable from '@/components/flightTable';
+import card1image from '@/components/card1.jpg';
+
+import { useState, useEffect } from 'react';
+import { useCart } from '@/providers/CartProvider'
 
 export default function SuccessPage() {
+    const { PaymentResponse } = useCart()
+    
+    const {
+        flights = [],
+        confirmationNumber = 'missing',
+        passengerName = 'missing',
+        departureDate = 'missing',
+        arrivalDate = 'missing',
+        seatInfo = [],
+        departingFlightPrice = 0,
+        arrivingFlightPrice = 0,
+        baggageFees = 0,
+        seatUpgradePrice = 0,
+        taxes = 0,
+        taxRate = [],
+        cardHolderName = 'missing',
+        cardNumber = 'missing',
+        cardExpiryDate = 'missing'
+    } = PaymentResponse ? PaymentResponse : {
+        flights : [],
+        confirmationNumber : 'missing',
+        passengerName : 'missing',
+        departureDate : 'missing',
+        arrivalDate : 'missing',
+        seatInfo :[],
+        departingFlightPrice : 0,
+        arrivingFlightPrice : 0,
+        baggageFees : 0,
+        seatUpgradePrice : 0,
+        taxes : 0,
+        taxRate : [],
+        cardHolderName : 'missing',
+        cardNumber : 'missing',
+        cardExpiryDate : 'missing'
+    };
+
+    let flight1 = flights[0] || {};
+    let flight2 = flights[1] || null;
+    let flight1arr = flight1 ? [flight1] : [];
+    let flight2arr = flight2 ? [flight2] : [];
+
+    const isRoundTrip = flight2 !== null;
+
+    const {clearRequestData } = useCart();
+    useEffect(() => {
+        clearRequestData();
+    }, [])
+
     return (
-    <div className={styles.container}>
-        <div className={styles.columnLeft}>
-        <div className={styles.bookingConfirmation}>
-                <div className={styles.successMessage}>
-                    Your flight has been booked successfully! Your confirmation number is #381029404387
-                </div>
-                <h2 className={styles.greeting}>Bon voyage, Sophia!</h2>
-                <p className={styles.confirmationNumber}>Confirmation number: #381029404387</p>
-                <p className={styles.bookingSummary}>
-                    Thank you for booking your travel with Tripma! Below is a summary of your trip to Narita
-                    airport in Tokyo, Japan. We've sent a copy of your booking confirmation to your email address.
-                    You can also find this page again in My trips.
-                </p>
-                
-                <div className={styles.flightSummary}>
-                    <h3>Flight summary</h3>
-
-                    <div className={styles.flight}>
-                        <h4>Departing February 25th, 2021</h4>
-
-                        <FlightTable
-                            flights={[{
-                                duration: "16h 45m",
-                                fromtoTime: "7:00AM - 4:15PM",
-                                stops: "1 stop",
-                                price: 624,
-                                airline: "Hawaiian Airlines",
-                                stopduration: "2h 45m in HNL",
-                                type: "round trip",
-                                image: airlineimage,
-                                id: "FiG43215",
-                                taxes: 1
-                            },]}
-                            disablePicking={true}
-                            className={styles.flightTableOverride}
-                            className2={styles.flightTableOverride2}
-                        />
-
-                        <p className={styles.seatInfo}>Seat 9F (economy, window), 1 checked bag</p>
+        <div className={styles.container}>
+            <div className={styles.columnLeft}>
+                <div className={styles.bookingConfirmation}>
+                    <div className={styles.successMessage}>
+                        Your flight has been booked successfully! Your confirmation number is {confirmationNumber}
                     </div>
+                    <h2 className={styles.greeting}>Bon voyage, {passengerName}!</h2>
+                    <p className={styles.confirmationNumber}>Confirmation number: {confirmationNumber}</p>
+                    <p className={styles.bookingSummary}>
+                        Thank you for booking your travel with Tripma! Below is a summary of your trip to Narita
+                        airport in Tokyo, Japan. We've sent a copy of your booking confirmation to your email address.
+                        You can also find this page again in My trips.
+                    </p>
+                    
+                    <div className={styles.flightSummary}>
+                        <h3>Flight summary</h3>
 
-                    <div className={styles.flight}>
-                        <h4>Arriving March 21st, 2021</h4>
+                        <div className={styles.flight}>
+                            <h4>Departing {departureDate}</h4>
+                            <FlightTable
+                                flights={flight1arr}
+                                disablePicking={true}
+                                className={styles.flightTableOverride}
+                                className2={styles.flightTableOverride2}
+                            />
+                            {seatInfo.map((seat, index) => (
+                                <p key={index} className={styles.seatInfo}>
+                                    Passenger {index + 1}: {seat.departure}
+                                </p>
+                            ))}
+                        </div>
 
-                        <FlightTable
-                            flights={[{
-                                duration: "16h 45m",
-                                fromtoTime: "7:00AM - 4:15PM",
-                                stops: "1 stop",
-                                price: 624,
-                                airline: "Hawaiian Airlines",
-                                stopduration: "2h 45m in HNL",
-                                type: "round trip",
-                                image: airlineimage,
-                                id: "FiG43212",
-                                taxes: 1
-                            },]}
-                            disablePicking={true}
-                            className={styles.flightTableOverride}
-                            className2={styles.flightTableOverride2}
-                        />
-
-                        <p className={styles.seatInfo}>Seat 4F (business, window), 1 checked bag</p>
+                        {isRoundTrip && (
+                            <div className={styles.flight}>
+                                <h4>Arriving {arrivalDate}</h4>
+                                <FlightTable
+                                    flights={flight2arr}
+                                    disablePicking={true}
+                                    className={styles.flightTableOverride}
+                                    className2={styles.flightTableOverride2}
+                                />
+                                {seatInfo.map((seat, index) => (
+                                    <p key={index} className={styles.seatInfo}>
+                                        Passenger {index + 1}: {seat.arrival}
+                                    </p>
+                                ))}
+                            </div>
+                        )}
                     </div>
                 </div>
+
+                <PriceBreakdown
+                    departingFlightPrice={departingFlightPrice}
+                    arrivingFlightPrice={isRoundTrip ? arrivingFlightPrice : 0}
+                    baggageFees={baggageFees}
+                    seatUpgradePrice={seatUpgradePrice}
+                    taxes={taxes}
+                    taxRate={taxRate}
+                />
+
+                <PaymentMethod name={cardHolderName} cardnumber={cardNumber} expirationdate={cardExpiryDate}/>
+                <TravelItinerarySharing />
+
+                <h3 className={styles.pageTitle}>Travel Route</h3>
+                <div className={styles.Map}>
+                    <Image src='/flightroute.png' alt="map" fill />
+                </div>
             </div>
-
-            <PriceBreakdown
-                departingFlightPrice={251.50}
-                arrivingFlightPrice={251.50}
-                baggageFees={0}
-                seatUpgradePrice={199}
-                taxRate={9.4}
-            />
-
-            <PaymentMethod name="Sofia wells" cardnumber="**** **** **** 3456" expirationdate="12/24"/>
-            <TravelItinerarySharing />
-
-            <h3 className={styles.pageTitle}>Travel Route</h3>
-            <div className={styles.Map}>
-                <Image src='/flightroute.png' alt="map" fill />
-            </div>
+            <ColumnRight />
         </div>
-        <ColumnRight />
-    </div>
     );
 };
 
-const FlightTableMini2 = ({ flight }) => {
-    return (
-    <div className={styles.flightDetails}>
-        <div className={styles.airline}>
-        <Image src="/airlines.png" alt="Airline Logo" width={24} height={24} />
-        <span>{flight.airline}</span>
-        </div>
-        <div className={styles.flightTime}>{flight.duration}</div>
-        <div className={styles.flightRoute}>{flight.departureTime} - {flight.arrivalTime}</div>
-        <div className={styles.flightStops}>{flight.stops} stop{flight.stops !== 1 ? 's' : ''}</div>
-        <div className={styles.flightPrice}>${flight.price}</div>
-    </div>
-    )
-}
+
 
 const PaymentMethod = ({name, cardnumber, expirationdate }) => {
     return (
@@ -137,6 +161,16 @@ const PaymentMethod = ({name, cardnumber, expirationdate }) => {
 };
 
 
+{/* <PriceBreakdown
+                departingFlightPrice={251.50}
+                arrivingFlightPrice={251.50}
+                baggageFees={0}
+                seatUpgradePrice={199}
+                taxRate={9.4}
+            />
+
+            <PaymentMethod name="Sofia wells" cardnumber="**** **** **** 3456" expirationdate="12/24"/>
+            <TravelItinerarySharing /> */}
 
 const data = {
     cardRow1: [
@@ -174,35 +208,44 @@ const data = {
 };
 
 const ColumnRight = () => {
-    
+    const [data, setData] = useState({ hotels: [], experiences: [] });
+
+    useEffect(() => {
+    const fetchData = async () => {
+        try {
+        const response = await fetch('/api/SuccessPageCards');
+        const result = await response.json();
+        setData(result);
+        } catch (error) {
+        console.error('Error fetching data:', error);
+        }
+    };
+
+    fetchData();
+    }, []);
 
     return (
-        <div className={styles.columnRight}>
-
-            <div className={styles.cardsSection}>
-                <div className={styles.sectionTitle}>Shop <span style={{color: "#605DEC"}}>hotels</span></div>
-                <p className={styles.description}>Tripma partners with thousands of hotels to get you the best deal. Save up to 30% when you add a hotel to your trip.</p>
-                <div className={styles.cards}>
-                {data.cardRow1.map((card, index) => (
-                    <Card key={index} {...card} className={styles.cardoverride} />
-                ))}
-                <button className={styles.viewAllButton}>Shop all hotels</button>
-                </div>
-                
-            </div>
-
-            <div className={styles.cardsSection}>
-                <div className={styles.sectionTitle}>Find unique <span style={{color: "#605DEC"}}>experiences</span></div>
-                <p className={styles.description}>Find events and authentic cultrual experiences available exclusively to Tripma users.</p>
-                <div className={styles.cards}>
-                {data.cardRow2.map((card, index) => (
-                    <Card key={index} {...card} className={styles.cardoverride}/>
-                ))}
-                <button className={styles.viewAllButton}>View all experiences</button>
-                </div>
-                
-            </div>
-
+    <div className={styles.columnRight}>
+        <div className={styles.cardsSection}>
+        <div className={styles.sectionTitle}>Shop <span style={{color: "#605DEC"}}>hotels</span></div>
+        <p className={styles.description}>Tripma partners with thousands of hotels to get you the best deal. Save up to 30% when you add a hotel to your trip.</p>
+        <div className={styles.cards}>
+            {data.hotels.map((hotel, index) => (
+            <Card key={index} {...hotel} className={styles.cardoverride} />
+            ))}
+            <button className={styles.viewAllButton}>Shop all hotels</button>
         </div>
+        </div>
+        <div className={styles.cardsSection}>
+        <div className={styles.sectionTitle}>Find unique <span style={{color: "#605DEC"}}>experiences</span></div>
+        <p className={styles.description}>Find events and authentic cultural experiences available exclusively to Tripma users.</p>
+        <div className={styles.cards}>
+            {data.experiences.map((experience, index) => (
+            <Card key={index} {...experience} className={styles.cardoverride}/>
+            ))}
+            <button className={styles.viewAllButton}>View all experiences</button>
+        </div>
+        </div>
+    </div>
     );
 };

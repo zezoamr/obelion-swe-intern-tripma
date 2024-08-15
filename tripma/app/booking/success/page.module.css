@@ -15,7 +15,7 @@
 .columnLeft{
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: flex-start;
 
     gap: 36px;
@@ -50,21 +50,21 @@
 /*  */
 
 .flightTableOverride{
-    margin: 0px;
-    padding: 0px;
-    min-height: 0px;
+    margin: 0px !important;
+    padding: 0px !important;
+    min-height: 0px !important;
 
-    width: 850px;
-    height: auto;
-    overflow-y: hidden;
+    width: 850px !important;
+    height: auto !important;
+    overflow-y: hidden !important;
 
-    border: 1px solid #cdcdce;
+    border: 1px solid #cdcdce !important;
 }
 
 .flightTableOverride2{
-
-    background-color: white;
-    padding-left: 20px;
+    
+    background-color: white !important;
+    padding-left: 20px !important;
 }
 
 
