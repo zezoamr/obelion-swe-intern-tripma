@@ -4,7 +4,7 @@ import { useState } from 'react';
 import styles from './travelItinerary.module.css';
 
 export default function  travelItinerary () {
-    const [emails, setEmails] = useState(['', '', '']);
+    const [emails, setEmails] = useState(['']);
 
     const handleEmailChange = (index, value) => {
         const newEmails = [...emails];
@@ -15,7 +15,7 @@ export default function  travelItinerary () {
     const handleAddAnother = () => {
         setEmails([...emails, '']);
     };
-
+    
     const handleSubmit = (e) => {
         e.preventDefault();
         // Here handle the email sending logic
