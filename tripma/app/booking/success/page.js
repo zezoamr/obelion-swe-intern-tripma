@@ -66,10 +66,10 @@ export default function SuccessPage() {
             <div className={styles.columnLeft}>
                 <div className={styles.bookingConfirmation}>
                     <div className={styles.successMessage}>
-                        Your flight has been booked successfully! Your confirmation number is {confirmationNumber}
+                        Your flight has been booked successfully! Your confirmation number is #{confirmationNumber}
                     </div>
                     <h2 className={styles.greeting}>Bon voyage, {passengerName}!</h2>
-                    <p className={styles.confirmationNumber}>Confirmation number: {confirmationNumber}</p>
+                    <p className={styles.confirmationNumber}>Confirmation number: #{confirmationNumber}</p>
                     <p className={styles.bookingSummary}>
                         Thank you for booking your travel with Tripma! Below is a summary of your trip to Narita
                         airport in Tokyo, Japan. We've sent a copy of your booking confirmation to your email address.
