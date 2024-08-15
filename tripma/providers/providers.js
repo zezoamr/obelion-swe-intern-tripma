@@ -8,7 +8,7 @@ import Footer from '@/layoutComponents/footer';
 
 import CartProvider from './CartProvider';
 
-import SignupOverlay from "@/components/SignupOverlay";
+import SignupOverlay from "@/layoutComponents/SignupOverlay";
 
 export default function Provider ({ children, session }) {
     const pathname = usePathname();

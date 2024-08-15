@@ -1,5 +1,5 @@
 
-import Signupform from '@/components/signupform';
+import Signupform from '@/layoutComponents//signupform';
 
 export default function page() {
     return (

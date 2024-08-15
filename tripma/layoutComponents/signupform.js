@@ -5,8 +5,10 @@ import { signIn, useSession, } from 'next-auth/react';
 import styles from './signupform.module.css';
 
 import validator from 'validator';
+import { useRouter } from 'next/navigation';
 
 export default function Signupform({ onClose, isSignIn }) {
+    const router = useRouter()
     const [identifier, setIdentifier] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
@@ -18,7 +20,7 @@ export default function Signupform({ onClose, isSignIn }) {
     useEffect(() => {
         if (status === 'authenticated') {
             console.log('Session updated:', session);
-            onClose();
+            router.push('/');
         }
     }, [status, session, onClose]);
 
