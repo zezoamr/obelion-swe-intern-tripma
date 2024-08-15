@@ -20,34 +20,31 @@ export default function FlightSeatsDetails() {
   const [showOverlay, setShowOverlay] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
-  // Convert state to variables
-  let currentFlightSeats = cartItems[0]?.seatsData || mockseatsData;
-  let currentFlightDividerLocation = cartItems[0]?.dividerLocations || mockdividerLocations;
+  const [currentFlightSeats, setCurrentFlightSeats] = useState([]);
+  const [currentFlightDividerLocation, setCurrentFlightDividerLocation] = useState([]);
 
-  // Initialize the variables
-  if (currentFlightIndex > 0 && cartItems[currentFlightIndex]?.seatsData) {
-    try {
-      currentFlightSeats = JSON.parse(cartItems[currentFlightIndex].seatsData);
-    } catch (error) {
-      currentFlightSeats = cartItems[currentFlightIndex].seatsData;
-    }
-  } else if (cartItems[0]?.seatsData) {
-    try {
-      currentFlightSeats = JSON.parse(cartItems[0].seatsData);
-    } catch (error) {
-      currentFlightSeats = cartItems[0].seatsData;
-    }
-  }
+  useEffect(() => {
+    const fetchFlightData = async () => {
+      if (cartItems.length > 0 && cartItems[currentFlightIndex]) {
+        const flightId = cartItems[currentFlightIndex].id;
+        try {
+          const response = await fetch(`/api/Flights/${flightId}`);
+          if (!response.ok) {
+            throw new Error('Failed to fetch flight data');
+          }
+          const flightData = await response.json();
+          setCurrentFlightSeats(flightData.seatsData);
+          setCurrentFlightDividerLocation(flightData.dividerLocations);
+          setIsLoading(false);
+        } catch (error) {
+          console.error('Error fetching flight data:', error);
+          setIsLoading(false);
+        }
+      }
+    };
 
-  if (currentFlightIndex > 0 && cartItems[currentFlightIndex]?.dividerLocations) {
-    try {
-      currentFlightDividerLocation = JSON.parse(cartItems[currentFlightIndex].dividerLocations);
-    } catch (error) {
-      currentFlightDividerLocation = cartItems[currentFlightIndex].dividerLocations;
-    }
-  } else if (cartItems[0]?.dividerLocations) {
-    currentFlightDividerLocation = cartItems[0].dividerLocations;
-  }
+    fetchFlightData();
+  }, [cartItems, currentFlightIndex]);
 
   // console.log('passengersInfo', passengersInfo[currentPassengerIndex], 'currentPassengerIndex', currentPassengerIndex);
   // console.log('passengersInfo', JSON.stringify(passengersInfo[0].passengerInfo.firstName))
