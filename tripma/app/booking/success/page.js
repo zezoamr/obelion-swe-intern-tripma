@@ -1,12 +1,12 @@
 
-import PriceBreakdown from '@/components/priceBreakdown';
-import TravelItinerarySharing from '@/components/travelItinerary';
 import Card from '@/components/card';
 
 import card1image from '@/components/card1.jpg';
 import airlineimage from "@/components/airlines.png"
 import styles from './page.module.css';
 import Image from 'next/image';
+import PriceBreakdown from './priceBreakdown';
+import TravelItinerarySharing from './travelItinerary';
 import FlightTable from '@/components/flightTable';
 
 export default function SuccessPage() {
