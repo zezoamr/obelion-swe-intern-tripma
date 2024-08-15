@@ -2,7 +2,16 @@
 const nextConfig = {
     productionBrowserSourceMaps: true,
     images: {
-        domains: ['localhost', 'lh3.googleusercontent.com'],
+        remotePatterns: [
+            {
+                protocol: 'https',
+                hostname: 'localhost',
+            },
+            {
+                protocol: 'https',
+                hostname: 'lh3.googleusercontent.com',
+            },
+        ],
     },
     // webpack(config) {
     //     config.experiments = {
