@@ -90,7 +90,10 @@ export default function PassengerForm({FormNotComplete, setFormNotComplete}) {
         
         if (!passengerInfo.phone) newErrors.phone = 'Phone number is required';
         else if (!validator.isMobilePhone(passengerInfo.phone, 'any', { strictMode: true })) newErrors.phone = 'Please enter a valid phone number and must be supplied with the country code and therefore must start with +';
-    
+        
+        if (!passengerInfo.knownTravellerNumber) newErrors.knownTravellerNumber = 'knownTravellerNumber Phone number is required';
+        else if (!validator.isMobilePhone(passengerInfo.knownTravellerNumber, 'any', { strictMode: true })) newErrors.knownTravellerNumber = 'Please enter a valid phone number and must be supplied with the country code and therefore must start with +';
+
         // Emergency Contact Validation
         if (!emergencyContact.firstName.trim()) newErrors.emergencyFirstName = 'Emergency contact first name is required';
         else if (!validateName(passengerInfo.firstName.trim())) newErrors.emergencyFirstName = 'First name must be valid';
@@ -232,6 +235,7 @@ export default function PassengerForm({FormNotComplete, setFormNotComplete}) {
             
            
             <div className={styles.formGrid2}>
+                {errors.knownTravellerNumber && <div className={styles.error}>{errors.knownTravellerNumber}</div>} 
                 <input
                     type="text"
                     name="redressNumber"
@@ -241,11 +245,11 @@ export default function PassengerForm({FormNotComplete, setFormNotComplete}) {
                     className={`${styles.input} ${styles.passengerLargeInput}`}
                 />
                 <input
-                    type="text"
+                    type="tel"
                     name="knownTravellerNumber"
                     value={passengerInfo.knownTravellerNumber}
                     onChange={handlePassengerInfoChange}
-                    placeholder="Known traveller number"
+                    placeholder="Known traveller number*"
                     className={`${styles.input} ${styles.passengerLargeInput}`}
                 />
             </div>
