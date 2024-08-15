@@ -16,7 +16,7 @@ export async function GET(request) {
     const to = searchParams.get('to');
     const startDate = searchParams.get('startDate');
     const endDate = searchParams.get('endDate');
-    const adults = parseInt(searchParams.get('adults') || '1');
+    const adults = parseInt(searchParams.get('adults') || '0');
     const minors = parseInt(searchParams.get('minors') || '0');
 
     //const oneWay = (!endDate || isNaN(Date.parse(endDate))) && (startDate && !isNaN(Date.parse(startDate)));
