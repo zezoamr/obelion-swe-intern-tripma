@@ -29,7 +29,7 @@ export default function PaymentPage() {
               buttonChangeHandler={setFormNotComplete}
               disableModifications={true}
               />
-              <Image src={luggageImage} alt="luggage" width={382} height={525} style={{ margin: "47px 96px 56px 184px"}} />
+              <Image src='/Luggage2.svg' alt="luggage" width={382} height={525} style={{ margin: "47px 96px 56px 184px"}} />
             </div>
         </div>
         

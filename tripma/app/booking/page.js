@@ -4,7 +4,6 @@ import { useState } from 'react';
 import styles from './page.module.css';
 import Image from 'next/image';
 
-import luggageImage from '@/components/Luggage2.svg';
 import PassengerForm from './passengerForm';
 import Cart from '@/components/cart';
 
@@ -28,7 +27,7 @@ export default function PassengerformPage() {
               buttonClassName={cartItems.length > passengerDoneCount() ? "selectSeatsGray" : "selectSeatsPurple"}
               buttonChangeHandler={setFormNotComplete}
               />
-              <Image src={luggageImage} alt="luggage" width={382} height={525} style={{ margin: "47px 96px 56px 184px"}} />
+              <Image src='/Luggage2.svg' alt="luggage" width={382} height={525} style={{ margin: "47px 96px 56px 184px"}} />
             </div>
         </div>
 

@@ -9,7 +9,7 @@
 
     border: none;
 
-    background: url("world map.png");
+    background: url("../public/world map.png");
   }
   
   .title {
@@ -18,7 +18,7 @@
     gap: 0;
     margin: 12px;
     
-    background: url("Group 8.png");
+    background: url("../public/Group 8.png");
     font-family: Nunito Sans;
     font-size: 96px;
     font-weight: 800;

@@ -8,7 +8,6 @@ import TravelItinerarySharing from './travelItinerary';
 
 import Card from '@/components/card';
 import FlightTable from '@/components/flightTable';
-import card1image from '@/components/card1.jpg';
 
 import { useState, useEffect } from 'react';
 import { useCart } from '@/providers/CartProvider'
@@ -171,41 +170,6 @@ const PaymentMethod = ({name, cardnumber, expirationdate }) => {
 
             <PaymentMethod name="Sofia wells" cardnumber="**** **** **** 3456" expirationdate="12/24"/>
             <TravelItinerarySharing /> */}
-
-const data = {
-    cardRow1: [
-    {
-        name: "Belize Ocean Club",
-        city: "Placencia, Belize",
-        price: 299,
-        description: "Beachfront resort with stunning views",
-        image: card1image
-    },
-    {
-        name: "Naia Resort and Spa",
-        city: "Placencia, Belize",
-        price: 349,
-        description: "Luxury spa resort on a private beach",
-        image: card1image
-    }
-    ],
-    cardRow2: [
-    {
-        name: "Hol Chan Marine Reserve",
-        city: "Ambergris Caye, Belize",
-        price: 89,
-        description: "Snorkeling tour in protected marine area",
-        image: card1image
-    },
-    {
-        name: "Xunantunich Mayan Ruins",
-        city: "San Jose Succotz, Belize",
-        price: 59,
-        description: "Guided tour of ancient Mayan city",
-        image: card1image
-    }
-    ]
-};
 
 const ColumnRight = () => {
     const [data, setData] = useState({ hotels: [], experiences: [] });

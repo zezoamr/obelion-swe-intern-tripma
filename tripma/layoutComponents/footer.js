@@ -1,7 +1,6 @@
 import styles from './footer.module.css'
 import Image from 'next/image'
 
-import TripmaImage from '@/components/tripma.svg'
 
 export default function Footer() {
 
@@ -46,7 +45,7 @@ export default function Footer() {
         <div className={styles.footercontent}>
             <div className={styles.Wordmark} > 
                 <div className={styles.round}>
-                    <Image src={TripmaImage} alt="Tripma" layout="fill" objectFit="cover" /> 
+                    <Image src='/tripma.svg' alt="Tripma" layout="fill" objectFit="cover" /> 
                 </div>
             </div>            
 
