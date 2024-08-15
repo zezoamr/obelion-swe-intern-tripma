@@ -118,6 +118,9 @@ export default function PaymentForm() {
                         } else {
                             console.log('User signed in after signup');
                         }
+
+                        
+
                     } else if (signupResponse.status === 409) {
                         // 409 typically means the user already exists
                         console.log('User already exists, attempting to sign in');
@@ -131,6 +134,8 @@ export default function PaymentForm() {
                             setErrors({...errors, Signup: 'Login failed. Please check your credentials.'});
                         } else {
                             console.log('Existing user signed in');
+
+                            
                         }
                     } else {
                         const data = await signupResponse.json();
@@ -140,12 +145,11 @@ export default function PaymentForm() {
                     console.error('Error signing up or logging in:', error);
                     setErrors({...errors, Signup: 'Signup or login failed. Please try again.'});
                 }
+
             }
-            
-            //todo userId is undefined still after login, if click button again then it works, need refresh i guess, alternatively use route to register user then insert id
-            //console.log('in handlesubmit payment')
-            //window.refresh?
-            
+
+            //todo session doesn't reset until refresh so find a solution
+
             try {
                 //console.log('Form submitted', formData);
                 //updatePaymentData({paymentMethod, billingAddressSame, saveCard, formData}, true); no need + (refreshes page so less localstorage/cart context?)
@@ -196,7 +200,7 @@ export default function PaymentForm() {
                 setPaymentResponse(responseData.result);
 
                 // console.log('Payment successful');
-                clearRequestData(); //clears cart
+                //clearRequestData(); //clears cart
                 
                 router.push('/booking/success');
             
