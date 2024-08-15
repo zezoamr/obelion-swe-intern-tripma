@@ -10,14 +10,13 @@ const DatePicker = ({
     onClose,
     initialTripType = 'roundTrip'
     }) => {
-    // CHANGE: Adjust initial dates to noon to prevent timezone issues
     const [selectedRange, setSelectedRange] = useState({ 
-        start: new Date(initialStartDate.getFullYear(), initialStartDate.getMonth(), initialStartDate.getDate(), 12, 0, 0), 
-        end: new Date(initialEndDate.getFullYear(), initialEndDate.getMonth(), initialEndDate.getDate(), 12, 0, 0)
+        start: initialStartDate ? new Date(initialStartDate.getFullYear(), initialStartDate.getMonth(), initialStartDate.getDate(), 12, 0, 0) : null, 
+        end: initialEndDate ? new Date(initialEndDate.getFullYear(), initialEndDate.getMonth(), initialEndDate.getDate(), 12, 0, 0) : null
     });
     const [currentMonth, setCurrentMonth] = useState(initialMonth);
     const [tripType, setTripType] = useState(initialTripType);
-    // CHANGE: Set minDate to noon to prevent timezone issues
+    const [clearDate, setClearDate] = useState(false);
     const minDate = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate(), 12, 0, 0);
 
     const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
@@ -27,37 +26,38 @@ const DatePicker = ({
         const year = date.getFullYear();
         const daysInMonth = new Date(year, month + 1, 0).getDate();
         const firstDay = new Date(year, month, 1).getDay();
-
+    
         const days = [];
         for (let i = 0; i < firstDay; i++) {
-        days.push(
-            <div key={`empty-${i}`} className={styles.emptyDay} />
-        );
+            days.push(
+                <div key={`empty-${i}`} className={styles.emptyDay} />
+            );
         }
         for (let i = 1; i <= daysInMonth; i++) {
-        const currentDate = new Date(year, month, i);
-        const isSelected = (currentDate.getTime() === selectedRange.start.getTime() || 
-                            currentDate.getTime() === selectedRange.end?.getTime()) ||
-                            (tripType === 'oneWay' && currentDate.getTime() === selectedRange.start.getTime());
-        
-        const isDisabled = currentDate < minDate;
-        
-        days.push(
-            <div 
-            key={i}
-            className={`${styles.day} ${isSelected ? styles.selectedDay : ''} ${isDisabled ? styles.disabledDay : ''}`}
-            onClick={() => !isDisabled && handleDateClick(currentDate)}
-            >
-            {i}
-            </div>
-        );
+            const currentDate = new Date(year, month, i);
+            const isSelected = (selectedRange.start && currentDate.getTime() === selectedRange.start.getTime()) || 
+                            (selectedRange.end && currentDate.getTime() === selectedRange.end.getTime()) ||
+                            (tripType === 'oneWay' && selectedRange.start && currentDate.getTime() === selectedRange.start.getTime());
+            
+            const isDisabled = currentDate < minDate;
+            
+            days.push(
+                <div 
+                key={i}
+                className={`${styles.day} ${isSelected ? styles.selectedDay : ''} ${isDisabled ? styles.disabledDay : ''}`}
+                onClick={() => !isDisabled && handleDateClick(currentDate)}
+                >
+                {i}
+                </div>
+            );
         }
-
+    
         return days;
     };
 
     // CHANGE: Modified handleDateClick function to adjust dates to noon
     const handleDateClick = (date) => {
+        setClearDate(false);
         let newRange;
         // Create a new date object set to noon on the selected day
         // This prevents issues with timezone conversions
@@ -91,7 +91,16 @@ const DatePicker = ({
     };
     
     const handleDoneClick = () => {
-        onClose(selectedRange);
+        if (clearDate) {
+            onClose("");
+        } else {
+            onClose(selectedRange);
+        }
+    };
+
+    const handleClearDate = () => {
+        setClearDate(true);
+        setSelectedRange({ start: null, end: null });
     };
 
     return (
@@ -118,13 +127,20 @@ const DatePicker = ({
             <label htmlFor="oneWay">One way</label>
             </div>
             <div className={styles.selectedRangeContainer}>
-            <div className={styles.selectedRange}>
-                {selectedRange.start.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
-                {selectedRange.end && tripType === 'roundTrip' && ` - ${selectedRange.end.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}`}
-            </div>
-            <button className={styles.doneButton} onClick={handleDoneClick}>
-                Done
-            </button>
+                <div className={styles.selectedRange}>
+                    {selectedRange.start 
+                        ? `${selectedRange.start.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
+                        ${selectedRange.end && tripType === 'roundTrip' 
+                            ? ` - ${selectedRange.end.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}`
+                            : ''}`
+                        : 'No date selected'}
+                </div>
+                <button className={styles.doneButton} onClick={handleClearDate}>
+                    Clear Date
+                </button>
+                <button className={styles.doneButton} onClick={handleDoneClick}>
+                    Done
+                </button>
             </div>
         </div>
         

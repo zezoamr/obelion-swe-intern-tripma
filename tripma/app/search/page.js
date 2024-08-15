@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 import { useCart } from '@/providers/CartProvider'
 
 import styles from './page.module.css';
-import Searchbar from '@/components/searchbar';
+import Searchbar from './searchbar';
 
 import Card from '@/components/card';
 
@@ -73,15 +73,29 @@ export default function SearchPage() {
         let [startx, endx] = dateRangex.split(',');
 
         // Fetch flights data
-        const params = new URLSearchParams({
-          from: searchParams.get('from') || '',
-          to: searchParams.get('to') || '',
-          
-          startDate: startx || '',
-          endDate: endx || '',
-          adults: searchParams.get('adults') || '1',
-          minors: searchParams.get('minors') || '0'
-        });
+        const params = new URLSearchParams();
+
+        const fromValue = searchParams.get('from') || '';
+        const toValue = searchParams.get('to') || '';
+
+        if (fromValue) {
+          params.set('from', fromValue);
+        }
+
+        if (toValue) {
+          params.set('to', toValue);
+        }
+
+        if (startx) {
+          params.set('startDate', startx);
+        }
+
+        if (endx) {
+          params.set('endDate', endx);
+        }
+
+        params.set('adults', searchParams.get('adults') || '1');
+        params.set('minors', searchParams.get('minors') || '0');
 
         const flightsRes = await fetch(`http://localhost:3000/api/Flights?${params}`);
         if (!flightsRes.ok) {

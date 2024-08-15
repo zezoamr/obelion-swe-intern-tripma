@@ -76,6 +76,7 @@ export default function Hero({
 
   const formatDateRange = (range) => {
     if (!range) return 'Select date';
+    if (!range.start) return 'Select date';
     const start = range.start.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
     if (!range.end) return start;
     const end = range.end.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
@@ -83,13 +84,23 @@ export default function Hero({
   };
 
   const handleSearch = () => {
-    const params = new URLSearchParams({
-      from: fromValue,
-      to: toValue,
-      dateRange: selectedDateRange ? `${selectedDateRange.start.toISOString()},${selectedDateRange.end ? selectedDateRange.end.toISOString() : ''}` : '',
-      adults: adults.toString(),
-      minors: minors.toString()
-    });
+    const params = new URLSearchParams();
+
+    if (fromValue) {
+      params.set('from', fromValue);
+    }
+
+    if (toValue) {
+      params.set('to', toValue);
+    }
+
+    if (selectedDateRange && selectedDateRange.start) {
+      params.set('dateRange', `${selectedDateRange.start.toISOString()},${selectedDateRange.end ? selectedDateRange.end.toISOString() : ''}`);
+    }
+
+    params.set('adults', adults.toString());
+    params.set('minors', minors.toString());
+
 
     router.push(`/search?${params.toString()}`, undefined, { shallow: false });
   };
