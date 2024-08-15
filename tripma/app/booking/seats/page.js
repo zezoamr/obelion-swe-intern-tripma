@@ -9,7 +9,7 @@ import SeatSelector from './seatSelector';
 
 
 export default function FlightSeatsDetails() {
-  const { cartItems, passengerTotal, flightSeats, updateFlightSeats, passengersInfo } = useCart();
+  const { cartItems, passengerTotal, flightSeats, updateFlightSeats, passengersInfo, resetFlightSeats } = useCart();
   const router = useRouter();
 
   const [currentFlightIndex, setCurrentFlightIndex] = useState((flightSeats && flightSeats.length && flightSeats.length !== 0) ? flightSeats.length - 1 : 0);
@@ -49,7 +49,7 @@ export default function FlightSeatsDetails() {
     currentFlightDividerLocation = cartItems[0].dividerLocations;
   }
 
-  console.log('passengersInfo', passengersInfo[currentPassengerIndex], 'currentPassengerIndex', currentPassengerIndex);
+  // console.log('passengersInfo', passengersInfo[currentPassengerIndex], 'currentPassengerIndex', currentPassengerIndex);
   // console.log('passengersInfo', JSON.stringify(passengersInfo[0].passengerInfo.firstName))
   //console.log('currentFlightSeats', currentFlightSeats);
   //console.log('currentFlightDividerLocation', currentFlightDividerLocation);
@@ -91,60 +91,65 @@ export default function FlightSeatsDetails() {
   };
 
   const handleUpgrade = (upgradeCost) => {
-  if (!selectedSeat) return;
+    if (!selectedSeat) return;
 
-  let availableBusinessSeat = null;
-  let rowIndex = -1;
-  let seatIndex = -1;
+    let availableBusinessSeat = null;
+    let rowIndex = -1;
+    let seatIndex = -1;
 
-  // Find the first available business class seat
-  for (let i = 0; i < currentFlightSeats.length; i++) {
-    for (let j = 0; j < currentFlightSeats[i].length; j++) {
-      const seat = currentFlightSeats[i][j];
-      const seatDisplay = `${i + 1}${String.fromCharCode(65 + j)}`;
-      
-      if (seat.available && 
-          seat.class === 'business' && 
-          !seat.upgraded &&
-          !takenSeats.some(s => s.seatDisplay === seatDisplay)) {
-        availableBusinessSeat = seat;
-        rowIndex = i;
-        seatIndex = j;
-        break;
+    // Find the first available business class seat
+    for (let i = 0; i < currentFlightSeats.length; i++) {
+      for (let j = 0; j < currentFlightSeats[i].length; j++) {
+        const seat = currentFlightSeats[i][j];
+        const seatDisplay = `${i + 1}${String.fromCharCode(65 + j)}`;
+        
+        if (seat.available && 
+            seat.class === 'business' && 
+            !seat.upgraded &&
+            !takenSeats.some(s => s.seatDisplay === seatDisplay)) {
+          availableBusinessSeat = seat;
+          rowIndex = i;
+          seatIndex = j;
+          break;
+        }
       }
+      if (availableBusinessSeat) break;
     }
-    if (availableBusinessSeat) break;
+
+    // Proceed if a business class seat is found and selected seat is not already business
+    if (availableBusinessSeat && selectedSeat.class !== 'business') {
+      const seatLetter = String.fromCharCode(65 + seatIndex);
+      const seatDisplay = `${rowIndex + 1}${seatLetter}`;
+      const newSelectedSeat = {
+        row: rowIndex,
+        seat: seatIndex,
+        seatDisplay: seatDisplay,
+        class: 'business',
+        upgraded: true,
+        upgradeCost: upgradeCost
+      };
+
+      console.log("Seat upgraded: ", newSelectedSeat);
+      setSelectedSeat(newSelectedSeat);
+      updateFlightSeats(currentFlightIndex, currentPassengerIndex, newSelectedSeat);
+    }
+
+    setShowOverlay(false);
+
+    // Move to the next passenger or flight
+    if (currentPassengerIndex + 1 < passengerTotal()) {
+      setCurrentPassengerIndex(currentPassengerIndex + 1);
+    } else {
+      setCurrentFlightIndex(currentFlightIndex + 1);
+      setCurrentPassengerIndex(0);
+    }
+  };
+
+  const handleReset = () => {
+    resetFlightSeats()
+    router.push('/booking/seats', { shallow: false });
   }
-
-  // Proceed if a business class seat is found and selected seat is not already business
-  if (availableBusinessSeat && selectedSeat.class !== 'business') {
-    const seatLetter = String.fromCharCode(65 + seatIndex);
-    const seatDisplay = `${rowIndex + 1}${seatLetter}`;
-    const newSelectedSeat = {
-      row: rowIndex,
-      seat: seatIndex,
-      seatDisplay: seatDisplay,
-      class: 'business',
-      upgraded: true,
-      upgradeCost: upgradeCost
-    };
-
-    console.log("Seat upgraded: ", newSelectedSeat);
-    setSelectedSeat(newSelectedSeat);
-    updateFlightSeats(currentFlightIndex, currentPassengerIndex, newSelectedSeat);
-  }
-
-  setShowOverlay(false);
-
-  // Move to the next passenger or flight
-  if (currentPassengerIndex + 1 < passengerTotal()) {
-    setCurrentPassengerIndex(currentPassengerIndex + 1);
-  } else {
-    setCurrentFlightIndex(currentFlightIndex + 1);
-    setCurrentPassengerIndex(0);
-  }
-};
-
+  
   if (isLoading) {
     return <div>Loading...</div>;
   }
@@ -169,11 +174,10 @@ export default function FlightSeatsDetails() {
         <SeatSelector
           OpenOverlay={handleOpenOverlay}
           selectedSeat={selectedSeat}
-          handleNavigation={handleSeatSelection}
+          handleReset={handleReset}
           flight={currentFlight}
           passengerNumber={currentPassengerIndex + 1}
           flightNumber={currentFlightIndex + 1}
-          totalFlights={cartItems.length}
           passengerName={passengersInfo[currentPassengerIndex].passengerInfo.firstName + ' ' + passengersInfo[currentPassengerIndex].passengerInfo.lastName}
         />
       </div>

@@ -4,9 +4,8 @@ import { useEffect, useState } from 'react';
 
 import Image from 'next/image';
 import styles from './seatSelector.module.css';
-import { useCart } from '@/providers/CartProvider'
 
-const SeatSelector = ({ className = "", OpenOverlay, selectedSeat, flight, handleNavigation, GotoPayment, passengerNumber, flightNumber, totalFlights, passengerName }) => {
+const SeatSelector = ({ className = "", OpenOverlay, selectedSeat, flight, handleReset, passengerNumber, flightNumber, passengerName }) => {
     // make sure seat is object and not array
 
     // toggle based on seat selected not on click on overlay
@@ -28,7 +27,7 @@ const SeatSelector = ({ className = "", OpenOverlay, selectedSeat, flight, handl
     return (
         <div className={`${styles.seatSelector} ${className}`}>
         <div className={styles.content}>
-            <ProgressStepHeader flight={flight}/>
+            <ProgressStepHeader flight={flight} flightNumber={flightNumber}/>
             <div className={styles.featureLists} style={{ marginTop: '8px'}}>
                 {/* <div onClick={handleEconomySelected}> */}
                 <FeatureList
@@ -61,9 +60,9 @@ const SeatSelector = ({ className = "", OpenOverlay, selectedSeat, flight, handl
                 />
                 {/* </div> */}
             </div>
-            <NavigationFooter GotoPayment={GotoPayment} OpenOverlay={OpenOverlay}
-                selectedSeat={selectedSeat} handleNavigation={handleNavigation}
-                passengerNumber={passengerNumber} flightNumber={flightNumber} totalFlights={totalFlights} passengerName={passengerName}/>
+            <NavigationFooter OpenOverlay={OpenOverlay}
+                selectedSeat={selectedSeat} handleReset={handleReset}
+                passengerNumber={passengerNumber} passengerName={passengerName}/>
         </div>
         </div>
     );
@@ -85,7 +84,7 @@ export function getCityByAirportCode(code) {
     return airportToCityMap[code] || 'Unknown airport code';
 }
 
-const ProgressStepHeader = ({ flight }) => {
+const ProgressStepHeader = ({ flight, flightNumber }) => {
     // Ensure flight is not null or undefined before attempting to destructure
     const [departureTime, arrivalTime] = flight?.fromtoTime?.split(' - ') || ['08:00AM', '08:00PM'];
 
@@ -103,6 +102,10 @@ const ProgressStepHeader = ({ flight }) => {
         return time;
     };
 
+    //console.log('flight no.', flightNumber);
+
+    const sectionClass1 = flightNumber === 1 ? `${styles.section} ${styles.hoverEffect} ${styles.purpleBackground}` : `${styles.section} ${styles.hoverEffect}`;
+    const sectionClass2 = flightNumber !== 1 ? `${styles.section} ${styles.hoverEffect} ${styles.purpleBackground}` : `${styles.section} ${styles.hoverEffect}`;
     return (
         <div className={styles.progressStepHeadercontainer}>
             <div className={styles.section}>
@@ -114,13 +117,13 @@ const ProgressStepHeader = ({ flight }) => {
                 <h1 className={styles.Headertitle}>{flight?.to || 'NRT'}</h1>
                 <p className={styles.subtitle}>{ flight?.to ? getCityByAirportCode(flight?.to) : 'Tokyo, Japan'}</p>
             </div>
-            <div className={`${styles.section} ${styles.hoverEffect}`}>
+            <div className={sectionClass1}>
                 <h3 className={styles.Headertitle}>
                     {formatDate(flight?.startDate) || 'Aug 25'} | {formatTime(departureTime) || '08:00 AM'}
                 </h3>
                 <p className={styles.subtitle}>Departing</p>
             </div>
-            <div className={`${styles.section} ${styles.hoverEffect}`}>
+            <div className={sectionClass2}>
                 <h2 className={styles.Headertitle}>
                     {formatDate(flight?.endDate) || 'Aug 25'} | {formatTime(arrivalTime) || '08:00 AM'}
                 </h2>
@@ -177,12 +180,9 @@ const FeatureList = ({ className, title, selected, description, features }) => {
 const NavigationFooter = ({
     OpenOverlay,
     selectedSeat,
-    handleNavigation,
+    handleReset,
     passengerNumber,
-    flightNumber,
-    totalFlights,
     passengerName,
-    passengersInfo
 }) => {
 
     return (
@@ -206,13 +206,13 @@ const NavigationFooter = ({
                     className={`${styles.button} ${styles.saveButton}`}
                     onClick={OpenOverlay}
                 >
-                    Save and close
+                    Choose Seat
                 </button>
                 <button
                     className={`${styles.button} ${styles.nextButton}`}
-                    onClick={handleNavigation}
+                    onClick={handleReset}
                 >
-                    {flightNumber === totalFlights && passengersInfo && passengerNumber === passengersInfo.length ? 'Go to Payment' : 'Next'}
+                    Reset All Selections
                 </button>
             </div>
         </div>
