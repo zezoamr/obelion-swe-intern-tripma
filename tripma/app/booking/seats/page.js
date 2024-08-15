@@ -83,6 +83,7 @@ export default function FlightSeatsDetails() {
       setCurrentFlightIndex(currentFlightIndex + 1);
       setCurrentPassengerIndex(0);
     }
+    setSelectedSeat(null);
 
     setShowOverlay(false);
   };
@@ -129,6 +130,7 @@ export default function FlightSeatsDetails() {
       console.log("Seat upgraded: ", newSelectedSeat);
       setSelectedSeat(newSelectedSeat);
       updateFlightSeats(currentFlightIndex, currentPassengerIndex, newSelectedSeat);
+      setSelectedSeat(null);
     }
 
     setShowOverlay(false);
