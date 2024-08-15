@@ -110,9 +110,12 @@ CREATE TABLE "Payment" (
 CREATE TABLE "Payment_info" (
     "id" TEXT NOT NULL PRIMARY KEY,
     "nameOnCard" TEXT NOT NULL,
-    "cardNumber" BIGINT NOT NULL,
+    "cardNumber" TEXT NOT NULL,
     "expDate" TEXT NOT NULL,
-    "CVV" INTEGER NOT NULL
+    "CVV" INTEGER NOT NULL,
+    "billingAddress" TEXT NOT NULL,
+    "userId" TEXT,
+    CONSTRAINT "Payment_info_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User" ("id") ON DELETE SET NULL ON UPDATE CASCADE
 );
 
 -- CreateTable
@@ -135,6 +138,10 @@ CREATE TABLE "Payment_passenger" (
     "flightId" TEXT NOT NULL,
     "seatRow" INTEGER NOT NULL,
     "seatNumber" INTEGER NOT NULL,
+    "seatClass" TEXT,
+    "seatDisplay" TEXT,
+    "upgraded" BOOLEAN,
+    "upgradeCost" INTEGER,
     CONSTRAINT "Payment_passenger_paymentId_fkey" FOREIGN KEY ("paymentId") REFERENCES "Payment" ("id") ON DELETE CASCADE ON UPDATE CASCADE
 );
 

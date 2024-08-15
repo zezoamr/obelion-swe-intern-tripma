@@ -18,6 +18,7 @@ model User {
   accounts      Account[]
   sessions      Session[]
   payments      Payment[]
+  paymentInfos  Payment_info[]
 }
 
 model Account {
@@ -122,7 +123,10 @@ model Payment_info {
   cardNumber   String  // Changed from BigInt to String due to problems serializing bigint
   expDate      String
   CVV          Int
+  billingAddress String
   payment      Payment? //has to be optional because Prisma used to allow marking a one-to-one relation field as required, but it can't always enforce this rule at the database level.
+  user           User?     @relation(fields: [userId], references: [id])
+  userId         String? 
 }
 
 
@@ -136,7 +140,7 @@ model Payment_passenger {
   emailAddress            String
   phoneNumber             String
   redressNumber           String?
-  knownTravelNumber       String?
+  knownTravelNumber       String
   emergencyFirstName      String
   emergencyLastName       String
   emergencyEmailAddress   String
