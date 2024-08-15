@@ -8,22 +8,18 @@ const initialState = {
     cartItems: [],
     passengersInfo: [],
     paymentData: {},
-    // SeatsInfo: [],
     passengerDoneCount: () => {},
-    // SeatsDoneCount: () => {},
     updateCart: () => {},
     updatePassengersInfo: () => {},
-    // updatePassengerInfoSeats: () => {},
     updatePaymentData: () => {},
     updateAdultsAndMinors: () => {},
-
-    // updateSeatsInfo: () => {},
-
     passengerTotal: () => {},
-
     flightSeats: [],
+    PaymentResponse: {},
     updateflightSeats: () => {}, 
     resetFlightSeats: () => {},
+    clearRequestData : () => {},
+    clearEverything : () => {},
 }
 
 const CartContext = createContext(initialState)
@@ -36,8 +32,8 @@ export default function CartProvider({ children }) {
     const [paymentData, setPaymentData] = useLocalStorage('paymentData', {})
     const [adultCount, setAdultCount] = useLocalStorage('adultCount', 1)
     const [minorCount, setMinorCount] = useLocalStorage('minorCount', 0)
-    const [SeatsInfo, setSeatsInfo] = useLocalStorage('SeatsInfo', [])
     const [flightSeats, setFlightSeats] = useLocalStorage('flightSeats', [])
+    const [PaymentResponse, setPaymentResponse] = useLocalStorage('PaymentResponse', {})
 
     const updateCart = (items, keepExisting = false) => {
         setCartItems(keepExisting ? [...cartItems, ...items] : items)
@@ -48,11 +44,6 @@ export default function CartProvider({ children }) {
             ? [...passengersInfo, ...(Array.isArray(data) ? data : [data])]
             : (Array.isArray(data) ? data : [data]))
     }
-
-    // const updatePassengerInfoSeats = (data, keepExisting = false) => {
-    //     if(keepExisting) setSeatsInfo([...SeatsInfo, ...(Array.isArray(data) ? data : [data])])
-    //     else setSeatsInfo((Array.isArray(data) ? data : [data]))
-    // }
 
     const updatePaymentData = (data, keepExisting = false) => {
         setPaymentData(keepExisting
@@ -65,15 +56,7 @@ export default function CartProvider({ children }) {
         setMinorCount(minors)
     }
 
-    // const updateSeatsInfo = (data, keepExisting = false) => {
-    //     setSeatsInfo(keepExisting
-    //         ? [...SeatsInfo, ...(Array.isArray(data) ? data : [data])]
-    //         : (Array.isArray(data) ? data : [data]))
-    // }
-
     const passengerDoneCount = () => passengersInfo.length
-
-    // const SeatsDoneCount = () => SeatsInfo.length
 
     const passengerTotal = () => Number(adultCount) + Number(minorCount)
 
@@ -92,25 +75,45 @@ export default function CartProvider({ children }) {
         setFlightSeats([])
     }
 
+    const clearRequestData = () => {
+        setCartItems([])
+        setPassengersInfo([])
+        setPaymentData({})
+        setAdultCount(1)
+        setMinorCount(0)
+        setFlightSeats([])
+    }
+
+    const clearEverything = () => {
+        setCartItems([])
+        setPassengersInfo([])
+        setPaymentData({})
+        setAdultCount(1)
+        setMinorCount(0)
+        setFlightSeats([])
+        PaymentResponse({})
+    }
+    
+
     const value = {
         cartItems,
         passengersInfo,
         paymentData,
         adultCount,
         minorCount,
-        // SeatsInfo,
         updateCart,
         updatePassengersInfo,
-        // updatePassengerInfoSeats,
         updatePaymentData,
         updateAdultsAndMinors,
-        // updateSeatsInfo,
         passengerDoneCount,
-        // SeatsDoneCount,
         passengerTotal,
         flightSeats,
         updateFlightSeats,
         resetFlightSeats,
+        clearRequestData,
+        clearEverything,
+        PaymentResponse,
+        setPaymentResponse
     }
 
     return <CartContext.Provider value={value}>{children}</CartContext.Provider>
