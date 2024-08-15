@@ -13,6 +13,7 @@ import SignupOverlay from "@/layoutComponents/SignupOverlay";
 export default function Provider ({ children, session }) {
     const pathname = usePathname();
     const [showSignup, setShowSignup] = useState(false);
+    const [showBanner, setShowBanner] = useState(true);
     const [isSignIn, setIsSignIn] = useState(false);
 
     const toggleSignup = (signIn) => {
@@ -20,6 +21,9 @@ export default function Provider ({ children, session }) {
         setShowSignup(!showSignup);
     };
 
+    const CloseBanner = () => {
+        setShowBanner(false);
+    }
     // Add the routes where you want to disable the Navbar
     const routesWithoutNavbar = ['/booking/seats',]//[ 'booking/pickSeats'];
     // Check if the current route should have the Navbar
@@ -28,7 +32,7 @@ export default function Provider ({ children, session }) {
     return (
         <SessionProvider session={session}>
             <CartProvider>
-            {showNavbar && <Banner />}
+            {showNavbar && showBanner && <Banner CloseBanner={CloseBanner} />}
             {showNavbar && <Navbar onSignupClick={() => toggleSignup(false)} onSignInClick={() => toggleSignup(true)} />}
             
                 {children}
