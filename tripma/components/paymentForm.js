@@ -1,10 +1,33 @@
 "use client";
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { CreditCard, Info } from 'lucide-react';
 import styles from './PaymentForm.module.css';
+import validator from 'validator';
+
+import { useCart } from '@/providers/CartProvider'
+import { useRouter } from 'next/navigation';
+import { useSession, signIn } from 'next-auth/react';
 
 export default function PaymentForm() {
+    const router = useRouter();
+    const session = useSession();
+    const [userId, setUserId] = useState(null);
+    const {cartItems, flightSeats, passengersInfo, resetFlightSeats, clearRequestData, setPaymentResponse} = useCart(); //paymentData, updatePaymentData, 
+
+    const goBackToSeats = () => {
+        resetFlightSeats();
+        router.push('/booking/seats');
+    }
+    
+    useEffect(() => {
+        if(session && session.data && session.data.user) setUserId(session?.data?.user?.id)
+        // console.log('session', session);
+        // console.log("userId", userId);
+    });
+
+    
+
     const [paymentMethod, setPaymentMethod] = useState('credit_card');
     const [billingAddressSame, setBillingAddressSame] = useState(true);
     const [saveCard, setSaveCard] = useState(false);
@@ -48,12 +71,16 @@ export default function PaymentForm() {
             if (!formData.cvv) newErrors.cvv = 'CVV is required';
             else if (!validator.isNumeric(formData.cvv) || formData.cvv.length < 3 || formData.cvv.length > 4) newErrors.cvv = 'Invalid CVV';
         }
-        if (saveCard) {
+        if (saveCard && !userId) {
             if (!formData.email) newErrors.email = 'Email is required';
             else if (!validator.isEmail(formData.email)) newErrors.email = 'Please enter a valid email address';
             if (!formData.password) newErrors.password = 'Password is required';
             else if (formData.password.length < 8) newErrors.password = 'Password must be at least 8 characters long';
         }
+        if(!billingAddressSame){
+            if (!formData.billingAddress) newErrors.billingAddress = 'Billing address is required';
+        }
+        console.log(newErrors)
         setErrors(newErrors);
         return Object.keys(newErrors).length === 0;
     };
@@ -62,10 +89,128 @@ export default function PaymentForm() {
         e.preventDefault();
         if (validateForm()) {
             setIsSubmitting(true);
-            // TODO: Implement payment form submission logic
-            console.log('Form submitted', formData);
-        } else {
-            console.log('Form has errors', errors);
+            if (saveCard && !userId) {
+                try {
+                    const userData = {
+                        identifier: formData.email, 
+                        password: formData.password,
+                        alertsAccepted: true,
+                    };
+            
+                    // First, try to create an account
+                    const signupResponse = await fetch('/api/auth/signup', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(userData),
+                    });
+            
+                    if (signupResponse.ok) {
+                        console.log('Signup successful');
+                        // If signup is successful, log in the user
+                        const signInResult = await signIn('credentials', {
+                            identifier: userData.identifier,
+                            password: userData.password,
+                            redirect: false,
+                        });
+            
+                        if (signInResult.error) {
+                            setErrors({...errors, Signup: 'Signup successful, but login failed. Please try logging in.'});
+                        } else {
+                            console.log('User signed in after signup');
+                        }
+                    } else if (signupResponse.status === 409) {
+                        // 409 typically means the user already exists
+                        console.log('User already exists, attempting to sign in');
+                        const signInResult = await signIn('credentials', {
+                            identifier: userData.identifier,
+                            password: userData.password,
+                            redirect: false,
+                        });
+            
+                        if (signInResult.error) {
+                            setErrors({...errors, Signup: 'Login failed. Please check your credentials.'});
+                        } else {
+                            console.log('Existing user signed in');
+                        }
+                    } else {
+                        const data = await signupResponse.json();
+                        setErrors({...errors, Signup: data.error || 'Signup failed'});
+                    }
+                } catch (error) {
+                    console.error('Error signing up or logging in:', error);
+                    setErrors({...errors, Signup: 'Signup or login failed. Please try again.'});
+                }
+            }
+            
+            //todo userId is undefined still after login, if click button again then it works, need refresh i guess, alternatively use route to register user then insert id
+            //console.log('in handlesubmit payment')
+            //window.refresh?
+            
+            try {
+                //console.log('Form submitted', formData);
+                //updatePaymentData({paymentMethod, billingAddressSame, saveCard, formData}, true); no need + (refreshes page so less localstorage/cart context?)
+                // console.log('to be sent', {cartItems, paymentData, flightSeats, passengersInfo, userId})
+
+                let billingAddress = '';
+                if (billingAddressSame)  billingAddress = passengersInfo[0].passengerInfo.email;
+                else billingAddress = formData.billingAddress;
+                //console.log('billing address', passengersInfo[0].passengerInfo.email, formData.billingAddress, billingAddress)
+
+                const paymentDataToSend = {
+                    paymentMethod,
+                    billingAddress,
+                    saveCard,
+                    formData: {
+                    nameOnCard: formData.nameOnCard,
+                    cardNumber: formData.cardNumber.toString(),
+                    expirationDate: formData.expirationDate,
+                    cvv: formData.cvv,
+                    },
+                };
+
+                // Make POST request
+                const response = await fetch('/api/payment', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({cartItems, paymentData: paymentDataToSend, flightSeats, passengersInfo, userId, saveCard}),
+                });
+
+                // console.log('Full response:', response);
+                // console.log('Response status:', response.status);
+                // console.log('Response headers:', response.headers);
+
+                const responseText = await response.text();
+                // console.log('Response text:', responseText);
+
+                let responseData;
+                try {
+                    responseData = JSON.parse(responseText);
+                    // console.log('responseData', responseData);
+                } catch (error) {
+                    // console.error('Error parsing JSON:', error);
+                    throw new Error('Invalid JSON response');
+                }
+                // console.log('result ', responseData.result);
+                setPaymentResponse(responseData.result);
+
+                // console.log('Payment successful');
+                clearRequestData(); //clears cart
+                
+                router.push('/booking/success');
+            
+            } catch (error) {
+                //console.error('Error during payment:', error);
+                setErrors((prevErrors) => ({
+                    ...prevErrors,
+                    reqResponse: 'Payment failed. Please try again. qqqqqqq'
+                }));
+            } finally {
+                setIsSubmitting(false);
+            }
+        }else{
+            console.log('Form not valid')
         }
     };
 
@@ -154,7 +299,7 @@ export default function PaymentForm() {
                         }
                         {method === 'crypto' && 
                         <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M2.09562 13.4188C2.04552 13.7233 2.28043 14 2.58899 14H4.75968L4.59806 15.0173C4.50159 15.6246 4.97082 16.1742 5.58568 16.1742H7.3524C7.84403 16.1742 8.26274 15.8169 8.33998 15.3313L8.8418 12.1771H11.1101C12.5474 12.1771 13.7265 11.831 14.5667 11.0617C15.4069 10.2926 15.8041 9.23895 15.8041 7.96759C15.8041 6.8936 15.4535 6.00617 14.6993 5.38702C14.4843 5.20754 14.2447 5.05744 13.9824 4.93481C13.9023 4.05176 13.5497 3.36285 12.9244 2.86809C12.2073 2.28936 11.1611 2 9.78577 2H4.39927C4.15447 2 3.94566 2.17725 3.90591 2.41881L2.09562 13.4188ZM6.4861 9.50638H9.11573C10.7027 9.50638 11.9134 9.13759 12.7481 8.4C13.4189 7.8071 13.8202 7.03091 13.9518 6.07141C13.9892 6.09869 14.0252 6.12682 14.0598 6.15577L14.0598 6.15579L14.0635 6.15887C14.5395 6.54904 14.8041 7.12463 14.8041 7.96759C14.8041 9.0178 14.4846 9.78109 13.8915 10.3241C13.2984 10.8671 12.3981 11.1771 11.1101 11.1771H8.8418C8.35017 11.1771 7.93146 11.5344 7.85422 12.02L7.3524 15.1742H5.58568L6.4861 9.50638Z" fill="#605DEC"/>
+                        <path fillRule="evenodd" clipRule="evenodd" d="M2.09562 13.4188C2.04552 13.7233 2.28043 14 2.58899 14H4.75968L4.59806 15.0173C4.50159 15.6246 4.97082 16.1742 5.58568 16.1742H7.3524C7.84403 16.1742 8.26274 15.8169 8.33998 15.3313L8.8418 12.1771H11.1101C12.5474 12.1771 13.7265 11.831 14.5667 11.0617C15.4069 10.2926 15.8041 9.23895 15.8041 7.96759C15.8041 6.8936 15.4535 6.00617 14.6993 5.38702C14.4843 5.20754 14.2447 5.05744 13.9824 4.93481C13.9023 4.05176 13.5497 3.36285 12.9244 2.86809C12.2073 2.28936 11.1611 2 9.78577 2H4.39927C4.15447 2 3.94566 2.17725 3.90591 2.41881L2.09562 13.4188ZM6.4861 9.50638H9.11573C10.7027 9.50638 11.9134 9.13759 12.7481 8.4C13.4189 7.8071 13.8202 7.03091 13.9518 6.07141C13.9892 6.09869 14.0252 6.12682 14.0598 6.15577L14.0598 6.15579L14.0635 6.15887C14.5395 6.54904 14.8041 7.12463 14.8041 7.96759C14.8041 9.0178 14.4846 9.78109 13.8915 10.3241C13.2984 10.8671 12.3981 11.1771 11.1101 11.1771H8.8418C8.35017 11.1771 7.93146 11.5344 7.85422 12.02L7.3524 15.1742H5.58568L6.4861 9.50638Z" fill="#605DEC"/>
                         </svg>
                         }
                         {method.split('_').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')}
@@ -174,6 +319,18 @@ export default function PaymentForm() {
                         />
                         Billing address is same as Passenger 1
                     </label>
+                    {!billingAddressSame && 
+                    <div className={styles.inputGroup}>
+                        <input 
+                            type="text"
+                            name="billingAddress"
+                            value={formData.billingAddress}
+                            onChange={handleInputChange}
+                            placeholder="billing Address"
+                            className={`${styles.input} ${errors.billingAddress ? styles.inputError : ''}`}
+                        />
+                    </div>
+                    }
                 </>
             )}
 
@@ -192,11 +349,68 @@ export default function PaymentForm() {
                     onChange={(e) => setSaveCard(e.target.checked)}
                     className={styles.checkbox}
                 />
-                Save card and create account for later
+                Save card {!userId? 'and create account for later' : 'to account'}
             </label>
 
-            {saveCard && (
-                    <SignupformEmbed />
+            {saveCard &&  !userId && (
+                    <>
+                    {errors.email && <span className={styles.errorMessage}>{errors.email}</span>}
+                    {errors.password && <span className={styles.errorMessage}>{errors.password}</span>}
+                    {errors.Signup && <span className={styles.errorMessage}>{errors.Signup}</span>}
+                    <div className={styles.signupContainer}>
+                        <div className={styles.signupForm}>
+                        <input
+                            type="text"
+                            name="email"
+                            value={formData.email}
+                            onChange={handleInputChange}
+                            placeholder="Email"
+                            className={styles.signupInput}
+                        />
+
+                        <input
+                            type="password"
+                            name="password"
+                            value={formData.password}
+                            onChange={handleInputChange}
+                            placeholder="Password"
+                            className={styles.signupInput}
+                        />
+
+                        <div className={styles.divider2}>
+                            <div className={styles.divider3}> </div>
+                                or
+                            <div className={styles.divider3}> </div>
+                        </div>
+
+                        {/* Social login buttons */}
+                        <button className={`${styles.socialButton} ${styles.googleButton}`} onClick={() => signIn('google')}>
+                            <span className={styles.socialIcon}>
+                                <GoogleIcon />
+                            </span>
+                            Continue with Google
+                            <div className={styles.rightArrow}></div>
+                        </button>
+
+                        <button className={`${styles.socialButton} ${styles.appleButton}`}>
+                            <span className={styles.socialIcon}>
+                                <AppleIcon />
+                            </span>
+                            Continue with Apple
+                            <div className={styles.rightArrow}></div>
+                        </button>
+
+                        <button className={`${styles.socialButton} ${styles.facebookButton}`}>
+                            <span className={styles.socialIcon}>
+                                <FacebookIcon />
+                            </span>
+                            Continue with Facebook
+                            <div className={styles.rightArrow}></div>
+                        </button>
+                        </div>
+                    </div>
+                    </>
+                    
             )}
 
 
@@ -207,71 +421,15 @@ export default function PaymentForm() {
                 backed by our satisfaction guarantee; however cancellation policies vary by airline. See the full
                 cancellation policy for this flight.
             </p>
-
+            
+            {errors.reqResponse && <span className={styles.reqResponse}>{errors.reqResponse}</span>}
             <div className={styles.actionButtons}>
-                <button type="submit" className={styles.backButton} disabled={isSubmitting}>
+                <button type="submit" className={styles.confirmButton} disabled={isSubmitting}>
                     {isSubmitting ? 'Processing...' : 'Save and close'}
                 </button>
-                <button type="button" className={styles.backButton}> Select seats</button>{/*confirmButton */}
+                <button type="button" className={styles.backButton} onClick={goBackToSeats}>prev seats</button>{/*confirmButton */}
             </div>
         </form>
-    );
-}
-
-function SignupformEmbed() {
-    return (
-        <div className={styles.signupContainer}>
-            <div className={styles.signupForm}>
-            <div className={styles.inputContainer}>
-                <input
-                    type="text"
-                    placeholder="Email or phone number"
-                    className={styles.signupInput}
-                />
-                <div className={styles.divider}></div>
-            </div>
-
-            <div className={styles.inputContainer}>
-                <input
-                    type="password"
-                    placeholder=""
-                    className={styles.signupInput}
-                />
-                <div className={styles.divider}></div>
-            </div>
-
-            <div className={styles.divider2}>
-                <div className={styles.divider3}> </div>
-                    or
-                <div className={styles.divider3}> </div>
-            </div>
-
-            {/* Social login buttons */}
-            <button className={`${styles.socialButton} ${styles.googleButton}`} onClick={() => signIn('google')}>
-                <span className={styles.socialIcon}>
-                    <GoogleIcon />
-                </span>
-                Continue with Google
-                <div className={styles.rightArrow}></div>
-            </button>
-
-            <button className={`${styles.socialButton} ${styles.appleButton}`}>
-                <span className={styles.socialIcon}>
-                    <AppleIcon />
-                </span>
-                Continue with Apple
-                <div className={styles.rightArrow}></div>
-            </button>
-
-            <button className={`${styles.socialButton} ${styles.facebookButton}`}>
-                <span className={styles.socialIcon}>
-                    <FacebookIcon />
-                </span>
-                Continue with Facebook
-                <div className={styles.rightArrow}></div>
-            </button>
-            </div>
-        </div>
     );
 }
 
