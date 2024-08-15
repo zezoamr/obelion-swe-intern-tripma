@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 
 import Image from 'next/image'
-import mapimage from "@/components/mapimage.png"
 
 import styles from './searchbar.module.css'
 import PriceGrid from "./pricegrid";
@@ -41,7 +40,7 @@ export default function Searchbar({ fromValue, setFromValue, toValue, setToValue
     useEffect(() => {
         if (selectedDateRange?.end) {
             //console.log(selectedDateRange);
-        
+            setIsOneWay(true);
             if (selectedDateRange.end) {
                 setIsOneWay(false);
             }
@@ -99,12 +98,19 @@ export default function Searchbar({ fromValue, setFromValue, toValue, setToValue
             
             <div style={{display: "flex", justifyContent: "space-evenly", alignContent: "center"}}>
                 <div style={{display: "flex", flexDirection: "column", justifyContent: "flex-start", alignContent: "center", gap: "20px"}}>
-                    <span className={styles.Chooseflight}>
-                    Choose a
-                    <span className={styles.textstyle1}> {isOneWay ? "Departing" : (pickedflights.length === 0? "Departing" : "returning")} </span>
-                    flight
-                    </span>
-
+                    {isOneWay && pickedflights.length === 1 ?
+                        <div className={`${styles.Chooseflight} ${styles.textstyle1} `}> please save the cart </div>
+                        :
+                        (pickedflights.length === 2 ?
+                            <div className={`${styles.Chooseflight} ${styles.textstyle1} `}> please save the cart </div>
+                            :
+                            <span className={styles.Chooseflight}>
+                                Choose a
+                                <span className={styles.textstyle1}> {isOneWay ? "Departing" : (pickedflights.length === 0 ? "Departing" : "returning")} </span>
+                                flight
+                            </span>
+                        )
+                    }
                     {loading ? (
                         <p>Loading flights...</p>
                     ) : (
@@ -120,7 +126,7 @@ export default function Searchbar({ fromValue, setFromValue, toValue, setToValue
                     </button>
 
                     <div className={styles.Map}>
-                        <Image src={mapimage} alt="map" fill />
+                        <Image src='/mapimage.png' alt="map" fill />
                     </div>
                 </div>
 
