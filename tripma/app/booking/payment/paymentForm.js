@@ -110,7 +110,7 @@ export default function PaymentForm() {
                         const signInResult = await signIn('credentials', {
                             identifier: userData.identifier,
                             password: userData.password,
-                            redirect: false,
+                            redirect: true,
                         });
             
                         if (signInResult.error) {
@@ -119,15 +119,15 @@ export default function PaymentForm() {
                             console.log('User signed in after signup');
                         }
 
-                        
+                        window.location.reload();
 
                     } else if (signupResponse.status === 409) {
                         // 409 typically means the user already exists
-                        console.log('User already exists, attempting to sign in');
+                        //console.log('User already exists, attempting to sign in');
                         const signInResult = await signIn('credentials', {
                             identifier: userData.identifier,
                             password: userData.password,
-                            redirect: false,
+                            redirect: true,
                         });
             
                         if (signInResult.error) {
@@ -135,7 +135,7 @@ export default function PaymentForm() {
                         } else {
                             console.log('Existing user signed in');
 
-                            
+                            window.location.reload();
                         }
                     } else {
                         const data = await signupResponse.json();
@@ -353,7 +353,7 @@ export default function PaymentForm() {
                     onChange={(e) => setSaveCard(e.target.checked)}
                     className={styles.checkbox}
                 />
-                Save card {!userId? 'and create account for later' : 'to account'}
+                Save card {!userId? 'and create account for later, page will refresh on account creation and you will need to re-enter fields' : 'to account'}
             </label>
 
             {saveCard &&  !userId && (
