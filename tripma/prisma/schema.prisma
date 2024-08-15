@@ -88,6 +88,14 @@ model Testimonial {
 }
 
 model City {
+  id          String         @id // This will be the city name
+  locations   CityLocation[]
+  places      Place[]
+  hotels      Hotel[]
+  experiences Experience[]
+}
+
+model CityLocation {
   id          String  @id @default(cuid())
   name        String
   city        String
@@ -95,6 +103,8 @@ model City {
   image       String
   price       String?
   newcolor    String?
+  cityObj        City?    @relation(fields: [cityref], references: [id])
+  cityref      String?  
 }
 
 model Place {
@@ -105,8 +115,29 @@ model Place {
   description String
   image       String
   newcolor    String?
+  cityObj        City?    @relation(fields: [cityref], references: [id])
+  cityref      String? 
 }
 
+model Hotel {
+  id          String  @id @default(cuid())
+  name        String
+  price       String
+  description String
+  image       String
+  cityObj        City?    @relation(fields: [cityref], references: [id])
+  cityref      String?  
+}
+
+model Experience {
+  id          String  @id @default(cuid())
+  name        String
+  price       String
+  description String
+  image       String
+  cityObj        City?    @relation(fields: [cityref], references: [id])
+  cityref      String?  
+}
 
 model Payment {
   id            String          @id @default(cuid())

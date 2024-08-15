@@ -1,40 +1,83 @@
 const { PrismaClient } = require('@prisma/client');
-const { data, mockFlights } = require('./mockData');
+const { data, mockFlights, hotels, experiences, cities } = require('./mockData');
 
 const prisma = new PrismaClient();
 
 async function main() {
 // Clear existing data
-await prisma.flight.deleteMany();
+await prisma.flight.deleteMany(); 
 await prisma.testimonial.deleteMany();
 await prisma.city.deleteMany();
+await prisma.cityLocation.deleteMany();
 await prisma.place.deleteMany();
+
+await prisma.user.deleteMany();
+await prisma.payment_passenger.deleteMany();
+await prisma.payment_info.deleteMany();
+await prisma.payment.deleteMany();
+
+//seed cites
+for (const city of cities) {
+    await prisma.city.create({
+        data: {
+            id: city.id,
+        }
+    });
+}
+
+// Seed CityLocations
+for (const location of data.cityLocations) {
+    await prisma.cityLocation.create({
+        data: {
+            name: location.name,
+            city: location.city,
+            description: location.description,
+            image: location.image,
+            price: location.price,
+            newcolor: location.newcolor,
+            cityref: location.cityref,
+        },
+    });
+}
 
 // Seed Places
 for (const place of data.places) {
     await prisma.place.create({
-    data: {
-        name: place.name,
-        price: place.price,
-        city: place.city,
-        description: place.description,
-        image: place.image,
-        newcolor: place.newcolor,
-    },
+        data: {
+            name: place.name,
+            price: place.price,
+            city: place.city,
+            description: place.description,
+            image: place.image,
+            newcolor: place.newcolor,
+            cityref: place.cityref,
+        },
     });
 }
 
-// Seed Cities
-for (const city of data.cities) {
-    await prisma.city.create({
-    data: {
-        name: city.name,
-        city: city.city,
-        description: city.description,
-        image: city.image,
-        price: city.price,
-        newcolor: city.newcolor,
-    },
+// Seed Hotels
+for (const hotel of hotels) {
+    await prisma.hotel.create({
+        data: {
+            name: hotel.name,
+            price: hotel.price,
+            description: hotel.description,
+            image: hotel.image,
+            cityref: hotel.cityref,
+        },
+    });
+}
+
+// Seed Experiences
+for (const experience of experiences) {
+    await prisma.experience.create({
+        data: {
+            name: experience.name,
+            price: experience.price,
+            description: experience.description,
+            image: experience.image,
+            cityref: experience.cityref,
+        },
     });
 }
 
