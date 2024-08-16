@@ -339,12 +339,14 @@ export default function PaymentForm() {
             )}
 
             {renderPaymentMethodFields()}
-
+            {!userId &&
+            <>
             <h3 className={styles.sectionTitle}>Create an account</h3>
             <p className={styles.description}>
                 Tripma is free to use as a guest, but if you create an account today, you can save and view
                 flights, manage your trips, earn rewards, and more.
             </p>
+            </>}
 
             <label className={styles.checkboxLabel}>
                 <input
